@@ -1,0 +1,2 @@
+# DarkTheme
+KeePass Plugin
