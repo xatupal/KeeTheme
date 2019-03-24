@@ -57,14 +57,27 @@ namespace DarkTheme
 		{
 			control.BackColor = _controlStyle.BackColor;
 			control.ForeColor = _controlStyle.ForeColor;
-			
-			if (control is Form form) Apply(form);
-			if (control is Button button) Apply(button);
-			if (control is TreeView treeView) Apply(treeView);
-			if (control is RichTextBox richTextBox) Apply(richTextBox);
-			if (control is LinkLabel linkLabel) Apply(linkLabel);
-			if (control is ListView listView) Apply(listView);
-			if (control is SecureTextBoxEx secureTextBoxEx) Apply(secureTextBoxEx);
+
+			var form = control as Form;
+			if (form != null) Apply(form);
+
+			var button = control as Button;
+			if (button != null) Apply(button);
+
+			var treeView = control as TreeView;
+			if (treeView != null) Apply(treeView);
+
+			var richTextBox = control as RichTextBox;
+			if (richTextBox != null) Apply(richTextBox);
+
+			var linkLabel = control as LinkLabel;
+			if (linkLabel != null) Apply(linkLabel);
+
+			var listView = control as ListView;
+			if (listView != null) Apply(listView);
+
+			var secureTextBoxEx = control as SecureTextBoxEx;
+			if (secureTextBoxEx != null) Apply(secureTextBoxEx);
 		}
 
 		private void Apply(SecureTextBoxEx secureTextBoxEx)
