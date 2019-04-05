@@ -65,6 +65,7 @@
     <Compile Include="DarkSkinColorTable.cs" />
     <Compile Include="DarkThemeExt.cs" />
     <Compile Include="DefaultSkin.cs" />
+    <Compile Include="EmptySkin.cs" />
     <Compile Include="ISkin.cs" />
     <Compile Include="Custom\IniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
