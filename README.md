@@ -18,3 +18,9 @@ Therefore the plugin is not perfect and will never be, but is good enough to use
 ![Open database](docs/KeePassDarkThemeOpenDatabase.png)
 
 ![Options](docs/KeePassDarkThemeOptions.png)
+
+### Customizations
+
+The plugin allows you to create your own theme.
+
+Just download ![skin template](skins/DarkTheme.ini) and put it in the plugins folder.

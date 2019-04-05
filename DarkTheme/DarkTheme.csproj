@@ -50,12 +50,23 @@
   <ItemGroup>
     <Compile Include="Colors.cs" />
     <Compile Include="ControlVisitor.cs" />
-    <Compile Include="DarkStyle.cs" />
+    <Compile Include="Custom\ButtonLook.cs" />
+    <Compile Include="Custom\ControlLook.cs" />
+    <Compile Include="Custom\CustomColorTable.cs" />
+    <Compile Include="Custom\CustomSkin.cs" />
+    <Compile Include="Custom\LinkLabelLook.cs" />
+    <Compile Include="Custom\ListViewLook.cs" />
+    <Compile Include="Custom\OtherLook.cs" />
+    <Compile Include="Custom\Palette.cs" />
+    <Compile Include="Custom\RichTextBoxLook.cs" />
+    <Compile Include="Custom\TreeViewLook.cs" />
+    <Compile Include="DarkSkin.cs" />
     <Compile Include="DarkTheme.cs" />
-    <Compile Include="DarkThemeColorTable.cs" />
+    <Compile Include="DarkSkinColorTable.cs" />
     <Compile Include="DarkThemeExt.cs" />
-    <Compile Include="DefaultStyle.cs" />
-    <Compile Include="IControlStyle.cs" />
+    <Compile Include="DefaultSkin.cs" />
+    <Compile Include="ISkin.cs" />
+    <Compile Include="Custom\IniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
       <AutoGen>True</AutoGen>

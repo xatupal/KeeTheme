@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace DarkTheme
 {
-    public class DarkThemeColorTable : ProfessionalColorTable
+    public class DarkSkinColorTable : ProfessionalColorTable
     {
         public override Color ToolStripBorder
         {
