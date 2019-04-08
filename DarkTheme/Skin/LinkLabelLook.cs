@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace DarkTheme.Custom
+namespace DarkTheme.Skin
 {
 	class LinkLabelLook : ControlLook
 	{

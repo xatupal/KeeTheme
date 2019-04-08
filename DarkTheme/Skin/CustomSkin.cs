@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Forms;
 using KeePass.UI.ToolStripRendering;
 
-namespace DarkTheme.Custom
+namespace DarkTheme.Skin
 {
 	class CustomSkin : DefaultSkin
 	{

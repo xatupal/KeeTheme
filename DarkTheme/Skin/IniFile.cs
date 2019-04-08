@@ -2,7 +2,7 @@
 using System.IO;
 using DarkTheme.Properties;
 
-namespace DarkTheme.Custom
+namespace DarkTheme.Skin
 {
 	class IniFile
 	{

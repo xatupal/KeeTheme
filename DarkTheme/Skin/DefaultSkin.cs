@@ -1,7 +1,7 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace DarkTheme.Custom
+namespace DarkTheme.Skin
 {
 	internal class DefaultSkin : EmptySkin
 	{

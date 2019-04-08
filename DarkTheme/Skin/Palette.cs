@@ -3,7 +3,7 @@ using System.Drawing;
 using System.Globalization;
 using System.IO;
 
-namespace DarkTheme.Custom
+namespace DarkTheme.Skin
 {
 	class Palette
 	{

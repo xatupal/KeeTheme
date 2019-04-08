@@ -2,7 +2,7 @@ using System;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
-using DarkTheme.Custom;
+using DarkTheme.Skin;
 using KeePass;
 using KeePass.App;
 using KeePass.UI;
