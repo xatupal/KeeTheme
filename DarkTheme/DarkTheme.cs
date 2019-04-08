@@ -22,6 +22,11 @@ namespace DarkTheme
 			set { SetEnable(value); }
 		}
 
+		public string Name
+		{
+			get { return _skin.Name; }
+		}
+
 		public DarkTheme(bool enabled)
 		{
 			_defaultSkin = new DefaultSkin();

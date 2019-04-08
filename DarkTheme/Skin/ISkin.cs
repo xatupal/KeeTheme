@@ -5,6 +5,8 @@ namespace DarkTheme.Skin
 {
 	internal interface ISkin
 	{
+		string Name { get; }
+
 		TreeViewDrawMode TreeViewDrawMode { get; }
 		Image ListViewBackground { get; }
 		bool ListViewBackgroundTiled { get; }

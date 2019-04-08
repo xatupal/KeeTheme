@@ -10,12 +10,12 @@ namespace DarkTheme
 {
 	public sealed class DarkThemeExt : Plugin
 	{
-		private const string DarkThemeMenuItemCaption = "Dark theme";
 		private const string DarkModeOnConfigItem = "DarkTheme.Enabled";
 
 		private ControlVisitor _controlVisitor;
 		private DarkTheme _theme;
 		private IPluginHost _host;
+		private ToolStripMenuItem _menuItem;
 
 		public override bool Initialize(IPluginHost host)
 		{
@@ -40,12 +40,12 @@ namespace DarkTheme
 		{
 			if (t == PluginMenuType.Main)
 			{
-				var menuItem = new ToolStripMenuItem(DarkThemeMenuItemCaption);
-				menuItem.CheckOnClick = true;
-				menuItem.Checked = _theme.Enabled;
-				menuItem.ShortcutKeys = Keys.Control | Keys.T;
-				menuItem.Click += HandleToggleDarkModeMenuItemClick;
-				return menuItem;
+				_menuItem = new ToolStripMenuItem(_theme.Name);
+				_menuItem.CheckOnClick = true;
+				_menuItem.Checked = _theme.Enabled;
+				_menuItem.ShortcutKeys = Keys.Control | Keys.T;
+				_menuItem.Click += HandleToggleDarkModeMenuItemClick;
+				return _menuItem;
 			}
 
 			return base.GetMenuItem(t);
@@ -55,6 +55,7 @@ namespace DarkTheme
 		{
 			_theme.Enabled = !_theme.Enabled;
 			_host.CustomConfig.SetBool(DarkModeOnConfigItem, _theme.Enabled);
+			_menuItem.Text = _theme.Name;
 
 			ApplyThemeInOpenForms();
 		}
