@@ -19,7 +19,7 @@ namespace DarkTheme.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
@@ -57,6 +57,41 @@ namespace DarkTheme.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [DarkTheme]
+        ///Name=Dark theme
+        ///
+        ///[Palette]
+        ///Control = (51, 51, 51)
+        ///ControlText = (167, 168, 167)
+        ///Window = (69, 73, 74)
+        ///LightWindow = (74, 78, 79)
+        ///WindowText = (220, 220, 220)
+        ///Border = (104, 151, 187)
+        ///LightBorder = (81, 81, 81)
+        ///Header = (57, 60, 62)
+        ///ColumnBorder = (97, 100, 101)
+        ///Link = (0, 102, 204)
+        ///ToolStrip = (64, 64, 64)
+        ///ToolStripBorder = (0, 0, 0)
+        ///
+        ///[Other]
+        ///ControlNormalColor = Window
+        ///ControlDisabledColor = Control
+        ///
+        ///[Control]
+        ///BackColor = Control
+        ///ForeColor = ControlText
+        ///
+        ///[Form]
+        ///BackCol [rest of string was truncated]&quot;;.
+        /// </summary>
+        internal static string DarkSkin {
+            get {
+                return ResourceManager.GetString("DarkSkin", resourceCulture);
             }
         }
         

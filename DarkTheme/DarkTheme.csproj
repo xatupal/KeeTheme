@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Colors.cs" />
     <Compile Include="ControlVisitor.cs" />
     <Compile Include="Custom\ButtonLook.cs" />
     <Compile Include="Custom\ControlLook.cs" />
@@ -60,13 +59,11 @@
     <Compile Include="Custom\Palette.cs" />
     <Compile Include="Custom\RichTextBoxLook.cs" />
     <Compile Include="Custom\TreeViewLook.cs" />
-    <Compile Include="DarkSkin.cs" />
     <Compile Include="DarkTheme.cs" />
-    <Compile Include="DarkSkinColorTable.cs" />
     <Compile Include="DarkThemeExt.cs" />
-    <Compile Include="DefaultSkin.cs" />
-    <Compile Include="EmptySkin.cs" />
-    <Compile Include="ISkin.cs" />
+    <Compile Include="Custom\DefaultSkin.cs" />
+    <Compile Include="Custom\EmptySkin.cs" />
+    <Compile Include="Custom\ISkin.cs" />
     <Compile Include="Custom\IniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
@@ -82,6 +79,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\DarkSkin.dst.ini" />
     <None Include="Resources\PluginIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

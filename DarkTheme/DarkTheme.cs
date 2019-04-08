@@ -12,7 +12,6 @@ namespace DarkTheme
 	internal class DarkTheme
 	{
 		private readonly DefaultSkin _defaultSkin;
-		private readonly DarkSkin _darkSkin;
 
 		private ISkin _skin;
 		private bool _enabled;
@@ -26,7 +25,6 @@ namespace DarkTheme
 		public DarkTheme(bool enabled)
 		{
 			_defaultSkin = new DefaultSkin();
-			_darkSkin = new DarkSkin();
 
 			SetEnable(enabled);
 		}
@@ -35,16 +33,9 @@ namespace DarkTheme
 		{
 			_enabled = enable;
 
-			if (_enabled)
-			{
-				var customSkin = CustomSkin.LoadFromIni();
-				if (customSkin != null)
-					_skin = customSkin;
-				else
-					_skin = _darkSkin;
-			}
-			else
-				_skin = _defaultSkin;
+			_skin = _enabled 
+				? new CustomSkin(IniFile.GetFromFile() ?? IniFile.GetFromResources()) 
+				: _defaultSkin;
 			
 			ToolStripManager.Renderer = _skin.ToolStripRenderer;
 
