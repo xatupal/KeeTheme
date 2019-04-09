@@ -161,7 +161,7 @@ namespace DarkTheme
 
 		private void Apply(ListView listView)
 		{
-			if (!listView.OwnerDraw)
+			if (!listView.OwnerDraw && listView.View == View.Details)
 			{
 				listView.OwnerDraw = true;
 
