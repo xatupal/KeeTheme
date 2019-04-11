@@ -62,7 +62,7 @@ namespace DarkTheme.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to [DarkTheme]
-        ///Name=Dark theme
+        ///Name=Dark Theme
         ///
         ///[Palette]
         ///Control = (51, 51, 51)

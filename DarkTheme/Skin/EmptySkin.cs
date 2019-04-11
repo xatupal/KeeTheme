@@ -24,7 +24,7 @@ namespace DarkTheme.Skin
 
 		public EmptySkin()
 		{
-			Name = "Dark theme";
+			Name = "Dark Theme";
 			Other = new OtherLook();
 			Control = new ControlLook();
 			Form = new ControlLook();
