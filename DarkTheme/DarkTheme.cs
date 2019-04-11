@@ -13,6 +13,7 @@ namespace DarkTheme
 	{
 		private readonly DefaultSkin _defaultSkin;
 
+		private ISkin _customSkin;
 		private ISkin _skin;
 		private bool _enabled;
 
@@ -24,7 +25,7 @@ namespace DarkTheme
 
 		public string Name
 		{
-			get { return _skin.Name; }
+			get { return _customSkin.Name; }
 		}
 
 		public DarkTheme(bool enabled)
@@ -38,10 +39,11 @@ namespace DarkTheme
 		{
 			_enabled = enable;
 
-			_skin = _enabled 
-				? new CustomSkin(IniFile.GetFromFile() ?? IniFile.GetFromResources()) 
-				: _defaultSkin;
-			
+			if (_enabled || _skin == null)
+				_customSkin = new CustomSkin(IniFile.GetFromFile() ?? IniFile.GetFromResources());
+
+			_skin = _enabled ? _customSkin : _defaultSkin;
+
 			ToolStripManager.Renderer = _skin.ToolStripRenderer;
 
 			ApplyOther();
@@ -100,7 +102,7 @@ namespace DarkTheme
 			{
 				return;
 			}
-			
+
 			var textBox = (SecureTextBoxEx) sender;
 			if (textBox.BackColor == SystemColors.Window)
 				textBox.BackColor = _skin.SecureTextBox.BackColor;
@@ -241,7 +243,7 @@ namespace DarkTheme
 
 			var listView = (ListView) sender;
 			listView.BackgroundImage = listView.Items.Count == 0 ? _skin.ListViewBackground : null;
-			
+
 			var graphics = e.Graphics;
 			var r = e.Bounds;
 
@@ -257,7 +259,7 @@ namespace DarkTheme
 			}
 
 			var flags = GetTextFormatFlags(e.Header.TextAlign);
-			TextRenderer.DrawText(graphics, " " + e.Header.Text + " ", e.Font, r, 
+			TextRenderer.DrawText(graphics, " " + e.Header.Text + " ", e.Font, r,
 				_skin.ListView.HeaderForeColor, flags);
 		}
 
