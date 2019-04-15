@@ -1,4 +1,4 @@
-# DarkTheme
+# KeeTheme
 KeePass Plugin
 
 Plugin changes the appearance of KeePass, to make it look better at night. 
@@ -9,7 +9,7 @@ You can enable it using hotkey `CTRL+T` or using the menu `Tools -> DarkTheme`.
 
 The plugin allows you to create your own theme.
 
-Just download ![skin template](skins/DarkTheme.ini) and put it in the plugins folder.
+Just download ![theme template](themes/KeeTheme.ini) and put it in the plugins folder.
 
 ### Note
 

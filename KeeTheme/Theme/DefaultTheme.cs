@@ -1,11 +1,11 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace DarkTheme.Skin
+namespace KeeTheme.Theme
 {
-	internal class DefaultSkin : EmptySkin
+	internal class DefaultTheme : EmptyTheme
 	{
-		public DefaultSkin()
+		public DefaultTheme()
 		{
 			Other.ControlNormalColor = SystemColors.Window;
 			Other.ControlDisabledColor = SystemColors.Control;

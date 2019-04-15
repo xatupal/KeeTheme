@@ -1,9 +1,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace DarkTheme.Skin
+namespace KeeTheme.Theme
 {
-	internal interface ISkin
+	internal interface ITheme
 	{
 		string Name { get; }
 

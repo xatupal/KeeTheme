@@ -2,19 +2,19 @@ using System;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
-using DarkTheme.Skin;
 using KeePass;
 using KeePass.App;
 using KeePass.UI;
+using KeeTheme.Theme;
 
-namespace DarkTheme
+namespace KeeTheme
 {
-	internal class DarkTheme
+	internal class KeeTheme
 	{
-		private readonly DefaultSkin _defaultSkin;
+		private readonly DefaultTheme _defaultTheme;
 
-		private ISkin _customSkin;
-		private ISkin _skin;
+		private ITheme _customTheme;
+		private ITheme _theme;
 		private bool _enabled;
 
 		public bool Enabled
@@ -25,12 +25,12 @@ namespace DarkTheme
 
 		public string Name
 		{
-			get { return _customSkin.Name; }
+			get { return _customTheme.Name; }
 		}
 
-		public DarkTheme(bool enabled)
+		public KeeTheme(bool enabled)
 		{
-			_defaultSkin = new DefaultSkin();
+			_defaultTheme = new DefaultTheme();
 
 			SetEnable(enabled);
 		}
@@ -39,12 +39,12 @@ namespace DarkTheme
 		{
 			_enabled = enable;
 
-			if (_enabled || _skin == null)
-				_customSkin = new CustomSkin(IniFile.GetFromFile() ?? IniFile.GetFromResources());
+			if (_enabled || _theme == null)
+				_customTheme = new CustomTheme(IniFile.GetFromFile() ?? IniFile.GetFromResources());
 
-			_skin = _enabled ? _customSkin : _defaultSkin;
+			_theme = _enabled ? _customTheme : _defaultTheme;
 
-			ToolStripManager.Renderer = _skin.ToolStripRenderer;
+			ToolStripManager.Renderer = _theme.ToolStripRenderer;
 
 			ApplyOther();
 		}
@@ -57,16 +57,16 @@ namespace DarkTheme
 				typeof(AppDefs).GetField("ColorControlDisabled", BindingFlags.Static | BindingFlags.Public);
 
 			if (colorControlNormalField != null)
-				colorControlNormalField.SetValue(null, _skin.Other.ControlNormalColor);
+				colorControlNormalField.SetValue(null, _theme.Other.ControlNormalColor);
 
 			if (colorControlDisabledField != null)
-				colorControlDisabledField.SetValue(null, _skin.Other.ControlDisabledColor);
+				colorControlDisabledField.SetValue(null, _theme.Other.ControlDisabledColor);
 		}
 
 		public void Apply(Control control)
 		{
-			control.BackColor = _skin.Control.BackColor;
-			control.ForeColor = _skin.Control.ForeColor;
+			control.BackColor = _theme.Control.BackColor;
+			control.ForeColor = _theme.Control.ForeColor;
 
 			var form = control as Form;
 			if (form != null) Apply(form);
@@ -105,31 +105,31 @@ namespace DarkTheme
 
 			var textBox = (SecureTextBoxEx) sender;
 			if (textBox.BackColor == SystemColors.Window)
-				textBox.BackColor = _skin.SecureTextBox.BackColor;
+				textBox.BackColor = _theme.SecureTextBox.BackColor;
 		}
 
 		private void Apply(Form form)
 		{
-			form.BackColor = _skin.Form.BackColor;
-			form.ForeColor = _skin.Form.ForeColor;
+			form.BackColor = _theme.Form.BackColor;
+			form.ForeColor = _theme.Form.ForeColor;
 		}
 
 		private void Apply(Button button)
 		{
-			button.FlatAppearance.BorderColor = _skin.Button.BorderColor;
-			button.FlatStyle = _skin.Button.FlatStyle;
+			button.FlatAppearance.BorderColor = _theme.Button.BorderColor;
+			button.FlatStyle = _theme.Button.FlatStyle;
 		}
 
 		private void Apply(LinkLabel linkLabel)
 		{
-			linkLabel.LinkColor = _skin.LinkLabel.LinkColor;
+			linkLabel.LinkColor = _theme.LinkLabel.LinkColor;
 		}
 
 		private void Apply(TreeView treeView)
 		{
-			treeView.BorderStyle = _skin.TreeView.BorderStyle;
-			treeView.BackColor = _skin.TreeView.BackColor;
-			treeView.DrawMode = _skin.TreeViewDrawMode;
+			treeView.BorderStyle = _theme.TreeView.BorderStyle;
+			treeView.BackColor = _theme.TreeView.BackColor;
+			treeView.DrawMode = _theme.TreeViewDrawMode;
 
 			treeView.DrawNode -= HandleTreeViewDrawNode;
 			treeView.DrawNode += HandleTreeViewDrawNode;
@@ -139,13 +139,13 @@ namespace DarkTheme
 		{
 			e.DrawDefault = true;
 			e.Node.ForeColor = e.State == TreeNodeStates.Selected
-				? _skin.TreeView.SelectionColor
-				: _skin.TreeView.ForeColor;
+				? _theme.TreeView.SelectionColor
+				: _theme.TreeView.ForeColor;
 		}
 
 		private void Apply(RichTextBox richTextBox)
 		{
-			richTextBox.BorderStyle = _skin.RichTextBox.BorderStyle;
+			richTextBox.BorderStyle = _theme.RichTextBox.BorderStyle;
 			richTextBox.TextChanged -= HandleRichTextBoxTextChanged;
 			richTextBox.TextChanged += HandleRichTextBoxTextChanged;
 		}
@@ -157,7 +157,7 @@ namespace DarkTheme
 			var selectionLength = richTextBox.SelectionLength;
 
 			richTextBox.SelectAll();
-			richTextBox.SelectionColor = _skin.RichTextBox.SelectionColor;
+			richTextBox.SelectionColor = _theme.RichTextBox.SelectionColor;
 			richTextBox.Select(selectionStart, selectionLength);
 		}
 
@@ -172,10 +172,10 @@ namespace DarkTheme
 				listView.DrawSubItem += HandleListViewDrawSubItem;
 			}
 
-			listView.BorderStyle = _skin.ListView.BorderStyle;
-			listView.BackColor = _skin.ListView.BackColor;
-			listView.BackgroundImage = _skin.ListViewBackground;
-			listView.BackgroundImageTiled = _skin.ListViewBackgroundTiled;
+			listView.BorderStyle = _theme.ListView.BorderStyle;
+			listView.BackColor = _theme.ListView.BackColor;
+			listView.BackgroundImage = _theme.ListViewBackground;
+			listView.BackgroundImageTiled = _theme.ListViewBackgroundTiled;
 		}
 
 		private void HandleListViewDrawItem(object sender, DrawListViewItemEventArgs e)
@@ -193,8 +193,8 @@ namespace DarkTheme
 			}
 
 			var backColor = Program.Config.MainWindow.EntryListAlternatingBgColors && (e.Item.Index & 1) == 0
-				? _skin.ListView.EvenRowColor
-				: _skin.ListView.OddRowColor;
+				? _theme.ListView.EvenRowColor
+				: _theme.ListView.OddRowColor;
 
 			using (var brush = new SolidBrush(backColor))
 			{
@@ -229,7 +229,7 @@ namespace DarkTheme
 
 			TextRenderer.DrawText(e.Graphics, " " + text + " ", font, textBounds, color, flags);
 
-			using (var pen = new Pen(_skin.ListView.ColumnBorderColor))
+			using (var pen = new Pen(_theme.ListView.ColumnBorderColor))
 				e.Graphics.DrawLine(pen, e.Bounds.Right - 2, e.Bounds.Y, e.Bounds.Right - 2, e.Bounds.Bottom);
 		}
 
@@ -242,17 +242,17 @@ namespace DarkTheme
 			}
 
 			var listView = (ListView) sender;
-			listView.BackgroundImage = listView.Items.Count == 0 ? _skin.ListViewBackground : null;
+			listView.BackgroundImage = listView.Items.Count == 0 ? _theme.ListViewBackground : null;
 
 			var graphics = e.Graphics;
 			var r = e.Bounds;
 
-			using (Brush backBrush = new SolidBrush(_skin.ListView.HeaderBackColor))
+			using (Brush backBrush = new SolidBrush(_theme.ListView.HeaderBackColor))
 			{
 				graphics.FillRectangle(backBrush, r);
 			}
 
-			using (var pen = new Pen(_skin.ListView.HeaderColumnBorderColor))
+			using (var pen = new Pen(_theme.ListView.HeaderColumnBorderColor))
 			{
 				graphics.DrawLine(pen, r.X, r.Y, r.Right, r.Y);
 				graphics.DrawLine(pen, r.Right - 2, r.Y, r.Right - 2, r.Bottom);
@@ -260,7 +260,7 @@ namespace DarkTheme
 
 			var flags = GetTextFormatFlags(e.Header.TextAlign);
 			TextRenderer.DrawText(graphics, " " + e.Header.Text + " ", e.Font, r,
-				_skin.ListView.HeaderForeColor, flags);
+				_theme.ListView.HeaderForeColor, flags);
 		}
 
 		private static TextFormatFlags GetTextFormatFlags(HorizontalAlignment textAlign)

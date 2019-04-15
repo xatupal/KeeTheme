@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 
-namespace DarkTheme.Skin
+namespace KeeTheme.Theme
 {
 	class ListViewLook : ControlLook
 	{

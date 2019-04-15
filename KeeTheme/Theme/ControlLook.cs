@@ -1,6 +1,6 @@
 ﻿using System.Drawing;
 
-namespace DarkTheme.Skin
+namespace KeeTheme.Theme
 {
 	class ControlLook
 	{

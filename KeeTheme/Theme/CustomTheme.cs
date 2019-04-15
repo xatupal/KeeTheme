@@ -5,15 +5,15 @@ using System.Linq;
 using System.Windows.Forms;
 using KeePass.UI.ToolStripRendering;
 
-namespace DarkTheme.Skin
+namespace KeeTheme.Theme
 {
-	class CustomSkin : DefaultSkin
+	class CustomTheme : DefaultTheme
 	{
-		public CustomSkin(IniFile iniFile)
+		public CustomTheme(IniFile iniFile)
 		{
-			var darkThemeSection = iniFile.GetSection("DarkTheme");
-			if (darkThemeSection.ContainsKey("Name"))
-				Name = darkThemeSection["Name"];
+			var themeSection = iniFile.GetSection("KeeTheme");
+			if (themeSection.ContainsKey("Name"))
+				Name = themeSection["Name"];
 
 			var paletteSection = iniFile.GetSection("Palette");
 			var palette = new Palette(paletteSection);

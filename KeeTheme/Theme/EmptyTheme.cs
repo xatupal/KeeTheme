@@ -1,9 +1,9 @@
 using System.Drawing;
 using System.Windows.Forms;
 
-namespace DarkTheme.Skin
+namespace KeeTheme.Theme
 {
-	internal class EmptySkin : ISkin
+	internal class EmptyTheme : ITheme
 	{
 		public string Name { get; protected set; }
 
@@ -22,7 +22,7 @@ namespace DarkTheme.Skin
 		public ListViewLook ListView { get; private set; }
 		public ControlLook SecureTextBox { get; private set; }
 
-		public EmptySkin()
+		public EmptyTheme()
 		{
 			Name = "Dark Theme";
 			Other = new OtherLook();

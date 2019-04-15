@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DarkTheme.Properties {
+namespace KeeTheme.Properties {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace DarkTheme.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resource {
@@ -39,7 +39,7 @@ namespace DarkTheme.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DarkTheme.Properties.Resource", typeof(Resource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("KeeTheme.Properties.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -61,7 +61,7 @@ namespace DarkTheme.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [DarkTheme]
+        ///   Looks up a localized string similar to [KeeTheme]
         ///Name=Dark Theme
         ///
         ///[Palette]
@@ -87,11 +87,11 @@ namespace DarkTheme.Properties {
         ///ForeColor = ControlText
         ///
         ///[Form]
-        ///BackCol [rest of string was truncated]&quot;;.
+        ///BackColo [rest of string was truncated]&quot;;.
         /// </summary>
-        internal static string DarkSkin {
+        internal static string DarkTheme {
             get {
-                return ResourceManager.GetString("DarkSkin", resourceCulture);
+                return ResourceManager.GetString("DarkTheme", resourceCulture);
             }
         }
         

@@ -1,7 +1,7 @@
 using System;
 using System.Windows.Forms;
 
-namespace DarkTheme
+namespace KeeTheme
 {
 	internal class ControlVisitor
 	{

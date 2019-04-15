@@ -7,8 +7,8 @@
     <ProjectGuid>{B82CD066-1BB1-42DB-B75A-F5489EF4A32D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DarkTheme</RootNamespace>
-    <AssemblyName>DarkTheme</AssemblyName>
+    <RootNamespace>KeeTheme</RootNamespace>
+    <AssemblyName>KeeTheme</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,7 @@
     <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
-    <WarningLevel>4</WarningLevel>
+    <WarningLevel>0</WarningLevel>
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
@@ -49,22 +49,22 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlVisitor.cs" />
-    <Compile Include="Skin\ButtonLook.cs" />
-    <Compile Include="Skin\ControlLook.cs" />
-    <Compile Include="Skin\CustomColorTable.cs" />
-    <Compile Include="Skin\CustomSkin.cs" />
-    <Compile Include="Skin\LinkLabelLook.cs" />
-    <Compile Include="Skin\ListViewLook.cs" />
-    <Compile Include="Skin\OtherLook.cs" />
-    <Compile Include="Skin\Palette.cs" />
-    <Compile Include="Skin\RichTextBoxLook.cs" />
-    <Compile Include="Skin\TreeViewLook.cs" />
-    <Compile Include="DarkTheme.cs" />
-    <Compile Include="DarkThemeExt.cs" />
-    <Compile Include="Skin\DefaultSkin.cs" />
-    <Compile Include="Skin\EmptySkin.cs" />
-    <Compile Include="Skin\ISkin.cs" />
-    <Compile Include="Skin\IniFile.cs" />
+    <Compile Include="Theme\ButtonLook.cs" />
+    <Compile Include="Theme\ControlLook.cs" />
+    <Compile Include="Theme\CustomColorTable.cs" />
+    <Compile Include="Theme\CustomTheme.cs" />
+    <Compile Include="Theme\LinkLabelLook.cs" />
+    <Compile Include="Theme\ListViewLook.cs" />
+    <Compile Include="Theme\OtherLook.cs" />
+    <Compile Include="Theme\Palette.cs" />
+    <Compile Include="Theme\RichTextBoxLook.cs" />
+    <Compile Include="Theme\TreeViewLook.cs" />
+    <Compile Include="KeeTheme.cs" />
+    <Compile Include="KeeThemeExt.cs" />
+    <Compile Include="Theme\DefaultTheme.cs" />
+    <Compile Include="Theme\EmptyTheme.cs" />
+    <Compile Include="Theme\ITheme.cs" />
+    <Compile Include="Theme\IniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resource.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -76,10 +76,11 @@
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DarkSkin.dst.ini" />
+    <None Include="Resources\DarkTheme.ini" />
     <None Include="Resources\PluginIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

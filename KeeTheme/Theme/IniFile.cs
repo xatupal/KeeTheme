@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using DarkTheme.Properties;
 using KeePass.App;
+using KeeTheme.Properties;
 
-namespace DarkTheme.Skin
+namespace KeeTheme.Theme
 {
 	class IniFile
 	{
@@ -54,7 +54,7 @@ namespace DarkTheme.Skin
 		{
 			var exeLocation = Path.GetDirectoryName(typeof(KeePass.Program).Assembly.Location);
 			var pluginsPath = Path.Combine(exeLocation, AppDefs.PluginsDir);
-			var path = Path.Combine(pluginsPath, "DarkTheme.ini");
+			var path = Path.Combine(pluginsPath, "KeeTheme.ini");
 			if (!File.Exists(path))
 				return null;
 
@@ -71,7 +71,7 @@ namespace DarkTheme.Skin
 
 		internal static IniFile GetFromResources()
 		{
-			using (var sr = new StringReader(Resource.DarkSkin))
+			using (var sr = new StringReader(Resource.DarkTheme))
 			{
 				return new IniFile(sr);
 			}

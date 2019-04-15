@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using DarkTheme.Properties;
 using KeePass.Plugins;
 using KeePass.UI;
 using KeePassLib.Utility;
+using KeeTheme.Properties;
 
-namespace DarkTheme
+namespace KeeTheme
 {
-	public sealed class DarkThemeExt : Plugin
+	public sealed class KeeThemeExt : Plugin
 	{
-		private const string DarkModeOnConfigItem = "DarkTheme.Enabled";
+		private const string KeeThemeOnConfigItem = "KeeTheme.Enabled";
 
 		private ControlVisitor _controlVisitor;
-		private DarkTheme _theme;
+		private KeeTheme _theme;
 		private IPluginHost _host;
 		private ToolStripMenuItem _menuItem;
 
@@ -25,9 +25,9 @@ namespace DarkTheme
 			_host = host;
 
 			_controlVisitor = new ControlVisitor(HandleControlVisit);
-			var themeEnabled = host.CustomConfig.GetBool(DarkModeOnConfigItem, false);
+			var themeEnabled = host.CustomConfig.GetBool(KeeThemeOnConfigItem, false);
 			
-			_theme = new DarkTheme(themeEnabled);
+			_theme = new KeeTheme(themeEnabled);
 			if (_theme.Enabled)
 				ApplyThemeInOpenForms();
 
@@ -44,17 +44,17 @@ namespace DarkTheme
 				_menuItem.CheckOnClick = true;
 				_menuItem.Checked = _theme.Enabled;
 				_menuItem.ShortcutKeys = Keys.Control | Keys.T;
-				_menuItem.Click += HandleToggleDarkModeMenuItemClick;
+				_menuItem.Click += HandleToggleKeeThemeMenuItemClick;
 				return _menuItem;
 			}
 
 			return base.GetMenuItem(t);
 		}
 
-		private void HandleToggleDarkModeMenuItemClick(object sender, EventArgs eventArgs)
+		private void HandleToggleKeeThemeMenuItemClick(object sender, EventArgs eventArgs)
 		{
 			_theme.Enabled = !_theme.Enabled;
-			_host.CustomConfig.SetBool(DarkModeOnConfigItem, _theme.Enabled);
+			_host.CustomConfig.SetBool(KeeThemeOnConfigItem, _theme.Enabled);
 			_menuItem.Text = _theme.Name;
 
 			ApplyThemeInOpenForms();
@@ -86,7 +86,7 @@ namespace DarkTheme
 
 		public override string UpdateUrl
 		{
-			get { return "https://nibiru.pl/keepass/plugins.php?name=DarkTheme"; }
+			get { return "https://nibiru.pl/keepass/plugins.php?name=KeeTheme"; }
 		}
 
 		public override Image SmallIcon
