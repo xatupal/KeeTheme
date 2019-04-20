@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
+using KeePass.App;
 using KeePass.UI.ToolStripRendering;
 
 namespace KeeTheme.Theme
@@ -52,7 +54,17 @@ namespace KeeTheme.Theme
 
 			TreeViewDrawMode = TreeViewDrawMode.OwnerDrawText;
 
-			if (ListView.BackColor != Color.Empty)
+			if (!string.IsNullOrEmpty(ListView.BackgroundImage))
+			{
+				var exeLocation = Path.GetDirectoryName(typeof(KeePass.Program).Assembly.Location);
+				var pluginsPath = Path.Combine(exeLocation, AppDefs.PluginsDir);
+				var imagePath = Path.Combine(pluginsPath, ListView.BackgroundImage);
+
+				if (File.Exists(imagePath) && imagePath.StartsWith(exeLocation))
+					ListViewBackground = Image.FromFile(imagePath);
+			}
+
+			if (ListView.BackColor != Color.Empty && ListViewBackground == null)
 			{
 				ListViewBackgroundTiled = true;
 
@@ -82,6 +94,12 @@ namespace KeeTheme.Theme
 
 				if (property.PropertyType == typeof(BorderStyle))
 					property.SetValue(look, Enum.Parse(typeof(BorderStyle), value, true), null);
+
+				if (property.PropertyType == typeof(ContentAlignment))
+					property.SetValue(look, Enum.Parse(typeof(ContentAlignment), value, true), null);
+
+				if (property.PropertyType == typeof(string))
+					property.SetValue(look, value, null);
 			}
 		}
 	}

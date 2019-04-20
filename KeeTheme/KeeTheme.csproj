@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ControlVisitor.cs" />
+    <Compile Include="ListViewExtensions.cs" />
     <Compile Include="Theme\ButtonLook.cs" />
     <Compile Include="Theme\ControlLook.cs" />
     <Compile Include="Theme\CustomColorTable.cs" />

@@ -1,5 +1,6 @@
 using System;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Reflection;
 using System.Windows.Forms;
 using KeePass;
@@ -167,6 +168,7 @@ namespace KeeTheme
 			{
 				listView.OwnerDraw = true;
 
+				listView.Resize += HandleListViewResize;
 				listView.DrawColumnHeader += HandleListViewDrawColumnHeader;
 				listView.DrawItem += HandleListViewDrawItem;
 				listView.DrawSubItem += HandleListViewDrawSubItem;
@@ -174,8 +176,85 @@ namespace KeeTheme
 
 			listView.BorderStyle = _theme.ListView.BorderStyle;
 			listView.BackColor = _theme.ListView.BackColor;
-			listView.BackgroundImage = _theme.ListViewBackground;
-			listView.BackgroundImageTiled = _theme.ListViewBackgroundTiled;
+
+			if (_theme.ListViewBackgroundTiled)
+			{
+				listView.BackgroundImage = _theme.ListViewBackground;
+				listView.BackgroundImageTiled = _theme.ListViewBackgroundTiled;
+			}
+		}
+
+		private void HandleListViewResize(object sender, EventArgs e)
+		{
+			var listView = (ListView)sender;
+			if (string.IsNullOrEmpty(_theme.ListView.BackgroundImage))
+			{
+				if (!_theme.ListViewBackgroundTiled)
+				{
+					if (listView.BackgroundImage != null)
+						listView.BackgroundImage.Dispose();
+
+					listView.BackgroundImage = null;
+				}
+
+				return;
+			}
+
+			if (_theme.ListViewBackground == null)
+				return;
+
+			var alignment = _theme.ListView.BackgroundImageAlignment > 0
+				? _theme.ListView.BackgroundImageAlignment
+				: ContentAlignment.TopLeft;
+
+			var bgSize = new Size(listView.ClientSize.Width, listView.ClientSize.Height - listView.GetHeaderHeight());
+			var image = new Bitmap(bgSize.Width, bgSize.Height, PixelFormat.Format32bppArgb);
+
+			using (var g = Graphics.FromImage(image))
+			using (var brush = new SolidBrush(_theme.ListView.BackColor))
+			using (var pen = new Pen(_theme.ListView.ColumnBorderColor))
+			{
+				g.FillRectangle(brush, 0, 0, bgSize.Width, bgSize.Height);
+
+				var location = GetImageLocation(alignment, bgSize, _theme.ListViewBackground.Size);
+				g.DrawImage(_theme.ListViewBackground, location.X, location.Y);
+
+				var offset = 0;
+				foreach (ColumnHeader column in listView.Columns)
+				{
+					g.DrawLine(pen, offset + column.Width - 2, 0, offset + column.Width - 2, bgSize.Height);
+					offset += column.Width;
+				}
+			}
+
+			var prevImage = listView.BackgroundImage;
+			listView.BackgroundImage = image;
+			if (prevImage != null)
+				prevImage.Dispose();
+		}
+
+		private Point GetImageLocation(ContentAlignment alignment, Size bgSize, Size imageSize)
+		{
+			switch (alignment)
+			{
+				case ContentAlignment.TopLeft: return new Point(0, 0);
+				case ContentAlignment.TopCenter: return new Point((bgSize.Width - imageSize.Width) / 2, 0);
+				case ContentAlignment.TopRight: return new Point(bgSize.Width - imageSize.Width, 0);
+				case ContentAlignment.MiddleLeft:
+					return new Point(0, (bgSize.Height - imageSize.Height) / 2);
+				case ContentAlignment.MiddleCenter:
+					return new Point((bgSize.Width - imageSize.Width) / 2, (bgSize.Height - imageSize.Height) / 2);
+				case ContentAlignment.MiddleRight:
+					return new Point(bgSize.Width - imageSize.Width, (bgSize.Height - imageSize.Height) / 2);
+				case ContentAlignment.BottomLeft:
+					return new Point(0, bgSize.Height - imageSize.Height);
+				case ContentAlignment.BottomCenter:
+					return new Point((bgSize.Width - imageSize.Width) / 2, bgSize.Height - imageSize.Height);
+				case ContentAlignment.BottomRight:
+					return new Point(bgSize.Width - imageSize.Width, bgSize.Height - imageSize.Height);
+				default:
+					return new Point(0, 0);
+			}
 		}
 
 		private void HandleListViewDrawItem(object sender, DrawListViewItemEventArgs e)
@@ -195,6 +274,9 @@ namespace KeeTheme
 			var backColor = Program.Config.MainWindow.EntryListAlternatingBgColors && (e.Item.Index & 1) == 0
 				? _theme.ListView.EvenRowColor
 				: _theme.ListView.OddRowColor;
+
+			if (_theme.ListViewBackground != null)
+				backColor = Color.FromArgb(191, backColor);
 
 			using (var brush = new SolidBrush(backColor))
 			{
@@ -241,8 +323,11 @@ namespace KeeTheme
 				return;
 			}
 
-			var listView = (ListView) sender;
-			listView.BackgroundImage = listView.Items.Count == 0 ? _theme.ListViewBackground : null;
+			if (_theme.ListViewBackgroundTiled)
+			{
+				var listView = (ListView) sender;
+				listView.BackgroundImage = listView.Items.Count == 0 ? _theme.ListViewBackground : null;
+			}
 
 			var graphics = e.Graphics;
 			var r = e.Bounds;
