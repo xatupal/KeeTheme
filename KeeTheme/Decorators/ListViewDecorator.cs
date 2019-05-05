@@ -11,6 +11,7 @@ namespace KeeTheme.Decorators
 	{
 		private readonly ListView _listView;
 		private readonly ListViewHeaderPainter _headerPainter;
+		private readonly ListViewGroupsPainter _groupsPainter;
 
 		private ITheme _theme;
 		private bool _enabled;
@@ -22,6 +23,9 @@ namespace KeeTheme.Decorators
 
 			_headerPainter = new ListViewHeaderPainter(_listView);
 			_headerPainter.Paint += HandleHeaderPaint;
+
+			_groupsPainter = new ListViewGroupsPainter(_listView);
+			_groupsPainter.Paint += HandleGroupsPaint;
 
 			_listView.Controls.Add(this);
 		}
@@ -40,6 +44,55 @@ namespace KeeTheme.Decorators
 						e.ClipRectangle.X, e.ClipRectangle.Y, e.ClipRectangle.Right, e.ClipRectangle.Y);
 				}
 			}
+		}
+
+		private void HandleGroupsPaint(object sender, GroupPaintEventArgs e)
+		{
+			if (!_enabled || !GroupColorsAreDefined())
+				return;
+
+			// We have to redraw whole background. BufferedGraphicsContext is created to prevent flickering.
+			using (var context = new BufferedGraphicsContext())
+			using (var g = context.Allocate(e.Graphics, e.ClipRectangle))
+			using (var highlightBrush = new SolidBrush(_theme.ListView.GroupHighlightColor))
+			using (var backBrush = new SolidBrush(_theme.ListView.GroupBackColor))
+			using (var foreBrush = new SolidBrush(_theme.ListView.GroupForeColor))
+			using (var forePen = new Pen(_theme.ListView.GroupForeColor))
+			using (var columnPen = new Pen(_theme.ListView.ColumnBorderColor))
+
+			{
+				var isMouseOver = e.ClipRectangle.Contains(_listView.PointToClient(MousePosition));
+				g.Graphics.FillRectangle(isMouseOver ? highlightBrush : backBrush, e.ClipRectangle);
+
+				var font = new Font(_listView.Font, FontStyle.Bold);
+				var textSize = e.Graphics.MeasureString(" " + _listView.Groups[e.GroupId].Header + " ", font);
+				var textRect = new Rectangle(
+					e.ClipRectangle.X + 8, e.ClipRectangle.Y, (int)textSize.Width, e.ClipRectangle.Height - 1);
+
+				var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
+				g.Graphics.DrawString(_listView.Groups[e.GroupId].Header, _listView.Font, foreBrush, textRect, sf);
+
+				var columnOffset = -2; // Initial padding
+				foreach (ColumnHeader column in _listView.Columns)
+				{
+					columnOffset += column.Width;
+					g.Graphics.DrawLine(columnPen, e.ClipRectangle.X + columnOffset, e.ClipRectangle.Y,
+						e.ClipRectangle.X + columnOffset, e.ClipRectangle.Bottom);
+				}
+
+				var lineY = e.ClipRectangle.Y + e.ClipRectangle.Height / 2;
+				g.Graphics.DrawLine(forePen, textRect.Right, lineY, e.ClipRectangle.Right, lineY);
+
+				g.Render(e.Graphics);
+			}
+
+		}
+
+		private bool GroupColorsAreDefined()
+		{
+			return _theme.ListView.GroupForeColor != Color.Empty
+				&& _theme.ListView.GroupBackColor != Color.Empty
+				&& _theme.ListView.GroupHighlightColor != Color.Empty;
 		}
 
 		private void Apply(Control control)
