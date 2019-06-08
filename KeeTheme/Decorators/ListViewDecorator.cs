@@ -234,16 +234,18 @@ namespace KeeTheme.Decorators
 			var color = e.ItemIndex == -1 ? e.Item.ForeColor : e.SubItem.ForeColor;
 			var textBounds = new Rectangle(e.Bounds.Location, e.Bounds.Size);
 
-			const int iconSize = 16;
-			if (e.ColumnIndex == 0)
+			text = " " + text + " ";
+			if (e.ColumnIndex == 0 && e.Item.ImageIndex > -1)
 			{
-				e.Item.ImageList.Draw(e.Graphics, e.Bounds.X + 4, e.Bounds.Y + 1, iconSize, iconSize,
+				var image = e.Item.ImageList.Images[e.Item.ImageIndex];
+				e.Item.ImageList.Draw(e.Graphics, e.Bounds.X + 4, e.Bounds.Y + 1, image.Width, image.Height,
 					e.Item.ImageIndex);
 
-				textBounds.Inflate(-iconSize - 4 - 2, 0);
+				textBounds.Inflate(-image.Width - 4 - 2, 0);
+				text = text.Remove(0, 1);
 			}
 
-			TextRenderer.DrawText(e.Graphics, " " + text + " ", font, textBounds, color, flags);
+			TextRenderer.DrawText(e.Graphics, text, font, textBounds, color, flags);
 
 			using (var pen = new Pen(_theme.ListView.ColumnBorderColor))
 				e.Graphics.DrawLine(pen, e.Bounds.Right - 2, e.Bounds.Y, e.Bounds.Right - 2, e.Bounds.Bottom);
