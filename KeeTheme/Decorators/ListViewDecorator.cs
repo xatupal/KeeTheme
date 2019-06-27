@@ -228,17 +228,24 @@ namespace KeeTheme.Decorators
 				return;
 			}
 
+			var bounds = e.Bounds;
+			if (e.ColumnIndex == 0 && e.Header.DisplayIndex > 0)
+			{
+				// Fixes ListView internal error VSWhidbey #163674
+				bounds.Offset(e.Item.Position.X - 4, 0);
+			}
+
 			var flags = GetTextFormatFlags(e.Header.TextAlign);
 			var text = e.ItemIndex == -1 ? e.Item.Text : e.SubItem.Text;
 			var font = e.ItemIndex == -1 ? e.Item.Font : e.SubItem.Font;
 			var color = e.ItemIndex == -1 ? e.Item.ForeColor : e.SubItem.ForeColor;
-			var textBounds = new Rectangle(e.Bounds.Location, e.Bounds.Size);
+			var textBounds = new Rectangle(bounds.Location, bounds.Size);
 
 			text = " " + text + " ";
 			if (e.ColumnIndex == 0 && e.Item.ImageIndex > -1)
 			{
 				var image = e.Item.ImageList.Images[e.Item.ImageIndex];
-				e.Item.ImageList.Draw(e.Graphics, e.Bounds.X + 4, e.Bounds.Y + 1, image.Width, image.Height,
+				e.Item.ImageList.Draw(e.Graphics, bounds.X + 4, bounds.Y + 1, image.Width, image.Height,
 					e.Item.ImageIndex);
 
 				textBounds.Inflate(-image.Width - 4 - 2, 0);
@@ -248,7 +255,7 @@ namespace KeeTheme.Decorators
 			TextRenderer.DrawText(e.Graphics, text, font, textBounds, color, flags);
 
 			using (var pen = new Pen(_theme.ListView.ColumnBorderColor))
-				e.Graphics.DrawLine(pen, e.Bounds.Right - 2, e.Bounds.Y, e.Bounds.Right - 2, e.Bounds.Bottom);
+				e.Graphics.DrawLine(pen, bounds.Right - 2, bounds.Y, bounds.Right - 2, bounds.Bottom);
 		}
 
 		private void HandleListViewDrawColumnHeader(object sender, DrawListViewColumnHeaderEventArgs e)
