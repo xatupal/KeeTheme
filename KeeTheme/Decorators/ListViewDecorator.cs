@@ -4,6 +4,7 @@ using System.Drawing.Imaging;
 using System.Windows.Forms;
 using KeePass;
 using KeeTheme.Theme;
+using CheckBoxState = System.Windows.Forms.VisualStyles.CheckBoxState;
 
 namespace KeeTheme.Decorators
 {
@@ -249,6 +250,16 @@ namespace KeeTheme.Decorators
 					e.Item.ImageIndex);
 
 				textBounds.Inflate(-image.Width - 4 - 2, 0);
+				text = text.Remove(0, 1);
+			}
+
+			var listView = (ListView)sender;
+			if (listView.CheckBoxes && e.ColumnIndex == 0)
+			{
+				var state = e.Item.Checked ? CheckBoxState.CheckedNormal : CheckBoxState.UncheckedNormal;
+				CheckBoxRenderer.DrawCheckBox(e.Graphics, new Point(e.Bounds.X + 4, e.Bounds.Y + 1), state);
+
+				textBounds.Inflate(-CheckBoxRenderer.GetGlyphSize(e.Graphics, state).Width - 4 - 2, 0);
 				text = text.Remove(0, 1);
 			}
 
