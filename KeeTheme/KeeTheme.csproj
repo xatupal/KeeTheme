@@ -55,6 +55,9 @@
     <Compile Include="Decorators\ListViewDecorator.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Decorators\RichTextBoxDecorator.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Theme\ButtonLook.cs" />
     <Compile Include="Theme\ControlLook.cs" />
     <Compile Include="Theme\CustomColorTable.cs" />

@@ -146,20 +146,14 @@ namespace KeeTheme
 
 		private void Apply(RichTextBox richTextBox)
 		{
-			richTextBox.BorderStyle = _theme.RichTextBox.BorderStyle;
-			richTextBox.TextChanged -= HandleRichTextBoxTextChanged;
-			richTextBox.TextChanged += HandleRichTextBoxTextChanged;
-		}
+			var decorator = richTextBox.Parent as RichTextBoxDecorator;
+			if (decorator == null)
+			{
+				decorator = new RichTextBoxDecorator(richTextBox, _theme);
+			}
 
-		private void HandleRichTextBoxTextChanged(object sender, EventArgs e)
-		{
-			var richTextBox = (RichTextBox) sender;
-			var selectionStart = richTextBox.SelectionStart;
-			var selectionLength = richTextBox.SelectionLength;
+			decorator.EnableTheme(_enabled, _theme);
 
-			richTextBox.SelectAll();
-			richTextBox.SelectionColor = _theme.RichTextBox.SelectionColor;
-			richTextBox.Select(selectionStart, selectionLength);
 		}
 
 		private void Apply(ListView listView)
