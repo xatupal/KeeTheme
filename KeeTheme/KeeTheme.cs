@@ -66,6 +66,11 @@ namespace KeeTheme
 
 		public void Apply(Control control)
 		{
+			if (control.InvokeRequired)
+			{
+				control.Invoke(new MethodInvoker(() => Apply(control)));
+			}
+
 			control.BackColor = _theme.Control.BackColor;
 			control.ForeColor = _theme.Control.ForeColor;
 
