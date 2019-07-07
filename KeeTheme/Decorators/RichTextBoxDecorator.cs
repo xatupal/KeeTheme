@@ -30,8 +30,15 @@ namespace KeeTheme.Decorators
 			BorderStyle = _theme.RichTextBox.BorderStyle;
 			richTextBox.BorderStyle = BorderStyle.None;
 			Controls.Add(richTextBox);
+			EnabledChanged += HandleEnabledChanged;
 
 			richTextBox.TextChanged += HandleRichTextBoxTextChanged;
+		}
+
+		private void HandleEnabledChanged(object sender, EventArgs e)
+		{
+			if (_enabled)
+				ControlSnapshot.Make(_richTextBox);
 		}
 
 		private void HandleRichTextBoxTextChanged(object sender, EventArgs e)

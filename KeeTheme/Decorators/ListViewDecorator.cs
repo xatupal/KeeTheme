@@ -108,6 +108,7 @@ namespace KeeTheme.Decorators
 				listView.DrawColumnHeader += HandleListViewDrawColumnHeader;
 				listView.DrawItem += HandleListViewDrawItem;
 				listView.DrawSubItem += HandleListViewDrawSubItem;
+				listView.Parent.EnabledChanged += ListViewParentEnabledChanged;
 			}
 
 			listView.BorderStyle = _theme.ListView.BorderStyle;
@@ -118,6 +119,12 @@ namespace KeeTheme.Decorators
 				listView.BackgroundImage = _theme.ListViewBackground;
 				listView.BackgroundImageTiled = _theme.ListViewBackgroundTiled;
 			}
+		}
+
+		private void ListViewParentEnabledChanged(object sender, EventArgs e)
+		{
+			if (_enabled)
+				ControlSnapshot.Make(_listView);
 		}
 
 		private void HandleListViewResize(object sender, EventArgs e)
@@ -277,9 +284,9 @@ namespace KeeTheme.Decorators
 				return;
 			}
 
-			if (_theme.ListViewBackgroundTiled)
+			var listView = (ListView)sender;
+			if (_theme.ListViewBackgroundTiled && listView.Enabled)
 			{
-				var listView = (ListView)sender;
 				listView.BackgroundImage = listView.Items.Count == 0 ? _theme.ListViewBackground : null;
 			}
 

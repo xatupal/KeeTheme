@@ -158,13 +158,13 @@ namespace KeeTheme
 
 		private void Apply(ListView listView)
 		{
-			var renderer = listView.Controls.OfType<ListViewDecorator>().FirstOrDefault();
-			if (renderer == null)
+			var decorator = listView.Controls.OfType<ListViewDecorator>().FirstOrDefault();
+			if (decorator == null)
 			{
-				renderer = new ListViewDecorator(listView , _theme);
+				decorator = new ListViewDecorator(listView , _theme);
 			}
 
-			renderer.EnableTheme(_enabled, _theme);
+			decorator.EnableTheme(_enabled, _theme);
 		}
 
 	}
