@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using KeeTheme.Theme;
 
@@ -29,6 +30,7 @@ namespace KeeTheme.Decorators
 			parent.Controls.SetChildIndex(this, index);
 			BorderStyle = _theme.RichTextBox.BorderStyle;
 			richTextBox.BorderStyle = BorderStyle.None;
+			richTextBox.Location = Point.Empty;
 			Controls.Add(richTextBox);
 			EnabledChanged += HandleEnabledChanged;
 
