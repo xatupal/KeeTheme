@@ -21,5 +21,6 @@ namespace KeeTheme.Theme
 		LinkLabelLook LinkLabel { get; }
 		ListViewLook ListView { get; }
 		ControlLook SecureTextBox { get; }
+		MenuLook MenuItem { get; }
 	}
 }

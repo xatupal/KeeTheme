@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
@@ -71,8 +73,11 @@ namespace KeeTheme
 				control.Invoke(new MethodInvoker(() => Apply(control)));
 			}
 
-			control.BackColor = _theme.Control.BackColor;
-			control.ForeColor = _theme.Control.ForeColor;
+			if (!(control is ToolStrip))
+			{
+				control.BackColor = _theme.Control.BackColor;
+				control.ForeColor = _theme.Control.ForeColor;
+			}
 
 			var form = control as Form;
 			if (form != null) Apply(form);
@@ -94,6 +99,72 @@ namespace KeeTheme
 
 			var secureTextBoxEx = control as SecureTextBoxEx;
 			if (secureTextBoxEx != null) Apply(secureTextBoxEx);
+
+			var toolStrip = control as ToolStrip;
+			if (toolStrip != null) Apply(toolStrip);
+
+			var menuStrip = control as MenuStrip;
+			if (menuStrip != null) Apply(menuStrip);
+
+			var contextMenuStrip = control as ContextMenuStrip;
+			if (contextMenuStrip != null) Apply(contextMenuStrip);
+
+			var statusStrip = control as StatusStrip;
+			if (statusStrip != null) Apply(statusStrip);
+		}
+
+		private void Apply(StatusStrip statusStrip)
+		{
+			statusStrip.BackColor = _theme.MenuItem.BackColor;
+			statusStrip.ForeColor = _theme.MenuItem.ForeColor;
+
+			Apply(statusStrip.Items);
+		}
+
+		private void Apply(ContextMenuStrip contextMenuStrip)
+		{
+			contextMenuStrip.BackColor = _theme.MenuItem.BackColor;
+			contextMenuStrip.ForeColor = _theme.MenuItem.ForeColor;
+
+			Apply(contextMenuStrip.Items);
+		}
+
+		private void Apply(MenuStrip menuStrip)
+		{
+			menuStrip.BackColor = _theme.MenuItem.BackColor;
+			menuStrip.ForeColor = _theme.MenuItem.ForeColor;
+
+			Apply(menuStrip.Items);
+		}
+
+		private void Apply(ToolStrip toolStrip)
+		{
+			toolStrip.BackColor = _theme.MenuItem.BackColor;
+			toolStrip.ForeColor = _theme.MenuItem.ForeColor;
+
+			Apply(toolStrip.Items);
+		}
+
+		private void Apply(ToolStripItemCollection toolStripItemCollection)
+		{
+			foreach (ToolStripItem item in toolStripItemCollection)
+			{
+				item.ForeColor = _theme.MenuItem.ForeColor;
+				item.BackColor = _theme.MenuItem.BackColor;
+
+				var menuItem = item as ToolStripMenuItem;
+				if (menuItem != null)
+				{
+					menuItem.DropDownOpening -= HandleMenuItemOnDropDownOpening;
+					menuItem.DropDownOpening += HandleMenuItemOnDropDownOpening;
+				}
+			}
+		}
+
+		private void HandleMenuItemOnDropDownOpening(object sender, EventArgs e)
+		{
+			var menuItem = (ToolStripMenuItem) sender;
+			Apply(menuItem.DropDownItems);
 		}
 
 		private void Apply(SecureTextBoxEx secureTextBoxEx)
@@ -118,6 +189,28 @@ namespace KeeTheme
 		{
 			form.BackColor = _theme.Form.BackColor;
 			form.ForeColor = _theme.Form.ForeColor;
+
+			foreach (var component in GetComponents(form))
+			{
+				Apply(component);
+			}
+		}
+
+		private IEnumerable<Control> GetComponents(Form form)
+		{
+			var componentsField = form.GetType()
+				.GetField("components", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+			if (componentsField != null)
+			{
+				var components = componentsField.GetValue(form) as IContainer;
+				if (components != null)
+				{
+					return components.Components.OfType<Control>();
+				}
+			}
+
+			return Enumerable.Empty<Control>();
 		}
 
 		private void Apply(Button button)

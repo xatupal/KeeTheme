@@ -21,6 +21,7 @@ namespace KeeTheme.Theme
 		public LinkLabelLook LinkLabel { get; private set; }
 		public ListViewLook ListView { get; private set; }
 		public ControlLook SecureTextBox { get; private set; }
+		public MenuLook MenuItem { get; private set; }
 
 		public EmptyTheme()
 		{
@@ -34,6 +35,7 @@ namespace KeeTheme.Theme
 			LinkLabel = new LinkLabelLook();
 			ListView = new ListViewLook();
 			SecureTextBox = new ControlLook();
+			MenuItem = new MenuLook();
 		}
 	}
 }

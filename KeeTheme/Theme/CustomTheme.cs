@@ -5,7 +5,6 @@ using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 using KeePass.App;
-using KeePass.UI.ToolStripRendering;
 
 namespace KeeTheme.Theme
 {
@@ -23,7 +22,7 @@ namespace KeeTheme.Theme
 			var toolStripSection = iniFile.GetSection("ToolStrip");
 			var customColors = toolStripSection.ToDictionary(x => x.Key, x => palette.GetColor(x.Value));
 			var colorTable = new CustomColorTable(customColors);
-			ToolStripRenderer = new ProExtTsr(colorTable);
+			ToolStripRenderer = new CustomToolStripRenderer(this, colorTable);
 
 			var otherSection = iniFile.GetSection("Other");
 			LoadLook(otherSection, palette, Other);
@@ -51,6 +50,9 @@ namespace KeeTheme.Theme
 
 			var secureTextBoxSection = iniFile.GetSection("SecureTextBox");
 			LoadLook(secureTextBoxSection, palette, SecureTextBox);
+
+			var menuItemSection = iniFile.GetSection("MenuItem");
+			LoadLook(menuItemSection, palette, MenuItem);
 
 			TreeViewDrawMode = TreeViewDrawMode.OwnerDrawText;
 

@@ -34,7 +34,7 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="KeePass, Version=2.41.0.19744, Culture=neutral, PublicKeyToken=fed2ed7716aecf5c, processorArchitecture=MSIL">
+    <Reference Include="KeePass, Version=2.42.1.23464, Culture=neutral, PublicKeyToken=fed2ed7716aecf5c, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe</HintPath>
     </Reference>
@@ -63,8 +63,10 @@
     <Compile Include="Theme\ControlLook.cs" />
     <Compile Include="Theme\CustomColorTable.cs" />
     <Compile Include="Theme\CustomTheme.cs" />
+    <Compile Include="Theme\CustomToolStripRenderer.cs" />
     <Compile Include="Theme\LinkLabelLook.cs" />
     <Compile Include="Theme\ListViewLook.cs" />
+    <Compile Include="Theme\MenuLook.cs" />
     <Compile Include="Theme\OtherLook.cs" />
     <Compile Include="Theme\Palette.cs" />
     <Compile Include="Theme\RichTextBoxLook.cs" />
