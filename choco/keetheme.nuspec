@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <metadata>
+    <id>keepass-plugin-keetheme</id>
+    <title>KeePass Plugin KeeTheme</title>
+    <version>0.6</version>
+    <authors>Krzysztof Łaputa</authors>
+    <owners>xatupal</owners>
+    <summary>Plugin changes the appearance of KeePass, to make it look better at night</summary>
+    <description>
+You can enable it using hotkey `CTRL+T` or using the menu `Tools -> DarkTheme`.
+The plugin allows you to create your own theme.
+
+[Announcement](https://sourceforge.net/p/keepass/discussion/329220/thread/fcd9700f30/)
+    </description>
+    <packageSourceUrl>https://github.com/xatupal/KeeTheme/tree/master/choco</packageSourceUrl>
+    <projectUrl>https://github.com/xatupal/KeeTheme</projectUrl>
+    <projectSourceUrl>https://github.com/xatupal/KeeTheme</projectSourceUrl>
+    <bugTrackerUrl>https://github.com/xatupal/KeeTheme/issues</bugTrackerUrl>
+    <iconUrl>https://cdn.statically.io/gh/xatupal/KeeTheme/c7ff30ad7f600d80f490b2186b11061c95012f78/KeeTheme/Resources/PluginIcon.png</iconUrl>
+    <tags>keepass plugin custom customization theme dark</tags>
+    <copyright>© 2019 Krzysztof Łaputa</copyright>
+    <licenseUrl>https://github.com/xatupal/KeeTheme/blob/master/LICENSE</licenseUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <releaseNotes>
+#### Program
+* [Changelog](https://github.com/xatupal/KeeTheme/releases)
+
+#### Package
+* Automatically built and uploaded by [xatupal](https://chocolatey.org/profiles/xatupal)
+    </releaseNotes>
+    <dependencies>
+      <dependency id="keepass" version="[2.0, 3.0)" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="tools\**" target="tools" />
+  </files>
+</package>
