@@ -22,10 +22,6 @@ namespace KeeTheme.Theme
 			if (e.Item.Pressed || e.Item.Selected)
 			{
 				e.TextColor = _customTheme.MenuItem.HighlightColor;
-				if (e.Item.Owner is ContextMenuStrip)
-				{
-					e.TextColor = _customTheme.MenuItem.ForeColor;
-				}
 			}
 
 			base.OnRenderItemText(e);
