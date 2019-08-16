@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace KeeTheme.Decorators
@@ -15,20 +16,36 @@ namespace KeeTheme.Decorators
 				if (parent.Controls.ContainsKey(disabledControlName))
 					return;
 
+				// Can't use control.DrawToBitmap because:
+				// RichTextBox - it does not draw text
+				// ListView - it does not draw correct header color
+				var screenCopy = TryCopyFromScreen(control);
+				if (screenCopy == null)
+					return;
+
 				var controlSnapshot = new PictureBox();
 				controlSnapshot.Name = disabledControlName;
 				controlSnapshot.Size = control.Size;
 				controlSnapshot.Location = control.Location;
-				// Can't use control.DrawToBitmap because:
-				// RichTextBox - it does not draw text
-				// ListView - it does not draw correct header color
-				controlSnapshot.Image = CopyFromScreen(control);
+				controlSnapshot.Image = screenCopy;
 				parent.Controls.Add(controlSnapshot);
 				parent.Controls.SetChildIndex(controlSnapshot, 0);
 			}
 			else
 			{
 				parent.Controls.RemoveByKey(disabledControlName);
+			}
+		}
+
+		private static Bitmap TryCopyFromScreen(Control control)
+		{
+			try
+			{
+				return CopyFromScreen(control);
+			}
+			catch (ArgumentException e)
+			{
+				return null;
 			}
 		}
 
