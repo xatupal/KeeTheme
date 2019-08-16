@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using KeePass.Forms;
+using KeePass.UI;
 using KeeTheme.Theme;
 
 namespace KeeTheme.Decorators
@@ -34,7 +36,23 @@ namespace KeeTheme.Decorators
 			Controls.Add(richTextBox);
 			EnabledChanged += HandleEnabledChanged;
 
-			richTextBox.TextChanged += HandleRichTextBoxTextChanged;
+			if (Parent.GetType() != typeof(DataEditorForm))
+			{
+				richTextBox.TextChanged += HandleRichTextBoxTextChanged;
+			}
+			else
+			{
+				// Original font colors should be kept in the attachment viewer RTF document
+				var customRichTextBox = richTextBox as CustomRichTextBoxEx;
+				if (customRichTextBox != null && customRichTextBox.SimpleTextOnly)
+					richTextBox.TextChanged += HandleRichTextBoxTextChanged;
+			}
+			richTextBox.DockChanged += HandleRichTextBoxDockChanged;
+		}
+
+		private void HandleRichTextBoxDockChanged(object sender, EventArgs e)
+		{
+			Dock = ((RichTextBox) sender).Dock;
 		}
 
 		private void HandleEnabledChanged(object sender, EventArgs e)
