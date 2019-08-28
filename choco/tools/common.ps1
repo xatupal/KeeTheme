@@ -1,4 +1,4 @@
-# powershell v2 compatibility
+﻿# powershell v2 compatibility
 $psVer = $PSVersionTable.PSVersion.Major
 if ($psver -ge 3) {
 	function Get-ChildItemDir {Get-ChildItem -Directory $args}
@@ -9,8 +9,8 @@ if ($psver -ge 3) {
 $packageName = 'keepass-plugin-keetheme'
 $fileName = 'KeeTheme.plgx'
 $packageSearch = 'KeePass Password Safe'
-$url = 'https://github.com/xatupal/KeeTheme/releases/download/v0.6/KeeTheme.plgx'
-$checksum = '81636A1EF62BCFC2055F7776EEEFC08A8978C5B85AEDA0792A302DEFDD4F3F42'
+$url = 'https://github.com/xatupal/KeeTheme/releases/download/v0.6.1/KeeTheme.plgx'
+$checksum = 'E8948BD4724D6E504F25BA82947DF4D4977773DDE47973A137659289DE4E9616'
 $checksumType = 'sha256'
 
 function Get-KeePassPluginsPath {
