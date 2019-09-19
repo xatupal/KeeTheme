@@ -215,6 +215,8 @@ namespace KeeTheme
 
 		private void Apply(Button button)
 		{
+			button.BackColor = _theme.Button.BackColor;
+			button.ForeColor = _theme.Button.ForeColor;
 			button.FlatAppearance.BorderColor = _theme.Button.BorderColor;
 			button.FlatStyle = _theme.Button.FlatStyle;
 		}
