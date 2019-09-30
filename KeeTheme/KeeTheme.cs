@@ -48,6 +48,7 @@ namespace KeeTheme
 			_theme = _enabled ? _customTheme : _defaultTheme;
 
 			ToolStripManager.Renderer = _theme.ToolStripRenderer;
+			ObjectListViewDecorator.Initialize();
 
 			ApplyOther();
 		}
@@ -258,6 +259,12 @@ namespace KeeTheme
 
 		private void Apply(ListView listView)
 		{
+			if (ObjectListViewDecorator.CanDecorate(listView))
+			{
+				ObjectListViewDecorator.Apply(listView, _theme);
+				return;
+			}
+
 			var decorator = listView.Controls.OfType<ListViewDecorator>().FirstOrDefault();
 			if (decorator == null)
 			{
