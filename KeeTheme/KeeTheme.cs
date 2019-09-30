@@ -31,18 +31,18 @@ namespace KeeTheme
 			get { return _customTheme.Name; }
 		}
 
-		public KeeTheme(bool enabled)
+		public KeeTheme()
 		{
 			_defaultTheme = new DefaultTheme();
-
-			SetEnable(enabled);
+			_customTheme = new CustomTheme(IniFile.GetFromFile() ?? IniFile.GetFromResources());
+			_theme = _defaultTheme;
 		}
 
 		private void SetEnable(bool enable)
 		{
 			_enabled = enable;
 
-			if (_enabled || _theme == null)
+			if (_enabled)
 				_customTheme = new CustomTheme(IniFile.GetFromFile() ?? IniFile.GetFromResources());
 
 			_theme = _enabled ? _customTheme : _defaultTheme;

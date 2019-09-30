@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
+using KeePass;
 using KeePass.Plugins;
 using KeePass.UI;
+using KeePassLib;
 using KeePassLib.Utility;
 using KeeTheme.Properties;
 
@@ -10,6 +12,12 @@ namespace KeeTheme
 {
 	public sealed class KeeThemeExt : Plugin
 	{
+		// Copied from EcasEventIDs.AppInitPost instead of using reflection because probably it will never change
+		private static readonly PwUuid AppInitPost = new PwUuid(new byte[] {
+			0xD4, 0xCE, 0xCD, 0xB5, 0x4B, 0x98, 0x4F, 0xF2,
+			0xA6, 0xA9, 0xE2, 0x55, 0x26, 0x1E, 0xC8, 0xE8
+		});
+
 		private const string KeeThemeOnConfigItem = "KeeTheme.Enabled";
 
 		private ControlVisitor _controlVisitor;
@@ -25,15 +33,24 @@ namespace KeeTheme
 			_host = host;
 
 			_controlVisitor = new ControlVisitor(HandleControlVisit);
-			var themeEnabled = host.CustomConfig.GetBool(KeeThemeOnConfigItem, false);
-			
-			_theme = new KeeTheme(themeEnabled);
-			if (_theme.Enabled)
-				ApplyThemeInOpenForms();
+			_theme = new KeeTheme();
 
+			Program.TriggerSystem.RaisingEvent += HandleTriggerSystemRaisingEvent;
 			GlobalWindowManager.WindowAdded += HandleGlobalWindowManagerWindowAdded;
 
 			return true;
+		}
+
+		private void HandleTriggerSystemRaisingEvent(object sender, KeePass.Ecas.EcasRaisingEventArgs e)
+		{
+			if (e.Event.Type.Equals(AppInitPost))
+			{
+				_theme.Enabled = _host.CustomConfig.GetBool(KeeThemeOnConfigItem, false);
+				if (_theme.Enabled)
+					ApplyThemeInOpenForms();
+
+				Program.TriggerSystem.RaisingEvent -= HandleTriggerSystemRaisingEvent;
+			}
 		}
 
 		public override ToolStripMenuItem GetMenuItem(PluginMenuType t)
