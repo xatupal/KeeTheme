@@ -270,7 +270,7 @@ namespace KeeTheme.Decorators
 				text = text.Remove(0, 1);
 			}
 
-			TextRenderer.DrawText(e.Graphics, text, font, textBounds, color, flags);
+			TextRenderer.DrawText(e.Graphics, text, font, textBounds, color, flags | TextFormatFlags.NoPrefix);
 
 			using (var pen = new Pen(_theme.ListView.ColumnBorderColor))
 				e.Graphics.DrawLine(pen, bounds.Right - 2, bounds.Y, bounds.Right - 2, bounds.Bottom);
