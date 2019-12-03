@@ -59,7 +59,7 @@ namespace KeeTheme
 			{
 				_menuItem = new ToolStripMenuItem(_theme.Name);
 				_menuItem.CheckOnClick = true;
-				_menuItem.Checked = _theme.Enabled;
+				_menuItem.Checked = _host.CustomConfig.GetBool(KeeThemeOnConfigItem, false);
 				_menuItem.ShortcutKeys = Keys.Control | Keys.T;
 				_menuItem.Click += HandleToggleKeeThemeMenuItemClick;
 				return _menuItem;
