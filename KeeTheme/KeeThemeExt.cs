@@ -35,7 +35,16 @@ namespace KeeTheme
 			_controlVisitor = new ControlVisitor(HandleControlVisit);
 			_theme = new KeeTheme();
 
-			Program.TriggerSystem.RaisingEvent += HandleTriggerSystemRaisingEvent;
+			if (Program.TriggerSystem.Enabled)
+			{
+				// It's better to enable theme as late as possible, but not too late
+				Program.TriggerSystem.RaisingEvent += HandleTriggerSystemRaisingEvent;
+			}
+			else
+			{
+				InitializeTheme();
+			}
+
 			GlobalWindowManager.WindowAdded += HandleGlobalWindowManagerWindowAdded;
 
 			return true;
@@ -45,12 +54,17 @@ namespace KeeTheme
 		{
 			if (e.Event.Type.Equals(AppInitPost))
 			{
-				_theme.Enabled = _host.CustomConfig.GetBool(KeeThemeOnConfigItem, false);
-				if (_theme.Enabled)
-					ApplyThemeInOpenForms();
+				InitializeTheme();
 
 				Program.TriggerSystem.RaisingEvent -= HandleTriggerSystemRaisingEvent;
 			}
+		}
+
+		private void InitializeTheme()
+		{
+			_theme.Enabled = _host.CustomConfig.GetBool(KeeThemeOnConfigItem, false);
+			if (_theme.Enabled)
+				ApplyThemeInOpenForms();
 		}
 
 		public override ToolStripMenuItem GetMenuItem(PluginMenuType t)
