@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using KeePass;
+using KeePassLib.Utility;
 using KeeTheme.Theme;
 using CheckBoxState = System.Windows.Forms.VisualStyles.CheckBoxState;
 
@@ -22,11 +23,14 @@ namespace KeeTheme.Decorators
 			_listView = listView;
 			_theme = theme;
 
-			_headerPainter = new ListViewHeaderPainter(_listView);
-			_headerPainter.Paint += HandleHeaderPaint;
+			if (!MonoWorkarounds.IsRequired())
+			{
+				_headerPainter = new ListViewHeaderPainter(_listView);
+				_headerPainter.Paint += HandleHeaderPaint;
 
-			_groupsPainter = new ListViewGroupsPainter(_listView);
-			_groupsPainter.Paint += HandleGroupsPaint;
+				_groupsPainter = new ListViewGroupsPainter(_listView);
+				_groupsPainter.Paint += HandleGroupsPaint;
+			}
 
 			_listView.Controls.Add(this);
 		}
@@ -111,7 +115,10 @@ namespace KeeTheme.Decorators
 				listView.Parent.EnabledChanged += ListViewParentEnabledChanged;
 			}
 
-			listView.BorderStyle = _theme.ListView.BorderStyle;
+			// Setting borders style throws exception on Mono
+			if (!MonoWorkarounds.IsRequired())
+				listView.BorderStyle = _theme.ListView.BorderStyle;
+
 			listView.BackColor = _theme.ListView.BackColor;
 
 			if (_theme.ListViewBackgroundTiled)

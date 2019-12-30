@@ -7,6 +7,7 @@ using System.Reflection;
 using System.Windows.Forms;
 using KeePass.App;
 using KeePass.UI;
+using KeePassLib.Utility;
 using KeeTheme.Decorators;
 using KeeTheme.Theme;
 
@@ -231,10 +232,13 @@ namespace KeeTheme
 		{
 			treeView.BorderStyle = _theme.TreeView.BorderStyle;
 			treeView.BackColor = _theme.TreeView.BackColor;
-			treeView.DrawMode = _theme.TreeViewDrawMode;
 
-			treeView.DrawNode -= HandleTreeViewDrawNode;
-			treeView.DrawNode += HandleTreeViewDrawNode;
+			if (!MonoWorkarounds.IsRequired())
+			{
+				treeView.DrawMode = _theme.TreeViewDrawMode;
+				treeView.DrawNode -= HandleTreeViewDrawNode;
+				treeView.DrawNode += HandleTreeViewDrawNode;
+			}
 		}
 
 		private void HandleTreeViewDrawNode(object sender, DrawTreeNodeEventArgs e)
