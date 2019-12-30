@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -40,7 +41,20 @@ namespace KeeTheme.Decorators
 		private static Type GetType(string name)
 		{
 			return AppDomain.CurrentDomain.GetAssemblies()
-				.SelectMany(x => x.GetTypes()).FirstOrDefault(x => x.FullName.StartsWith(name));
+				.SelectMany(TryGetTypes).FirstOrDefault(x => x.FullName.StartsWith(name));
+		}
+
+		private static IEnumerable<Type> TryGetTypes(Assembly assembly)
+		{
+			try
+			{
+				return assembly.GetTypes();
+			}
+			catch (ReflectionTypeLoadException e)
+			{
+				// If assembly types cannot be loaded - ignore.
+				return new Type[0];
+			}
 		}
 
 		public static bool CanDecorate(ListView listView)
