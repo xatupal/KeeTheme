@@ -43,7 +43,11 @@ namespace KeeTheme.Decorators
 			{
 				return CopyFromScreen(control);
 			}
-			catch (ArgumentException e)
+			catch (ArgumentException)
+			{
+				return null;
+			}
+			catch (InvalidOperationException)
 			{
 				return null;
 			}
