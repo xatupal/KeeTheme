@@ -113,6 +113,24 @@ namespace KeeTheme
 
 			var statusStrip = control as StatusStrip;
 			if (statusStrip != null) Apply(statusStrip);
+
+			var tabControl = control as TabControl;
+			if (tabControl != null) Apply(tabControl);
+		}
+
+		private void Apply(TabControl tabControl)
+		{
+			tabControl.ControlAdded -= HandleTabControlAdded;
+			tabControl.ControlAdded += HandleTabControlAdded;
+		}
+
+		private void HandleTabControlAdded(object sender, ControlEventArgs e)
+		{
+			if (e.Control is TabPage)
+			{
+				var visitor = new ControlVisitor(Apply);
+				visitor.Visit(e.Control);
+			}
 		}
 
 		private void Apply(StatusStrip statusStrip)
