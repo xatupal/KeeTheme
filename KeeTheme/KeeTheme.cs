@@ -116,6 +116,14 @@ namespace KeeTheme
 
 			var tabControl = control as TabControl;
 			if (tabControl != null) Apply(tabControl);
+
+			var qualityProgressBar = control as QualityProgressBar;
+			if (qualityProgressBar != null) Apply(qualityProgressBar);
+		}
+
+		private void Apply(QualityProgressBar qualityProgressBar)
+		{
+			qualityProgressBar.ForeColor = _theme.Form.BackColor;
 		}
 
 		private void Apply(TabControl tabControl)
