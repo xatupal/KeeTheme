@@ -57,6 +57,19 @@ namespace KeeTheme.Decorators
 			_listView = listView;
 
 			AssignHandle(_listView.Handle);
+
+			_listView.HandleCreated += On_listView_HandleCreated;
+			_listView.HandleDestroyed += On_listView_HandleDestroyed;
+		}
+
+		private void On_listView_HandleCreated(object sender, EventArgs e)
+		{
+			if (_listView != null) AssignHandle(_listView.Handle);
+		}
+
+		private void On_listView_HandleDestroyed(object sender, EventArgs e)
+		{
+			ReleaseHandle();
 		}
 
 		protected override void WndProc(ref Message m)
