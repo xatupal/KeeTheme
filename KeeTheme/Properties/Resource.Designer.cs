@@ -74,20 +74,16 @@ namespace KeeTheme.Properties {
         ///LightBorder = (81, 81, 81)
         ///Header = (57, 60, 62)
         ///ColumnBorder = (97, 100, 101)
+        ///Group = (104, 151, 187)
+        ///GroupHighlight = (65, 82, 96)
         ///Link = (0, 102, 204)
         ///ToolStrip = (64, 64, 64)
+        ///ToolStripHighlight = (114, 161, 197)
         ///ToolStripBorder = (0, 0, 0)
         ///
         ///[Other]
         ///ControlNormalColor = Window
-        ///ControlDisabledColor = Control
-        ///
-        ///[Control]
-        ///BackColor = Control
-        ///ForeColor = ControlText
-        ///
-        ///[Form]
-        ///BackColo [rest of string was truncated]&quot;;.
+        ///ControlDisabled [rest of string was truncated]&quot;;.
         /// </summary>
         internal static string DarkTheme {
             get {
