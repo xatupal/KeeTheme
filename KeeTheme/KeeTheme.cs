@@ -247,6 +247,14 @@ namespace KeeTheme
 			button.ForeColor = _theme.Button.ForeColor;
 			button.FlatAppearance.BorderColor = _theme.Button.BorderColor;
 			button.FlatStyle = _theme.Button.FlatStyle;
+
+			if (button is SplitButtonEx)
+			{
+				var decorator = button.Controls.OfType<SplitButtonExDecorator>().FirstOrDefault() 
+				                ?? new SplitButtonExDecorator((SplitButtonEx) button, _theme);
+				
+				decorator.EnableTheme(_enabled, _theme);
+			}
 		}
 
 		private void Apply(LinkLabel linkLabel)
@@ -295,11 +303,8 @@ namespace KeeTheme
 				return;
 			}
 
-			var decorator = listView.Controls.OfType<ListViewDecorator>().FirstOrDefault();
-			if (decorator == null)
-			{
-				decorator = new ListViewDecorator(listView , _theme);
-			}
+			var decorator = listView.Controls.OfType<ListViewDecorator>().FirstOrDefault()
+			                ?? new ListViewDecorator(listView , _theme);
 
 			decorator.EnableTheme(_enabled, _theme);
 		}
