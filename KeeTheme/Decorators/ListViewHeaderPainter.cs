@@ -22,16 +22,16 @@ namespace KeeTheme.Decorators
 			_listView = listView;
 
 			AssignHeaderHandle();
-			_listView.HandleCreated += On_listView_HandleCreated;
-			_listView.HandleDestroyed += On_listView_HandleDestroyed;
+			_listView.HandleCreated += HandleListViewHandleCreated;
+			_listView.HandleDestroyed += HandleListViewHandleDestroyed;
 		}
 
-		private void On_listView_HandleCreated(object sender, EventArgs e)
+		private void HandleListViewHandleCreated(object sender, EventArgs e)
 		{
 			if (_listView != null) AssignHeaderHandle();
 		}
 
-		private void On_listView_HandleDestroyed(object sender, EventArgs e)
+		private void HandleListViewHandleDestroyed(object sender, EventArgs e)
 		{
 			ReleaseHandle();
 		}
