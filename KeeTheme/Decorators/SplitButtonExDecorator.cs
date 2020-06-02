@@ -45,7 +45,7 @@ namespace KeeTheme.Decorators
 				
 				list.RemoveHandler(eventInstance, list[eventInstance]);
 			}
-			catch (NullReferenceException e)
+			catch (NullReferenceException)
 			{
 			}
 		}

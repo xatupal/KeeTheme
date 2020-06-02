@@ -50,7 +50,7 @@ namespace KeeTheme.Decorators
 			{
 				return assembly.GetTypes();
 			}
-			catch (ReflectionTypeLoadException e)
+			catch (ReflectionTypeLoadException)
 			{
 				// If assembly types cannot be loaded - ignore.
 				return new Type[0];
