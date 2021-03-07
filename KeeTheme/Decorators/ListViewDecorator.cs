@@ -89,6 +89,7 @@ namespace KeeTheme.Decorators
 				g.Graphics.DrawLine(forePen, textRect.Right, lineY, e.ClipRectangle.Right, lineY);
 
 				g.Render(e.Graphics);
+				sf.Dispose();
 			}
 
 		}
