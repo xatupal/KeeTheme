@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Drawing.Text;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -119,6 +120,30 @@ namespace KeeTheme
 
 			var qualityProgressBar = control as QualityProgressBar;
 			if (qualityProgressBar != null) Apply(qualityProgressBar);
+
+			var comboBox = control as ComboBox;
+			if (comboBox != null) Apply(comboBox);
+
+			OverrideResetBackground(control);
+		}
+
+		private void OverrideResetBackground(Control control)
+		{
+			if (control.Name == "m_cmbStringName" && control.Parent.Name == "EditStringForm")
+			{
+				control.BackColorChanged += (sender, args) =>
+				{
+					if (control.BackColor.IsSystemColor)
+						control.BackColor = _theme.Control.BackColor;
+				};
+			}
+		}
+
+
+		private void Apply(ComboBox comboBox)
+		{
+			if (comboBox.DropDownStyle == ComboBoxStyle.DropDownList)
+				comboBox.FlatStyle = FlatStyle.Popup;
 		}
 
 		private void Apply(QualityProgressBar qualityProgressBar)
@@ -255,6 +280,34 @@ namespace KeeTheme
 				
 				decorator.EnableTheme(_enabled, _theme);
 			}
+
+			button.EnabledChanged -= HandleButtonEnabledChanged;
+			button.EnabledChanged += HandleButtonEnabledChanged;
+		}
+
+		private void HandleButtonEnabledChanged(object sender, EventArgs e)
+		{
+			var button = (Button) sender;
+			if (button.Enabled)
+			{
+				button.Paint -= HandleButtonPaint;
+			}
+			else
+			{
+				button.Paint += HandleButtonPaint;
+			}
+		}
+
+		private void HandleButtonPaint(object sender, PaintEventArgs e)
+		{
+			var button = (Button)sender;
+			var disabledForeColor = ControlPaint.Dark(_theme.Button.ForeColor, 0.25f);
+			if (button.Enabled)
+			{
+				disabledForeColor = _theme.Button.ForeColor;
+			}
+			var flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.WordBreak;
+			TextRenderer.DrawText(e.Graphics, button.Text, button.Font, button.ClientRectangle, disabledForeColor, flags);
 		}
 
 		private void Apply(LinkLabel linkLabel)
