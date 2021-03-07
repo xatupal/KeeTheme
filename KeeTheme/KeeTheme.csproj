@@ -98,4 +98,7 @@
     <None Include="Resources\PluginIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y $(TargetPath) $(SolutionDir)\..\KeePass\Plugins</PostBuildEvent>
+  </PropertyGroup>
 </Project>
