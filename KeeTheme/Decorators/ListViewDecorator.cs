@@ -293,7 +293,7 @@ namespace KeeTheme.Decorators
 			}
 
 			var listView = (ListView)sender;
-			if (_theme.ListViewBackgroundTiled && listView.Enabled)
+			if (_theme.ListViewBackgroundTiled)
 			{
 				listView.BackgroundImage = listView.Items.Count == 0 ? _theme.ListViewBackground : null;
 			}
