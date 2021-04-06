@@ -1,0 +1,13 @@
+bin\
+obj\
+.idea\
+.vs
+.git
+.user
+.sln
+.suo
+.pdb
+build.cmd
+plgxexclude.txt
+KeeTheme.dll
+KeeTheme.plgx

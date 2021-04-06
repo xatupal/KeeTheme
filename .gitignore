@@ -328,3 +328,11 @@ ASALocalRun/
 
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
+
+# Build artifacts
+/build/KeeTheme.dll
+/build/KeeTheme.plgx
+
+# Chocolatey artifacts
+/choco/choco.key
+/choco/KeeTheme.plgx
