@@ -1,5 +1,6 @@
 using System.Drawing;
 using System.Windows.Forms;
+using KeePass.App;
 
 namespace KeeTheme.Theme
 {
@@ -9,6 +10,7 @@ namespace KeeTheme.Theme
 		{
 			Other.ControlNormalColor = SystemColors.Window;
 			Other.ControlDisabledColor = SystemColors.Control;
+			Other.ColorEditError = AppDefs.ColorEditError;
 			Button.FlatStyle = FlatStyle.Standard;
 			TreeView.BorderStyle = BorderStyle.Fixed3D;
 			RichTextBox.BorderStyle = BorderStyle.Fixed3D;

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
-using System.Drawing.Text;
 using System.Linq;
 using System.Reflection;
 using System.Windows.Forms;
@@ -61,12 +60,17 @@ namespace KeeTheme
 				typeof(AppDefs).GetField("ColorControlNormal", BindingFlags.Static | BindingFlags.Public);
 			var colorControlDisabledField =
 				typeof(AppDefs).GetField("ColorControlDisabled", BindingFlags.Static | BindingFlags.Public);
+			var colorEditError =
+				typeof(AppDefs).GetField("ColorEditError", BindingFlags.Static | BindingFlags.Public);
 
 			if (colorControlNormalField != null)
 				colorControlNormalField.SetValue(null, _theme.Other.ControlNormalColor);
 
 			if (colorControlDisabledField != null)
 				colorControlDisabledField.SetValue(null, _theme.Other.ControlDisabledColor);
+
+			if (colorEditError != null)
+				colorEditError.SetValue(null, _theme.Other.ColorEditError);
 		}
 
 		public void Apply(Control control)
@@ -236,7 +240,7 @@ namespace KeeTheme
 				return;
 			}
 
-			var textBox = (SecureTextBoxEx) sender;
+			var textBox = (SecureTextBoxEx)sender;
 			if (textBox.BackColor == SystemColors.Window)
 				textBox.BackColor = _theme.SecureTextBox.BackColor;
 		}

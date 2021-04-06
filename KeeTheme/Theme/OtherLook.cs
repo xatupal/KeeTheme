@@ -6,5 +6,6 @@ namespace KeeTheme.Theme
 	{
 		public Color ControlNormalColor { get; set; }
 		public Color ControlDisabledColor { get; set; }
+		public Color ColorEditError { get; set; }
 	}
 }
