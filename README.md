@@ -5,17 +5,17 @@ Plugin changes the appearance of KeePass, to make it look better at night.
 
 You can enable it using hotkey `CTRL+T` or using the menu `Tools -> DarkTheme`.
 
-(You can change the hotkey in the ![options](docs/KeePassDarkThemeCustomOptions.png) `Tools -> Options... -> KeeTheme`)
+(You can change the hotkey in the [options](docs/KeePassDarkThemeCustomOptions.png) `Tools -> Options... -> KeeTheme`)
 
 ### Customizations
 
 The plugin allows you to create your own theme.
 
-Just download ![theme template](themes/KeeTheme.ini) and put it in the plugins folder.
+Just download [theme template](themes/KeeTheme.ini) and put it in the plugins folder.
 
 ### Installation
 
-Copy ![KeeTheme.dll](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.dll) or ![KeeTheme.plgx](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.plgx) to the KeePass Plugins directory or install via ![Chocolatey](https://chocolatey.org):
+Copy [KeeTheme.dll](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.dll) or [KeeTheme.plgx](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.plgx) to the KeePass Plugins directory or install via [Chocolatey](https://chocolatey.org):
 
 ```
 choco install keepass-plugin-keetheme
