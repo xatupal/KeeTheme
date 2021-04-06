@@ -5,7 +5,7 @@ Plugin changes the appearance of KeePass, to make it look better at night.
 
 You can enable it using hotkey `CTRL+T` or using the menu `Tools -> DarkTheme`.
 
-(You can change the hotkey in the ![options](docs/KeePassDarkThemeCustomOptions.pngl) `Tools -> Options... -> KeeTheme`)
+(You can change the hotkey in the ![options](docs/KeePassDarkThemeCustomOptions.png) `Tools -> Options... -> KeeTheme`)
 
 ### Customizations
 
