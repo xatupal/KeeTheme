@@ -2,10 +2,12 @@
 using System.Drawing;
 using System.Windows.Forms;
 using KeePass;
+using KeePass.Forms;
 using KeePass.Plugins;
 using KeePass.UI;
 using KeePassLib;
 using KeePassLib.Utility;
+using KeeTheme.Options;
 using KeeTheme.Properties;
 
 namespace KeeTheme
@@ -18,12 +20,12 @@ namespace KeeTheme
 			0xA6, 0xA9, 0xE2, 0x55, 0x26, 0x1E, 0xC8, 0xE8
 		});
 
-		private const string KeeThemeOnConfigItem = "KeeTheme.Enabled";
-
 		private ControlVisitor _controlVisitor;
 		private KeeTheme _theme;
 		private IPluginHost _host;
 		private ToolStripMenuItem _menuItem;
+		private KeeThemeOptions _options;
+		private OptionsPanel _optionsPanel;
 
 		public override bool Initialize(IPluginHost host)
 		{
@@ -32,6 +34,7 @@ namespace KeeTheme
 
 			_host = host;
 
+			_options = new KeeThemeOptions(host);
 			_controlVisitor = new ControlVisitor(HandleControlVisit);
 			_theme = new KeeTheme();
 
@@ -62,7 +65,7 @@ namespace KeeTheme
 
 		private void InitializeTheme()
 		{
-			_theme.Enabled = _host.CustomConfig.GetBool(KeeThemeOnConfigItem, false);
+			_theme.Enabled = _options.Enabled;
 			if (_theme.Enabled)
 				ApplyThemeInOpenForms();
 		}
@@ -73,9 +76,10 @@ namespace KeeTheme
 			{
 				_menuItem = new ToolStripMenuItem(_theme.Name);
 				_menuItem.CheckOnClick = true;
-				_menuItem.Checked = _host.CustomConfig.GetBool(KeeThemeOnConfigItem, false);
-				_menuItem.ShortcutKeys = Keys.Control | Keys.T;
+				_menuItem.Checked = _options.Enabled;
+				_menuItem.ShortcutKeys = _options.HotKey;
 				_menuItem.Click += HandleToggleKeeThemeMenuItemClick;
+				_options.HotKeyChanged += keys => _menuItem.ShortcutKeys = keys;
 				return _menuItem;
 			}
 
@@ -85,7 +89,7 @@ namespace KeeTheme
 		private void HandleToggleKeeThemeMenuItemClick(object sender, EventArgs eventArgs)
 		{
 			_theme.Enabled = !_theme.Enabled;
-			_host.CustomConfig.SetBool(KeeThemeOnConfigItem, _theme.Enabled);
+			_options.Enabled = _theme.Enabled;
 			_menuItem.Text = _theme.Name;
 
 			ApplyThemeInOpenForms();
@@ -113,6 +117,18 @@ namespace KeeTheme
 		{
 			if (_theme.Enabled)
 				_controlVisitor.Visit(e.Form);
+			
+			var optionsForm = e.Form as OptionsForm;
+			if (optionsForm != null)
+			{
+				optionsForm.Shown += HandleOptionsFormShown;
+			}
+		}
+
+		private void HandleOptionsFormShown(object sender, EventArgs e)
+		{
+			var optionsForm = (OptionsForm) sender;
+			OptionsPanel.Create(optionsForm, _options);
 		}
 
 		public override string UpdateUrl
