@@ -103,6 +103,9 @@ namespace KeeTheme
 			var secureTextBoxEx = control as SecureTextBoxEx;
 			if (secureTextBoxEx != null) Apply(secureTextBoxEx);
 
+			var hotKeyControlEx = control as HotKeyControlEx;
+			if (hotKeyControlEx != null) Apply(hotKeyControlEx);
+
 			var toolStrip = control as ToolStrip;
 			if (toolStrip != null) Apply(toolStrip);
 
@@ -236,6 +239,24 @@ namespace KeeTheme
 			var textBox = (SecureTextBoxEx) sender;
 			if (textBox.BackColor == SystemColors.Window)
 				textBox.BackColor = _theme.SecureTextBox.BackColor;
+		}
+
+		private void Apply(HotKeyControlEx hotKeyControlEx)
+		{
+			hotKeyControlEx.BackColorChanged -= HandleHotKeyControlExOnBackColorChanged;
+			hotKeyControlEx.BackColorChanged += HandleHotKeyControlExOnBackColorChanged;
+		}
+
+		private void HandleHotKeyControlExOnBackColorChanged(object sender, EventArgs e)
+		{
+			if (!_enabled)
+			{
+				return;
+			}
+
+			var textBox = (HotKeyControlEx) sender;
+			if (textBox.BackColor == SystemColors.Window)
+				textBox.BackColor = _theme.Control.BackColor;
 		}
 
 		private void Apply(Form form)
