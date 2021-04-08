@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Windows.Forms;
 using KeePass;
+using KeePass.UI;
 using KeePassLib.Utility;
 using KeeTheme.Theme;
 using CheckBoxState = System.Windows.Forms.VisualStyles.CheckBoxState;
@@ -225,6 +226,12 @@ namespace KeeTheme.Decorators
 				? _theme.ListView.EvenRowColor
 				: _theme.ListView.OddRowColor;
 
+			var listItem = e.Item.Tag as PwListItem;
+			if (listItem != null && !listItem.Entry.BackgroundColor.IsEmpty)
+			{
+				backColor = listItem.Entry.BackgroundColor;
+			}
+			
 			if (_theme.ListViewBackground != null)
 				backColor = Color.FromArgb(191, backColor);
 
@@ -256,6 +263,12 @@ namespace KeeTheme.Decorators
 			var font = e.ItemIndex == -1 ? e.Item.Font : e.SubItem.Font;
 			var color = e.ItemIndex == -1 ? e.Item.ForeColor : e.SubItem.ForeColor;
 			var textBounds = new Rectangle(bounds.Location, bounds.Size);
+
+			var listItem = e.Item.Tag as PwListItem;
+			if (listItem != null && !listItem.Entry.ForegroundColor.IsEmpty)
+			{
+				color = listItem.Entry.ForegroundColor;
+			}
 
 			text = " " + text + " ";
 			if (e.ColumnIndex == 0 && e.Item.ImageIndex > -1)
