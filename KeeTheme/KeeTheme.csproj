@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="ControlVisitor.cs" />
     <Compile Include="Decorators\ControlSnapshot.cs" />
+    <Compile Include="Decorators\KnownColorsDecorator.cs" />
     <Compile Include="Decorators\ListViewGroupsPainter.cs" />
     <Compile Include="Decorators\ListViewHeaderPainter.cs" />
     <Compile Include="Decorators\ListViewNativeWindow.cs" />

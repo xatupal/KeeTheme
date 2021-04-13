@@ -50,6 +50,7 @@ namespace KeeTheme
 
 			ToolStripManager.Renderer = _theme.ToolStripRenderer;
 			ObjectListViewDecorator.Initialize();
+			KnownColorsDecorator.Apply(_theme, _enabled);
 
 			ApplyOther();
 		}
