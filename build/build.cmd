@@ -1,9 +1,15 @@
 rem Build dll
-echo Loading Visual Studio Tools
-call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+set msbuild_path=msbuild
+if not "%JetBrains Rider%"=="" (
+	echo Loading JetBrains Rider Tools
+	set msbuild_path="%JetBrains Rider:;=%\..\tools\MSBuild\Current\Bin\MSBuild.exe"
+) else (
+	echo Loading Visual Studio Tools
+	call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+)
 
 echo Compiling Dll
-msbuild ..\KeeTheme.sln /p:Configuration=Release /p:LangVersion=3
+%msbuild_path% ..\KeeTheme.sln /p:Configuration=Release /p:LangVersion=3
 
 echo Releasing Dll
 copy ..\KeeTheme\bin\Release\KeeTheme.dll .\KeeTheme.dll
