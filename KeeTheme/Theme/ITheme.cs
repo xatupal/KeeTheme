@@ -21,6 +21,8 @@ namespace KeeTheme.Theme
 		LinkLabelLook LinkLabel { get; }
 		ListViewLook ListView { get; }
 		ControlLook SecureTextBox { get; }
+		CheckBoxLook CheckBox { get; }
+		CheckBoxButtonLook CheckBoxButton { get; }
 		MenuLook MenuItem { get; }
 	}
 }

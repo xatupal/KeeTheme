@@ -51,6 +51,12 @@ namespace KeeTheme.Theme
 			var secureTextBoxSection = iniFile.GetSection("SecureTextBox");
 			LoadLook(secureTextBoxSection, palette, SecureTextBox);
 
+			var checkBoxSection = iniFile.GetSection("CheckBox");
+			LoadLook(checkBoxSection, palette, CheckBox);
+
+			var checkBoxButtonSection = iniFile.GetSection("CheckBoxButton");
+			LoadLook(checkBoxButtonSection, palette, CheckBoxButton);
+
 			var menuItemSection = iniFile.GetSection("MenuItem");
 			LoadLook(menuItemSection, palette, MenuItem);
 

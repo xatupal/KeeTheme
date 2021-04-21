@@ -15,6 +15,8 @@ namespace KeeTheme.Theme
 			TreeView.BorderStyle = BorderStyle.Fixed3D;
 			RichTextBox.BorderStyle = BorderStyle.Fixed3D;
 			ListView.BorderStyle = BorderStyle.Fixed3D;
+			CheckBox.FlatStyle = FlatStyle.Standard;
+			CheckBoxButton.FlatStyle = FlatStyle.Standard;
 			ToolStripRenderer = ToolStripManager.Renderer;
 		}
 	}

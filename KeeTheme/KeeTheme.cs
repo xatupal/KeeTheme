@@ -132,6 +132,9 @@ namespace KeeTheme
 			var comboBox = control as ComboBox;
 			if (comboBox != null) Apply(comboBox);
 
+			var checkBox = control as CheckBox;
+			if (checkBox != null) Apply(checkBox);
+
 			OverrideResetBackground(control);
 		}
 
@@ -147,6 +150,20 @@ namespace KeeTheme
 			}
 		}
 
+		private void Apply(CheckBox checkBox)
+		{
+			var checkBoxLook = checkBox.Appearance == Appearance.Button
+				? _theme.CheckBoxButton
+				: _theme.CheckBox;
+
+			checkBox.BackColor = checkBoxLook.BackColor;
+			checkBox.ForeColor = checkBoxLook.ForeColor;
+			checkBox.FlatStyle = checkBoxLook.FlatStyle;
+			checkBox.FlatAppearance.BorderColor = checkBoxLook.BorderColor;
+			checkBox.FlatAppearance.CheckedBackColor = checkBoxLook.CheckedBackColor;
+			checkBox.FlatAppearance.MouseDownBackColor = checkBoxLook.MouseDownBackColor;
+			checkBox.FlatAppearance.MouseOverBackColor = checkBoxLook.MouseOverBackColor;
+		}
 
 		private void Apply(ComboBox comboBox)
 		{
