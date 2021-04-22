@@ -3,7 +3,7 @@
   <metadata>
     <id>keepass-plugin-keetheme</id>
     <title>KeePass Plugin KeeTheme</title>
-    <version>0.7.1</version>
+    <version>0.8.0</version>
     <authors>Krzysztof Łaputa</authors>
     <owners>xatupal</owners>
     <summary>Plugin changes the appearance of KeePass, to make it look better at night</summary>
