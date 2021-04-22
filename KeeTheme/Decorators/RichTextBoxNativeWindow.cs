@@ -48,11 +48,26 @@ namespace KeeTheme.Decorators
         public RichTextBoxNativeWindow(RichTextBox richTextBox)
         {
             _richTextBox = richTextBox;
-            _richTextBox.HandleCreated += HandleRichTextBoxHandleCreated;
-            _richTextBox.HandleDestroyed += HandleRichTextBoxHandleDestroyed;
-            AssignHandle(_richTextBox.Handle);
+            if (TryAssignHandle(_richTextBox.Handle))
+            {
+                _richTextBox.HandleCreated += HandleRichTextBoxHandleCreated;
+                _richTextBox.HandleDestroyed += HandleRichTextBoxHandleDestroyed;
+            }
         }
 
+        private bool TryAssignHandle(IntPtr handle)
+        {
+            try
+            {
+                AssignHandle(handle);
+                return true;
+            }
+            catch (InvalidOperationException e)
+            {
+                return false;
+            }
+        }
+        
         private void HandleRichTextBoxHandleCreated(object sender, EventArgs e)
         {
             if (_richTextBox != null) 
