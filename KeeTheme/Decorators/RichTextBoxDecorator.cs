@@ -86,7 +86,7 @@ namespace KeeTheme.Decorators
 		private void HandleRichTextBoxPaint(object sender, PaintEventArgs e)
 		{
 			var customRichTextBox = sender as CustomRichTextBoxEx;
-			if (customRichTextBox == null || customRichTextBox.Text.Length == 0)
+			if (customRichTextBox == null || customRichTextBox.Text.Length == 0 || !_enabled)
 				return;
 
 			using (var font = new Font(customRichTextBox.Font, FontStyle.Underline))
