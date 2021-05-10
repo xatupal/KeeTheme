@@ -165,20 +165,27 @@ namespace KeeTheme.Decorators
 				return;
 
 			var richTextBox = (RichTextBox)sender;
+			ApplyFontColor(richTextBox);
+			if (richTextBox.TextLength == 0)
+				_detectedLinks.Clear();
+		}
+
+		private void ApplyFontColor(RichTextBox richTextBox)
+		{
 			var selectionStart = richTextBox.SelectionStart;
 			var selectionLength = richTextBox.SelectionLength;
 
 			richTextBox.SelectAll();
 			richTextBox.SelectionColor = _theme.RichTextBox.SelectionColor;
 			richTextBox.Select(selectionStart, selectionLength);
-			if (richTextBox.TextLength == 0)
-				_detectedLinks.Clear();
 		}
 
 		public void EnableTheme(bool enabled, ITheme theme)
 		{
 			_theme = theme;
 			_enabled = enabled;
+			if (!enabled)
+				ApplyFontColor(_richTextBox);
 
 			BorderStyle = _theme.RichTextBox.BorderStyle;
 		}
