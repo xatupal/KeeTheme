@@ -34,6 +34,8 @@ namespace KeeTheme.Options
 		{
 			this.hotKeyLabel = new System.Windows.Forms.Label();
 			this.hotKeyTextBox = new KeePass.UI.HotKeyControlEx();
+			this.autoSyncWin10ThemeCheckBox = new System.Windows.Forms.CheckBox();
+			this.autoSyncWin10ThemeLabel = new System.Windows.Forms.Label();
 			this.SuspendLayout();
 			// 
 			// hotKeyLabel
@@ -51,10 +53,28 @@ namespace KeeTheme.Options
 			this.hotKeyTextBox.Size = new System.Drawing.Size(166, 20);
 			this.hotKeyTextBox.TabIndex = 1;
 			// 
+			// autoSyncWin10ThemeCheckBox
+			// 
+			this.autoSyncWin10ThemeCheckBox.Location = new System.Drawing.Point(189, 34);
+			this.autoSyncWin10ThemeCheckBox.Name = "autoSyncWin10ThemeCheckBox";
+			this.autoSyncWin10ThemeCheckBox.Size = new System.Drawing.Size(102, 24);
+			this.autoSyncWin10ThemeCheckBox.TabIndex = 2;
+			this.autoSyncWin10ThemeCheckBox.UseVisualStyleBackColor = true;
+			// 
+			// autoSyncWin10ThemeLabel
+			// 
+			this.autoSyncWin10ThemeLabel.Location = new System.Drawing.Point(9, 39);
+			this.autoSyncWin10ThemeLabel.Name = "autoSyncWin10ThemeLabel";
+			this.autoSyncWin10ThemeLabel.Size = new System.Drawing.Size(174, 23);
+			this.autoSyncWin10ThemeLabel.TabIndex = 3;
+			this.autoSyncWin10ThemeLabel.Text = "Auto-sync with Windows 10 theme:";
+			// 
 			// OptionsPanel
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.autoSyncWin10ThemeLabel);
+			this.Controls.Add(this.autoSyncWin10ThemeCheckBox);
 			this.Controls.Add(this.hotKeyTextBox);
 			this.Controls.Add(this.hotKeyLabel);
 			this.Name = "OptionsPanel";
@@ -62,6 +82,16 @@ namespace KeeTheme.Options
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+
+		private System.Windows.Forms.CheckBox autoSyncWin10ThemeCheckBox;
+
+		private System.Windows.Forms.Label autoSyncWin10ThemeLabel;
+
+		private System.Windows.Forms.Label syncWin10ThemeLabel;
+		private System.Windows.Forms.CheckBox syncWin10ThemeCheckBox;
+
+		private System.Windows.Forms.CheckBox checkBox1;
+		private System.Windows.Forms.Label syncWinThemeLabel;
 
 		private System.Windows.Forms.Label hotKeyLabel;
 		private KeePass.UI.HotKeyControlEx hotKeyTextBox;

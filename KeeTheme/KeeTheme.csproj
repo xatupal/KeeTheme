@@ -96,6 +96,7 @@
     <Compile Include="Options\OptionsPanel.Designer.cs">
       <DependentUpon>OptionsPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="Win10ThemeMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Properties\Resource.resx">

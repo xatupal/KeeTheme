@@ -26,6 +26,7 @@ namespace KeeTheme
 		private ToolStripMenuItem _menuItem;
 		private KeeThemeOptions _options;
 		private OptionsPanel _optionsPanel;
+		private Win10ThemeMonitor _win10ThemeMonitor;
 
 		public override bool Initialize(IPluginHost host)
 		{
@@ -37,6 +38,9 @@ namespace KeeTheme
 			_options = new KeeThemeOptions(host);
 			_controlVisitor = new ControlVisitor(HandleControlVisit);
 			_theme = new KeeTheme();
+
+			_win10ThemeMonitor = new Win10ThemeMonitor(_options);
+			_win10ThemeMonitor.Initialize();
 
 			if (Program.TriggerSystem.Enabled)
 			{
@@ -68,6 +72,12 @@ namespace KeeTheme
 			_theme.Enabled = _options.Enabled;
 			if (_theme.Enabled)
 				ApplyThemeInOpenForms();
+
+			_options.EnabledChanged += enable =>
+			{
+				_theme.Enabled = enable;
+				ApplyThemeInOpenForms();
+			}; 
 		}
 
 		public override ToolStripMenuItem GetMenuItem(PluginMenuType t)
@@ -88,11 +98,7 @@ namespace KeeTheme
 
 		private void HandleToggleKeeThemeMenuItemClick(object sender, EventArgs eventArgs)
 		{
-			_theme.Enabled = !_theme.Enabled;
-			_options.Enabled = _theme.Enabled;
-			_menuItem.Text = _theme.Name;
-
-			ApplyThemeInOpenForms();
+			_options.Enabled = !_options.Enabled;
 		}
 
 		private void ApplyThemeInOpenForms()

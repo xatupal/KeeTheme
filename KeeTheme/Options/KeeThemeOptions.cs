@@ -8,10 +8,12 @@ namespace KeeTheme.Options
 	{
 		private const string EnabledOption = "KeeTheme.Enabled";
 		private const string HotKeyOption = "KeeTheme.HotKey";
+		private const string AutoSyncWithWin10ThemeOption = "KeeTheme.AutoSyncWithWin10Theme";
 		
 		private readonly IPluginHost _pluginHost;
 		private bool _enabled;
 		private Keys _hotKey;
+		private bool _autoSyncWithWin10Theme;
 
 		public bool Enabled
 		{
@@ -37,8 +39,21 @@ namespace KeeTheme.Options
 			}
 		}
 
+		public bool AutoSyncWithWin10Theme
+		{
+			get { return _autoSyncWithWin10Theme; }
+			set
+			{
+				_autoSyncWithWin10Theme = value;
+				_pluginHost.CustomConfig.SetBool(AutoSyncWithWin10ThemeOption, value);
+				if (AutoSyncWithWin10ThemeChanged != null)
+					AutoSyncWithWin10ThemeChanged.Invoke(value);
+			}
+		}
+
 		public event Action<bool> EnabledChanged;
 		public event Action<Keys> HotKeyChanged;
+		public event Action<bool> AutoSyncWithWin10ThemeChanged;
 
 		public KeeThemeOptions(IPluginHost pluginHost)
 		{
@@ -47,6 +62,7 @@ namespace KeeTheme.Options
 			_enabled = pluginHost.CustomConfig.GetBool(EnabledOption, false);
 			var hotKey = pluginHost.CustomConfig.GetString(HotKeyOption, "T, Control");
 			_hotKey = (Keys) Enum.Parse(typeof(Keys), hotKey);
+			_autoSyncWithWin10Theme = pluginHost.CustomConfig.GetBool(AutoSyncWithWin10ThemeOption, false);
 		}
 	}
 }

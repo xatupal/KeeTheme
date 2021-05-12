@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using KeePass.Forms;
 using KeePass.UI;
+using KeePass.Util;
 
 namespace KeeTheme.Options
 {
@@ -12,6 +13,9 @@ namespace KeeTheme.Options
 		public OptionsPanel()
 		{
 			InitializeComponent();
+
+			if (!WinUtil.IsAtLeastWindows10)
+				autoSyncWin10ThemeCheckBox.Enabled = false;
 		}
 
 		private OptionsPanel(KeeThemeOptions options) : this()
@@ -55,11 +59,13 @@ namespace KeeTheme.Options
 		private void LoadOptions()
 		{
 			hotKeyTextBox.HotKey = _options.HotKey;
+			autoSyncWin10ThemeCheckBox.Checked = _options.AutoSyncWithWin10Theme;
 		}
 
 		private void SaveOptions()
 		{
 			_options.HotKey = hotKeyTextBox.HotKey;
+			_options.AutoSyncWithWin10Theme = autoSyncWin10ThemeCheckBox.Checked;
 		}
 	}
 }
