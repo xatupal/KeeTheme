@@ -107,6 +107,7 @@ namespace KeeTheme
 			{
 				_controlVisitor.Visit(openForm);
 			}
+			Program.MainForm.RefreshEntriesList();
 		}
 
 		public override void Terminate()
