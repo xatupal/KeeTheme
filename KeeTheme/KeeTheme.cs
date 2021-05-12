@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using KeePass.App;
 using KeePass.UI;
@@ -362,7 +363,9 @@ namespace KeeTheme
 		{
 			treeView.BorderStyle = _theme.TreeView.BorderStyle;
 			treeView.BackColor = _theme.TreeView.BackColor;
-
+			
+			TrySetWindowTheme(treeView.Handle, _enabled);
+			
 			if (!MonoWorkarounds.IsRequired())
 			{
 				treeView.DrawMode = _theme.TreeViewDrawMode;
@@ -371,14 +374,49 @@ namespace KeeTheme
 			}
 		}
 
+		[DllImport("UxTheme.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
+		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
+
+		private static void TrySetWindowTheme(IntPtr hWnd, bool enable)
+		{
+			if (hWnd == IntPtr.Zero)
+				return;
+
+			try
+			{
+				SetWindowTheme(hWnd, enable ? "" : "explorer", null);
+			}
+			catch (Exception)
+			{
+				// ignored
+			}
+		}
+		
 		private void HandleTreeViewDrawNode(object sender, DrawTreeNodeEventArgs e)
 		{
-			e.DrawDefault = true;
-			e.Node.ForeColor = e.State == TreeNodeStates.Selected
-				? _theme.TreeView.SelectionColor
-				: _theme.TreeView.ForeColor;
-		}
+			// DrawDefault = true does not have TextFormatFlags.NoPrefix flag set
+			var node = e.Node;
 
+			var isNodeSelected = (e.State & TreeNodeStates.Selected) == TreeNodeStates.Selected;
+			var foreColor = isNodeSelected && node.TreeView.Focused 
+				? _theme.TreeView.SelectionColor 
+				: _theme.TreeView.ForeColor != Color.Empty ? _theme.TreeView.ForeColor : node.TreeView.ForeColor;
+			
+			var backColor = isNodeSelected ? _theme.TreeView.SelectionBackColor : _theme.TreeView.BackColor;
+			
+			var font = node.NodeFont ?? node.TreeView.Font;
+			var size = TextRenderer.MeasureText(node.Text, font, e.Bounds.Size, TextFormatFlags.NoPrefix);
+			var rectangle = new Rectangle(new Point(node.Bounds.X - 1, node.Bounds.Y), new Size(size.Width, node.Bounds.Height));
+
+			using (var backColorBrush = new SolidBrush(backColor))
+				e.Graphics.FillRectangle(backColorBrush, rectangle);
+
+			if (isNodeSelected && node.TreeView.Focused)
+				ControlPaint.DrawFocusRectangle(e.Graphics, rectangle, foreColor, backColor);
+			
+			TextRenderer.DrawText(e.Graphics, node.Text, font, rectangle, foreColor, TextFormatFlags.NoPrefix);
+		}
+		
 		private void Apply(RichTextBox richTextBox)
 		{
 			var decorator = richTextBox.Parent as RichTextBoxDecorator;
