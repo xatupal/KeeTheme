@@ -46,6 +46,7 @@ namespace KeeTheme.Options
 			var tabPage = new TabPage("KeeTheme");
 			tabPage.ImageIndex = imageIndex;
 			tabPage.Controls.Add(optionsPanel);
+			tabPage.UseVisualStyleBackColor = true;
 			tabControl.TabPages.Add(tabPage);
 			optionsPanel.Dock = DockStyle.Fill;
 
