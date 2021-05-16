@@ -45,7 +45,7 @@ namespace KeeTheme
 		private bool IsDarkThemeEnabled()
 		{
 			var key = Registry.CurrentUser.OpenSubKey(@"Software\Microsoft\Windows\CurrentVersion\Themes\Personalize");
-			return key != null && (int) key.GetValue("AppsUseLightTheme", "1") != 1;
+			return key != null && (int) key.GetValue("AppsUseLightTheme", 1) != 1;
 		}
 
 	}
