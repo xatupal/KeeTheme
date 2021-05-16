@@ -9,8 +9,8 @@ if ($psver -ge 3) {
 $packageName = 'keepass-plugin-keetheme'
 $fileName = 'KeeTheme.plgx'
 $packageSearch = 'KeePass Password Safe'
-$url = 'https://github.com/xatupal/KeeTheme/releases/download/v0.8.1/KeeTheme.plgx'
-$checksum = 'E1F67D4CC5F4B7283B688CE7443F4096749A67F763AFDE76506EB7300AD1EB02'
+$url = 'https://github.com/xatupal/KeeTheme/releases/download/v0.9.0/KeeTheme.plgx'
+$checksum = '61C3E19F68AB63BD98CAA1ECEDF757FD67385FE214F650089775449D16E1A4E8'
 $checksumType = 'sha256'
 
 function Get-KeePassPluginsPath {
