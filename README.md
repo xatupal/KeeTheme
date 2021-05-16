@@ -10,7 +10,11 @@ Plugin changes the appearance of KeePass, to make it look better at night.
 
 You can enable it using hotkey `CTRL+T` or using the menu `Tools -> DarkTheme`.
 
-(You can change the hotkey in the [options](docs/KeePassDarkThemeCustomOptions.png) `Tools -> Options... -> KeeTheme`)
+### Options
+
+In [options](docs/KeePassDarkThemeCustomOptions.png) `Tools -> Options... -> KeeTheme` you can:
+* Change the default hotkey
+* Auto-sync with Windows 10 theme
 
 ### Customizations
 
