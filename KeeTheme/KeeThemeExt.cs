@@ -105,6 +105,7 @@ namespace KeeTheme
 		{
 			foreach (Form openForm in Application.OpenForms)
 			{
+				Win10ThemeMonitor.UseImmersiveDarkMode(openForm, _theme.Enabled);
 				_controlVisitor.Visit(openForm);
 			}
 			Program.MainForm.RefreshEntriesList();
@@ -124,6 +125,8 @@ namespace KeeTheme
 		{
 			if (_theme.Enabled)
 				_controlVisitor.Visit(e.Form);
+
+			Win10ThemeMonitor.UseImmersiveDarkMode(e.Form, _theme.Enabled);
 			
 			var optionsForm = e.Form as OptionsForm;
 			if (optionsForm != null)
