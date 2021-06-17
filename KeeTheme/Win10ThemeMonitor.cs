@@ -92,7 +92,7 @@ namespace KeeTheme
 			return false;
 		}
 
-		private static bool IsWindows10OrGreater(int build = -1)
+		private static bool IsWindows10OrGreater(int build)
 		{
 			if (!WinUtil.IsAtLeastWindows10)
 				return false;
