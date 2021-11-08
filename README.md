@@ -24,7 +24,7 @@ Just download [theme template](themes/KeeTheme.ini) and put it in the plugins fo
 
 ### Installation
 
-Copy [KeeTheme.dll](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.dll) or [KeeTheme.plgx](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.plgx) to the KeePass Plugins directory or install via [Chocolatey](https://chocolatey.org):
+Copy [KeeTheme.dll](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.dll) or [KeeTheme.plgx](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.plgx) to the KeePass Plugins directory or install via [Chocolatey](https://community.chocolatey.org/packages/keepass-plugin-keetheme#install):
 
 ```
 choco install keepass-plugin-keetheme
