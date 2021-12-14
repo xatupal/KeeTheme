@@ -54,6 +54,9 @@ namespace KeeTheme.Decorators
 				_richTextBoxNativeWindow = new RichTextBoxNativeWindow(richTextBox);
 				_richTextBoxNativeWindow.Paint += HandleRichTextBoxPaint;
 				_richTextBoxNativeWindow.LinkCreated += HandleRichTextBoxLinkCreated;
+				HandleTabStop(richTextBox);
+				richTextBox.TabStopChanged += HandleTabStopChanges;
+				richTextBox.TabIndexChanged += HandleTabStopChanges;
 			}
 			else
 			{
@@ -63,9 +66,29 @@ namespace KeeTheme.Decorators
 					richTextBox.TextChanged += HandleRichTextBoxTextChanged;
 			}
 			richTextBox.DockChanged += HandleRichTextBoxDockChanged;
+			richTextBox.SizeChanged += HandleRichTextBoxSizeChanged;
 		}
 
-		private void HandleRichTextBoxLinkCreated(object sender, EventArgs e)
+        private void HandleRichTextBoxSizeChanged(object sender, EventArgs e)
+        {
+			Control c = sender as Control;
+			if (c == null) return;
+			Size = c.Size;
+        }
+
+        private void HandleTabStopChanges(object sender, EventArgs e)
+        {
+			HandleTabStop(sender as RichTextBox);
+        }
+
+        private void HandleTabStop(RichTextBox richTextBox)
+        {
+			if (richTextBox == null) return;
+			TabStop = richTextBox.TabStop;
+			TabIndex = richTextBox.TabIndex;
+        }
+
+        private void HandleRichTextBoxLinkCreated(object sender, EventArgs e)
 		{
 			var customRichTextBox = sender as CustomRichTextBoxEx;
 			if (customRichTextBox == null)
