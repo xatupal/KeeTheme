@@ -222,10 +222,8 @@ namespace KeeTheme.Decorators
 				return;
 			}
 
-			var backColor = Program.Config.MainWindow.EntryListAlternatingBgColors && (e.Item.Index & 1) == 0
-				? _theme.ListView.EvenRowColor
-				: _theme.ListView.OddRowColor;
-
+			var backColor = GetAlternatingBackColor(e.Item.Index);
+			
 			var listItem = e.Item.Tag as PwListItem;
 			if (listItem != null && !listItem.Entry.BackgroundColor.IsEmpty)
 			{
@@ -241,6 +239,20 @@ namespace KeeTheme.Decorators
 			}
 
 			e.DrawFocusRectangle();
+		}
+
+		private Color GetAlternatingBackColor(int itemIndex)
+		{
+			if (!Program.Config.MainWindow.EntryListAlternatingBgColors) 
+				return _theme.ListView.OddRowColor;
+
+			if ((itemIndex & 1) == 0) 
+				return _theme.ListView.EvenRowColor;
+
+			var customAlternatingBgColor = Program.Config.MainWindow.EntryListAlternatingBgColor;
+			return _listView.Name == "m_lvEntries" && customAlternatingBgColor != 0
+				? Color.FromArgb(customAlternatingBgColor)
+				: _theme.ListView.OddRowColor;
 		}
 
 		private void HandleListViewDrawSubItem(object sender, DrawListViewSubItemEventArgs e)
