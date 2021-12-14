@@ -25,7 +25,7 @@ echo Copying files
 xcopy "..\KeeTheme\*" "PlgX" /s /e /exclude:PlgXExclude.txt
 
 echo Compiling PlgX
-"C:\Program Files (x86)\KeePass Password Safe 2\KeePass.exe" /plgx-create "%cd%\PlgX" --debug --plgx-prereq-net:3.5
+"C:\Program Files\KeePass Password Safe 2\KeePass.exe" /plgx-create "%cd%\PlgX" --debug --plgx-prereq-net:3.5
 
 echo Releasing PlgX
 move /y "PlgX.plgx" "KeeTheme.plgx"
