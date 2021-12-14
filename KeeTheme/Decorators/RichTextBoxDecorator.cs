@@ -94,12 +94,6 @@ namespace KeeTheme.Decorators
 			if (customRichTextBox == null)
 				return;
 
-			if (_lastText != customRichTextBox.Text)
-			{
-				_lastText = customRichTextBox.Text;
-				_detectedLinks.Clear();
-			}
-
 			var link = new Link();
 			link.Index = customRichTextBox.SelectionStart;
 			link.Text = customRichTextBox.Text.Substring(link.Index, customRichTextBox.SelectionLength);
@@ -189,8 +183,11 @@ namespace KeeTheme.Decorators
 
 			var richTextBox = (RichTextBox)sender;
 			ApplyFontColor(richTextBox);
-			if (richTextBox.TextLength == 0)
+			if (_lastText != richTextBox.Text)
+			{
+				_lastText = richTextBox.Text;
 				_detectedLinks.Clear();
+			}
 		}
 
 		private void ApplyFontColor(RichTextBox richTextBox)
