@@ -39,7 +39,7 @@ function Get-KeePassPluginsPath {
 	if (! $installPath) {
 		Write-Verbose "Searching $env:Path for unregistered install..."
 		$installFullName = (Get-Command keepass -ErrorAction SilentlyContinue).Path
-		if (! $installFullName) {
+		if ($installFullName) {
 		$installPath = [io.path]::GetDirectoryName($installFullName)
 		}
 	}
