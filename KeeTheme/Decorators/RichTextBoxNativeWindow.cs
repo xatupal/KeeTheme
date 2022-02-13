@@ -34,13 +34,17 @@ namespace KeeTheme.Decorators
             public Byte bRevAuthor;
             public Byte bReserved1;
         }
-        
-        internal const int WM_PAINT = 0x000F;
-        internal const int WM_USER = 0x0400;
-        internal const int EM_SETCHARFORMAT = WM_USER + 68;
-        internal const uint CFE_LINK = 0x0020;
+
+        private const int WM_SETFOCUS = 0x0007;
+        private const int WM_ENABLE = 0x000A;
+        private const int WM_PAINT = 0x000F;
+        private const int WM_SETCURSOR = 0x0020;
+        private const int WM_USER = 0x0400;
+        private const int EM_SETCHARFORMAT = WM_USER + 68;
+        private const uint CFE_LINK = 0x0020;
         
         private readonly RichTextBox _richTextBox;
+        private bool _enabled;
         
         internal event PaintEventHandler Paint;
         internal event EventHandler LinkCreated; 
@@ -48,6 +52,7 @@ namespace KeeTheme.Decorators
         public RichTextBoxNativeWindow(RichTextBox richTextBox)
         {
             _richTextBox = richTextBox;
+            _enabled = richTextBox.Enabled;
             if (TryAssignHandle(_richTextBox.Handle))
             {
                 _richTextBox.HandleCreated += HandleRichTextBoxHandleCreated;
@@ -81,7 +86,16 @@ namespace KeeTheme.Decorators
 
         protected override void WndProc(ref Message m)
         {
-            base.WndProc(ref m);
+            if (m.Msg == WM_ENABLE)
+            {
+                _enabled = m.WParam != IntPtr.Zero;
+                m.WParam = new IntPtr(1);
+            }
+
+            if (_enabled || m.Msg != WM_SETFOCUS && m.Msg != WM_SETCURSOR)
+            {
+                base.WndProc(ref m);
+            }
 
             if (m.Msg == EM_SETCHARFORMAT)
             {
