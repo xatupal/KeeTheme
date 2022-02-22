@@ -71,7 +71,8 @@ namespace KeeTheme
 			{
 				// Plugins are loaded in alphabetical order thus KeeResize is loaded before KeeTheme.
 				// To make those two plugins compatible KeeTheme plugin should modify forms before KeeResize.
-				if (subscriber.Method.DeclaringType?.FullName == "KeeResize.KeeResizeExt")
+				if (subscriber.Method.DeclaringType != null 
+				    && subscriber.Method.DeclaringType.FullName == "KeeResize.KeeResizeExt")
 				{
 					newSubscribers.Add(new EventHandler<GwmWindowEventArgs>(HandleGlobalWindowManagerWindowAdded));
 					isAttached = true;
