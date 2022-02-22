@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
+using System.Reflection;
 using System.Windows.Forms;
 using KeePass;
 using KeePass.Forms;
@@ -51,12 +53,40 @@ namespace KeeTheme
 			{
 				InitializeTheme();
 			}
-
-			GlobalWindowManager.WindowAdded += HandleGlobalWindowManagerWindowAdded;
-
+			
+			AttachGlobalWindowManagerWindowAddedHandler();
+			
 			return true;
 		}
 
+		private void AttachGlobalWindowManagerWindowAddedHandler()
+		{
+			const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.NonPublic;
+			var windowAddedEvent = typeof(GlobalWindowManager).GetField("WindowAdded", bindingFlags);
+			var windowAddedDelegate = (MulticastDelegate) windowAddedEvent.GetValue(null);
+			var subscribers = windowAddedDelegate.GetInvocationList();
+			var newSubscribers = new List<Delegate>();
+			var isAttached = false;
+			foreach (var subscriber in subscribers)
+			{
+				// Plugins are loaded in alphabetical order thus KeeResize is loaded before KeeTheme.
+				// To make those two plugins compatible KeeTheme plugin should modify forms before KeeResize.
+				if (subscriber.Method.DeclaringType?.FullName == "KeeResize.KeeResizeExt")
+				{
+					newSubscribers.Add(new EventHandler<GwmWindowEventArgs>(HandleGlobalWindowManagerWindowAdded));
+					isAttached = true;
+				}
+				
+				newSubscribers.Add(subscriber);
+			}
+			
+			if (!isAttached)
+				newSubscribers.Add(new EventHandler<GwmWindowEventArgs>(HandleGlobalWindowManagerWindowAdded));
+
+			var newWindowAddedDelegate = Delegate.Combine(newSubscribers.ToArray());
+			windowAddedEvent.SetValue(null, newWindowAddedDelegate);
+		}
+		
 		private void HandleTriggerSystemRaisingEvent(object sender, KeePass.Ecas.EcasRaisingEventArgs e)
 		{
 			if (e.Event.Type.Equals(AppInitPost))
