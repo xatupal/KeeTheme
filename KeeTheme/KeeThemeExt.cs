@@ -64,6 +64,11 @@ namespace KeeTheme
 			const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.NonPublic;
 			var windowAddedEvent = typeof(GlobalWindowManager).GetField("WindowAdded", bindingFlags);
 			var windowAddedDelegate = (MulticastDelegate) windowAddedEvent.GetValue(null);
+			if (windowAddedDelegate == null)
+			{
+				GlobalWindowManager.WindowAdded += HandleGlobalWindowManagerWindowAdded;
+				return;
+			}
 			var subscribers = windowAddedDelegate.GetInvocationList();
 			var newSubscribers = new List<Delegate>();
 			var isAttached = false;
