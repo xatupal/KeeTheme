@@ -170,6 +170,21 @@ namespace KeeTheme
 		{
 			if (comboBox.DropDownStyle == ComboBoxStyle.DropDownList)
 				comboBox.FlatStyle = FlatStyle.Popup;
+
+			comboBox.BackColorChanged -= HandleComboBoxBackColorChanged;
+			comboBox.BackColorChanged += HandleComboBoxBackColorChanged;
+		}
+
+		private void HandleComboBoxBackColorChanged(object sender, EventArgs e)
+		{
+			if (!_enabled)
+			{
+				return;
+			}
+			
+			var comboBox = (ComboBox) sender;
+			if (comboBox.BackColor == SystemColors.Window)
+				comboBox.BackColor = _theme.Control.BackColor;
 		}
 
 		private void Apply(QualityProgressBar qualityProgressBar)
