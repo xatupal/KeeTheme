@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using KeePass;
 using KeePass.Forms;
 using KeePass.Plugins;
-using KeePass.UI;
 using KeePassLib;
 using KeePassLib.Utility;
 using KeeTheme.Options;
@@ -54,45 +53,35 @@ namespace KeeTheme
 				InitializeTheme();
 			}
 			
-			AttachGlobalWindowManagerWindowAddedHandler();
-			
+			AttachApplicationOpenFormsAddedHandler();
+
 			return true;
 		}
 
-		private void AttachGlobalWindowManagerWindowAddedHandler()
+		private void AttachApplicationOpenFormsAddedHandler()
 		{
-			const BindingFlags bindingFlags = BindingFlags.Static | BindingFlags.NonPublic;
-			var windowAddedEvent = typeof(GlobalWindowManager).GetField("WindowAdded", bindingFlags);
-			var windowAddedDelegate = (MulticastDelegate) windowAddedEvent.GetValue(null);
-			if (windowAddedDelegate == null)
-			{
-				GlobalWindowManager.WindowAdded += HandleGlobalWindowManagerWindowAdded;
-				return;
-			}
-			var subscribers = windowAddedDelegate.GetInvocationList();
-			var newSubscribers = new List<Delegate>();
-			var isAttached = false;
-			foreach (var subscriber in subscribers)
-			{
-				// Plugins are loaded in alphabetical order thus KeeResize is loaded before KeeTheme.
-				// To make those two plugins compatible KeeTheme plugin should modify forms before KeeResize.
-				if (subscriber.Method.DeclaringType != null 
-				    && subscriber.Method.DeclaringType.FullName == "KeeResize.KeeResizeExt")
-				{
-					newSubscribers.Add(new EventHandler<GwmWindowEventArgs>(HandleGlobalWindowManagerWindowAdded));
-					isAttached = true;
-				}
-				
-				newSubscribers.Add(subscriber);
-			}
+			var customArrayList = new FormsArrayList();
+			customArrayList.AddRange(Application.OpenForms);
+			customArrayList.Added += HandleOpenFormsAdded;
 			
-			if (!isAttached)
-				newSubscribers.Add(new EventHandler<GwmWindowEventArgs>(HandleGlobalWindowManagerWindowAdded));
-
-			var newWindowAddedDelegate = Delegate.Combine(newSubscribers.ToArray());
-			windowAddedEvent.SetValue(null, newWindowAddedDelegate);
+			var listField = typeof(ReadOnlyCollectionBase).GetField("list", BindingFlags.Instance | BindingFlags.NonPublic);
+			listField?.SetValue(Application.OpenForms, customArrayList);
 		}
-		
+
+		private void HandleOpenFormsAdded(object sender, FormAddedEventArgs args)
+		{
+			if (_theme.Enabled)
+				_controlVisitor.Visit(args.Form);
+			
+			Win10ThemeMonitor.UseImmersiveDarkMode(args.Form, _theme.Enabled);
+			
+			var optionsForm = args.Form as OptionsForm;
+			if (optionsForm != null)
+			{
+				optionsForm.Shown += HandleOptionsFormShown;
+			}
+		}
+
 		private void HandleTriggerSystemRaisingEvent(object sender, KeePass.Ecas.EcasRaisingEventArgs e)
 		{
 			if (e.Event.Type.Equals(AppInitPost))
@@ -147,28 +136,9 @@ namespace KeeTheme
 			Program.MainForm.RefreshEntriesList();
 		}
 
-		public override void Terminate()
-		{
-			GlobalWindowManager.WindowAdded -= HandleGlobalWindowManagerWindowAdded;
-		}
-
 		private void HandleControlVisit(Control control)
 		{
 			_theme.Apply(control);
-		}
-
-		private void HandleGlobalWindowManagerWindowAdded(object sender, GwmWindowEventArgs e)
-		{
-			if (_theme.Enabled)
-				_controlVisitor.Visit(e.Form);
-
-			Win10ThemeMonitor.UseImmersiveDarkMode(e.Form, _theme.Enabled);
-			
-			var optionsForm = e.Form as OptionsForm;
-			if (optionsForm != null)
-			{
-				optionsForm.Shown += HandleOptionsFormShown;
-			}
 		}
 
 		private void HandleOptionsFormShown(object sender, EventArgs e)

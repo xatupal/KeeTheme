@@ -63,6 +63,8 @@
     </Compile>
     <Compile Include="Decorators\RichTextBoxNativeWindow.cs" />
     <Compile Include="Decorators\SplitButtonExDecorator.cs" />
+    <Compile Include="FormAddedEventHandler.cs" />
+    <Compile Include="FormsArrayList.cs" />
     <Compile Include="Options\KeeThemeOptions.cs" />
     <Compile Include="Theme\ButtonLook.cs" />
     <Compile Include="Theme\CheckBoxButtonLook.cs" />
