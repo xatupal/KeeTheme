@@ -10,7 +10,8 @@ namespace KeeTheme
 		public override int Add(object value)
 		{
 			var args = new FormAddedEventArgs((Form) value);
-			Added?.Invoke(this, args);
+			if (Added != null)
+				Added.Invoke(this, args);
 			return base.Add(value);
 		}
 	}

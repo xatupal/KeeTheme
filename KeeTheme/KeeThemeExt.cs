@@ -65,7 +65,8 @@ namespace KeeTheme
 			customArrayList.Added += HandleOpenFormsAdded;
 			
 			var listField = typeof(ReadOnlyCollectionBase).GetField("list", BindingFlags.Instance | BindingFlags.NonPublic);
-			listField?.SetValue(Application.OpenForms, customArrayList);
+			if (listField != null)
+				listField.SetValue(Application.OpenForms, customArrayList);
 		}
 
 		private void HandleOpenFormsAdded(object sender, FormAddedEventArgs args)
