@@ -19,8 +19,15 @@ namespace KeeTheme.Decorators
 		private static MethodInfo _setForeColorMethod;
 		private static MethodInfo _setBackColorMethod;
 
+		private static Type _hyperlinkStyleType;
+		private static PropertyInfo _hyperlinkStyleProperty;
+		private static PropertyInfo _hyperlinkStyleNormalProperty;
+
+		private static Type _cellStyleType;
+		private static PropertyInfo _cellStyleForeColorProperty;
+
 		public static void Initialize()
-		{
+		{ 
 			if (_objectListViewType != null)
 				return;
 
@@ -30,12 +37,18 @@ namespace KeeTheme.Decorators
 
 			_brightIdeasSoftwareAssembly = _objectListViewType.Assembly;
 			_alternateRowBackColorProperty = _objectListViewType.GetProperty("AlternateRowBackColor");
-			 _headerFormatStyleProperty = _objectListViewType.GetProperty("HeaderFormatStyle");
-			 _headerUsesThemesProperty = _objectListViewType.GetProperty("HeaderUsesThemes");
+			_headerFormatStyleProperty = _objectListViewType.GetProperty("HeaderFormatStyle");
+			_headerUsesThemesProperty = _objectListViewType.GetProperty("HeaderUsesThemes");
 
 			_headerFormatStyleType = _brightIdeasSoftwareAssembly.GetType("BrightIdeasSoftware.HeaderFormatStyle");
 			_setForeColorMethod = _headerFormatStyleType.GetMethod("SetForeColor");
 			_setBackColorMethod = _headerFormatStyleType.GetMethod("SetBackColor");
+
+			_hyperlinkStyleProperty = _objectListViewType.GetProperty("HyperlinkStyle");
+			_hyperlinkStyleType = _brightIdeasSoftwareAssembly.GetType("BrightIdeasSoftware.HyperlinkStyle");
+			_hyperlinkStyleNormalProperty = _hyperlinkStyleType.GetProperty("Normal");
+			_cellStyleType = _brightIdeasSoftwareAssembly.GetType("BrightIdeasSoftware.CellStyle");
+			_cellStyleForeColorProperty = _cellStyleType.GetProperty("ForeColor");
 		}
 
 		private static Type GetType(string name)
@@ -71,6 +84,13 @@ namespace KeeTheme.Decorators
 			_setForeColorMethod.Invoke(headerFormatStyle, new object[] { theme.ListView.HeaderForeColor });
 			_setBackColorMethod.Invoke(headerFormatStyle, new object[] { theme.ListView.HeaderBackColor });
 			_headerFormatStyleProperty.SetValue(listView, headerFormatStyle, null);
+
+			var hyperLinkStyle = _hyperlinkStyleProperty.GetValue(listView, null);
+			if (hyperLinkStyle != null)
+			{
+				var hyperLinkNormal = _hyperlinkStyleNormalProperty.GetValue(hyperLinkStyle, null);
+				_cellStyleForeColorProperty.SetValue(hyperLinkNormal, theme.LinkLabel.LinkColor, null);
+			}
 		}
 	}
 }
