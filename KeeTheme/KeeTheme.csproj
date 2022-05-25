@@ -58,6 +58,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Decorators\ObjectListViewDecorator.cs" />
+    <Compile Include="Decorators\PwGeneratorMenuDecorator.cs" />
     <Compile Include="Decorators\RichTextBoxDecorator.cs">
       <SubType>Component</SubType>
     </Compile>

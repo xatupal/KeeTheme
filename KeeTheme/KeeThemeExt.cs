@@ -8,6 +8,7 @@ using KeePass.Forms;
 using KeePass.Plugins;
 using KeePassLib;
 using KeePassLib.Utility;
+using KeeTheme.Decorators;
 using KeeTheme.Options;
 using KeeTheme.Properties;
 
@@ -81,6 +82,28 @@ namespace KeeTheme
 			{
 				optionsForm.Shown += HandleOptionsFormShown;
 			}
+
+			var editStringForm = args.Form as EditStringForm;
+			if (editStringForm != null)
+			{
+				editStringForm.Load += HandleEditStringFormLoad;
+			}			
+			
+			var pwEntryForm = args.Form as PwEntryForm;
+			if (pwEntryForm != null)
+			{
+				pwEntryForm.Load += HandlePwEntryFormFormLoad;
+			}
+		}
+
+		private void HandlePwEntryFormFormLoad(object sender, EventArgs e)
+		{
+			PwGeneratorMenuDecorator.TryFindAndDecorate(sender, _theme);
+		}
+
+		private void HandleEditStringFormLoad(object sender, EventArgs e)
+		{
+			PwGeneratorMenuDecorator.TryFindAndDecorate(sender, _theme);
 		}
 
 		private void HandleTriggerSystemRaisingEvent(object sender, KeePass.Ecas.EcasRaisingEventArgs e)
