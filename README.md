@@ -24,11 +24,17 @@ Just download [theme template](themes/KeeTheme.ini) and put it in the plugins di
 
 ### Installation
 
-Copy [KeeTheme.dll](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.dll) or [KeeTheme.plgx](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.plgx) to the KeePass Plugins directory (default: C:\Program Files (x86)\KeePass Password Safe 2\Plugins\) or install via [Chocolatey](https://chocolatey.org), then start a new KeePass instance to propagat the new plugin:
+#### Method 1:
+1. Copy [KeeTheme.dll](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.dll) or [KeeTheme.plgx](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.plgx) to the KeePass Plugins directory (default: `C:\Program Files (x86)\KeePass Password Safe 2\Plugins\`) 
+2. Start a new KeePass instance to propagate the new plugin
+
+#### Method 2:
+1. Install via [Chocolatey](https://chocolatey.org):
 
 ```
 choco install keepass-plugin-keetheme
 ```
+2. Start a new KeePass instance to propagate the new plugin
 
 ### Note
 
