@@ -6,6 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using KeePass.App;
 using KeePass.UI;
 using KeePassLib.Utility;
@@ -164,6 +165,35 @@ namespace KeeTheme
 			checkBox.FlatAppearance.CheckedBackColor = checkBoxLook.CheckedBackColor;
 			checkBox.FlatAppearance.MouseDownBackColor = checkBoxLook.MouseDownBackColor;
 			checkBox.FlatAppearance.MouseOverBackColor = checkBoxLook.MouseOverBackColor;
+			
+			checkBox.EnabledChanged -= HandleCheckBoxEnabledChanged;
+			checkBox.EnabledChanged += HandleCheckBoxEnabledChanged;
+		}
+
+		private void HandleCheckBoxEnabledChanged(object sender, EventArgs e)
+		{
+			var checkBox = (CheckBox) sender;
+			if (checkBox.Enabled)
+			{
+				checkBox.Paint -= HandleCheckBoxPaint;
+				checkBox.Invalidate();
+			}
+			else
+			{
+				checkBox.Paint += HandleCheckBoxPaint;
+			}
+		}
+
+		private void HandleCheckBoxPaint(object sender, PaintEventArgs e)
+		{
+			var checkBox = (CheckBox)sender;
+			var disabledForeColor = ControlPaint.Dark(_theme.Button.ForeColor, 0.25f);
+			var glyphSize = CheckBoxRenderer.GetGlyphSize(e.Graphics, CheckBoxState.UncheckedNormal);
+			var flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine;
+			var clientRectangle = new Rectangle(glyphSize.Width, -1, 
+				checkBox.ClientRectangle.Size.Width - glyphSize.Width, checkBox.ClientRectangle.Size.Height);
+			
+			TextRenderer.DrawText(e.Graphics, checkBox.Text, checkBox.Font, clientRectangle, disabledForeColor, flags);
 		}
 
 		private void Apply(ComboBox comboBox)
