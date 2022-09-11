@@ -30,9 +30,9 @@ function Get-KeePassPluginsPath {
 	$installPath = $regPath
 
 	if (! $installPath) {
-		Write-Verbose "Searching $env:ChocolateyBinRoot for portable install..."
-		$binRoot = Get-BinRoot
-		$portPath = Join-Path $binRoot "keepass"
+		$toolsLocation = Get-ToolsLocation
+		Write-Verbose "Searching $toolsLocation for portable install..."
+		$portPath = Join-Path $toolsLocation "keepass"
 		$installPath = Get-ChildItemDir $portPath* -ErrorAction SilentlyContinue
 	}
 
