@@ -11,12 +11,14 @@ using KeePass.App;
 using KeePass.UI;
 using KeePassLib.Utility;
 using KeeTheme.Decorators;
+using KeeTheme.Options;
 using KeeTheme.Theme;
 
 namespace KeeTheme
 {
 	internal class KeeTheme
 	{
+		private readonly KeeThemeOptions _options;
 		private readonly DefaultTheme _defaultTheme;
 
 		private ITheme _customTheme;
@@ -34,10 +36,11 @@ namespace KeeTheme
 			get { return _customTheme.Name; }
 		}
 
-		public KeeTheme()
+		public KeeTheme(KeeThemeOptions options)
 		{
+			_options = options;
 			_defaultTheme = new DefaultTheme();
-			_customTheme = new CustomTheme(IniFile.GetFromFile() ?? IniFile.GetFromResources());
+			_customTheme = GetCustomTheme();
 			_theme = _defaultTheme;
 		}
 
@@ -46,7 +49,7 @@ namespace KeeTheme
 			_enabled = enable;
 
 			if (_enabled)
-				_customTheme = new CustomTheme(IniFile.GetFromFile() ?? IniFile.GetFromResources());
+				_customTheme = GetCustomTheme();
 
 			_theme = _enabled ? _customTheme : _defaultTheme;
 
@@ -55,6 +58,11 @@ namespace KeeTheme
 			KnownColorsDecorator.Apply(_theme, _enabled);
 
 			ApplyOther();
+		}
+
+		private ITheme GetCustomTheme()
+		{
+			return new CustomTheme(TemplateReader.Get(_options.Template));
 		}
 
 		private void ApplyOther()

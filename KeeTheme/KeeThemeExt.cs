@@ -39,7 +39,7 @@ namespace KeeTheme
 
 			_options = new KeeThemeOptions(host);
 			_controlVisitor = new ControlVisitor(HandleControlVisit);
-			_theme = new KeeTheme();
+			_theme = new KeeTheme(_options);
 
 			_win10ThemeMonitor = new Win10ThemeMonitor(_options);
 			_win10ThemeMonitor.Initialize();
@@ -126,6 +126,21 @@ namespace KeeTheme
 			{
 				_theme.Enabled = enable;
 				ApplyThemeInOpenForms();
+			};
+			
+			_options.TemplateChanged += template =>
+			{
+				if (_theme.Enabled)
+				{
+					_theme.Enabled = false;
+					_theme.Enabled = true;
+
+					var iniFile = TemplateReader.Get(template);
+					var themeSection = iniFile.GetSection("KeeTheme");
+					_menuItem.Text = themeSection["Name"];
+
+					ApplyThemeInOpenForms();
+				}
 			}; 
 		}
 

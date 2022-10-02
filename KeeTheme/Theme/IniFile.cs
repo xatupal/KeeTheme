@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.IO;
-using KeePass.App;
-using KeeTheme.Properties;
 
 namespace KeeTheme.Theme
 {
@@ -49,33 +47,5 @@ namespace KeeTheme.Theme
 				_sections[currentSection][keyValuePair[0].Trim()] = keyValuePair[1].Trim();
 			}
 		}
-
-		internal static IniFile GetFromFile()
-		{
-			var exeLocation = Path.GetDirectoryName(typeof(KeePass.Program).Assembly.Location);
-			var pluginsPath = Path.Combine(exeLocation, AppDefs.PluginsDir);
-			var path = Path.Combine(pluginsPath, "KeeTheme.ini");
-			if (!File.Exists(path))
-				return null;
-
-			try
-			{
-				using (var sr = File.OpenText(path))
-					return new IniFile(sr);
-			}
-			catch (InvalidDataException)
-			{
-				return null;
-			}
-		}
-
-		internal static IniFile GetFromResources()
-		{
-			using (var sr = new StringReader(Resource.DarkTheme))
-			{
-				return new IniFile(sr);
-			}
-		}
-
 	}
 }

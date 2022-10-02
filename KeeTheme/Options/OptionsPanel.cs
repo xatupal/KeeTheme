@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 using KeePass.Forms;
 using KeePass.UI;
@@ -61,12 +62,32 @@ namespace KeeTheme.Options
 		{
 			hotKeyTextBox.HotKey = _options.HotKey;
 			autoSyncWin10ThemeCheckBox.Checked = _options.AutoSyncWithWin10Theme;
+			LoadKeeThemeTemplates();
+		}
+
+		private void LoadKeeThemeTemplates()
+		{
+			var templates = TemplateReader.GetTemplatesFromResources();
+			var fileTemplates = TemplateReader.GetTemplatesFromPluginsDir();
+			templates.AddRange(fileTemplates);
+
+			foreach (var template in templates)
+			{
+				themeTemplateComboBox.Items.Add(template);
+			}
+
+			var selectedTemplate = templates.Find(x => x.Path == _options.Template);
+			themeTemplateComboBox.SelectedItem = selectedTemplate ?? templates
+				.First(x => x.Path == TemplateReader.DefaultTemplatePath);
 		}
 
 		private void SaveOptions()
 		{
 			_options.HotKey = hotKeyTextBox.HotKey;
 			_options.AutoSyncWithWin10Theme = autoSyncWin10ThemeCheckBox.Checked;
+
+			var template = (Template) themeTemplateComboBox.SelectedItem;
+			_options.Template = template.Path;
 		}
 	}
 }

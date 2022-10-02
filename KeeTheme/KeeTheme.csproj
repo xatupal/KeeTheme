@@ -67,6 +67,9 @@
     <Compile Include="FormAddedEventHandler.cs" />
     <Compile Include="FormsArrayList.cs" />
     <Compile Include="Options\KeeThemeOptions.cs" />
+    <Compile Include="Scrollbars.cs" />
+    <Compile Include="Template.cs" />
+    <Compile Include="TemplateReader.cs" />
     <Compile Include="Theme\ButtonLook.cs" />
     <Compile Include="Theme\CheckBoxButtonLook.cs" />
     <Compile Include="Theme\CheckBoxLook.cs" />
@@ -112,7 +115,8 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\DarkTheme.ini" />
+    <EmbeddedResource Include="Resources\DarkTheme.ini" />
+    <EmbeddedResource Include="Resources\DarkThemeWin11.ini" />
     <None Include="Resources\PluginIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
