@@ -64,30 +64,38 @@
     </Compile>
     <Compile Include="Decorators\RichTextBoxNativeWindow.cs" />
     <Compile Include="Decorators\SplitButtonExDecorator.cs" />
+    <Compile Include="Editor\GenericTypeConverter.cs" />
+    <Compile Include="Editor\TemplateEditorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Editor\TemplateEditorForm.Designer.cs">
+      <DependentUpon>TemplateEditorForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormAddedEventHandler.cs" />
     <Compile Include="FormsArrayList.cs" />
     <Compile Include="Options\KeeThemeOptions.cs" />
     <Compile Include="Scrollbars.cs" />
-    <Compile Include="Template.cs" />
+    <Compile Include="TemplateFile.cs" />
     <Compile Include="TemplateReader.cs" />
     <Compile Include="Theme\ButtonLook.cs" />
     <Compile Include="Theme\CheckBoxButtonLook.cs" />
     <Compile Include="Theme\CheckBoxLook.cs" />
     <Compile Include="Theme\ControlLook.cs" />
     <Compile Include="Theme\CustomColorTable.cs" />
-    <Compile Include="Theme\CustomTheme.cs" />
+    <Compile Include="Theme\CustomThemeTemplate.cs" />
     <Compile Include="Theme\CustomToolStripRenderer.cs" />
     <Compile Include="Theme\LinkLabelLook.cs" />
     <Compile Include="Theme\ListViewLook.cs" />
     <Compile Include="Theme\MenuLook.cs" />
     <Compile Include="Theme\OtherLook.cs" />
     <Compile Include="Theme\Palette.cs" />
+    <Compile Include="Theme\PropertyGridLook.cs" />
     <Compile Include="Theme\RichTextBoxLook.cs" />
+    <Compile Include="Theme\ToolStripLook.cs" />
     <Compile Include="Theme\TreeViewLook.cs" />
     <Compile Include="KeeTheme.cs" />
     <Compile Include="KeeThemeExt.cs" />
-    <Compile Include="Theme\DefaultTheme.cs" />
-    <Compile Include="Theme\EmptyTheme.cs" />
+    <Compile Include="Theme\CustomTheme.cs" />
     <Compile Include="Theme\ITheme.cs" />
     <Compile Include="Theme\IniFile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -105,6 +113,9 @@
     <Compile Include="Win10ThemeMonitor.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Editor\TemplateEditorForm.resx">
+      <DependentUpon>TemplateEditorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resource.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resource.Designer.cs</LastGenOutput>

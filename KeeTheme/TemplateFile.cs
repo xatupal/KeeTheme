@@ -1,6 +1,6 @@
 ﻿namespace KeeTheme
 {
-	public class Template
+	public class TemplateFile
 	{
 		public string Name { get; set; }
 		public string Path { get; set; }

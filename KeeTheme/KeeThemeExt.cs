@@ -128,16 +128,14 @@ namespace KeeTheme
 				ApplyThemeInOpenForms();
 			};
 			
-			_options.TemplateChanged += template =>
+			_options.TemplateChanged += templatePath =>
 			{
 				if (_theme.Enabled)
 				{
 					_theme.Enabled = false;
 					_theme.Enabled = true;
 
-					var iniFile = TemplateReader.Get(template);
-					var themeSection = iniFile.GetSection("KeeTheme");
-					_menuItem.Text = themeSection["Name"];
+					_menuItem.Text = TemplateReader.GetTemplateName(templatePath);
 
 					ApplyThemeInOpenForms();
 				}

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using KeePass;
 using KeePass.App;
 using KeeTheme.Theme;
 
@@ -11,14 +12,14 @@ namespace KeeTheme
 	{
 		public const string DefaultTemplatePath = "KeeTheme.Resources.DarkTheme.ini";
 
-		private static IniFile GetDefaultTemplate()
+		internal static IniFile GetDefaultTemplate()
 		{
 			return GetFromResources(DefaultTemplatePath);
 		}
 		
-		internal static List<Template> GetTemplatesFromResources()
+		internal static List<TemplateFile> GetTemplatesFromResources()
 		{
-			var result = new List<Template>();
+			var result = new List<TemplateFile>();
 			var resourceNames = typeof(TemplateReader).Assembly.GetManifestResourceNames();
 			foreach (var resourceName in resourceNames.Where(x => x.EndsWith(".ini")))
 			{
@@ -29,7 +30,7 @@ namespace KeeTheme
 					if (templateName == null)
 						continue;
 
-					var template = new Template();
+					var template = new TemplateFile();
 					template.Name = templateName;
 					template.Path = resourceName;
 					result.Add(template);
@@ -53,12 +54,10 @@ namespace KeeTheme
 			}
 		}
 		
-		internal static List<Template> GetTemplatesFromPluginsDir()
+		internal static List<TemplateFile> GetTemplatesFromPluginsDir()
 		{
-			var result = new List<Template>();
-			var exeLocation = Path.GetDirectoryName(typeof(KeePass.Program).Assembly.Location);
-			var pluginsPath = Path.Combine(exeLocation, AppDefs.PluginsDir);
-			var files = Directory.GetFiles(pluginsPath, "*.ini");
+			var result = new List<TemplateFile>();
+			var files = Directory.GetFiles(GetTemplatesDir(), "*.ini");
 			foreach (var file in files)
 			{
 				using (var sr = File.OpenText(file))
@@ -67,7 +66,7 @@ namespace KeeTheme
 					if (templateName == null)
 						continue;
 
-					var template = new Template();
+					var template = new TemplateFile();
 					template.Name = templateName;
 					template.Path = "file:" + Path.GetFileName(file);
 					result.Add(template);
@@ -77,11 +76,19 @@ namespace KeeTheme
 			return result;
 		}
 
+		public static string GetTemplatesDir()
+		{
+			var exeLocation = Path.GetDirectoryName(typeof(Program).Assembly.Location);
+			return Path.Combine(exeLocation, AppDefs.PluginsDir);
+		}
+		
 		private static IniFile GetFromFile(string fileName)
 		{
-			var exeLocation = Path.GetDirectoryName(typeof(KeePass.Program).Assembly.Location);
-			var pluginsPath = Path.Combine(exeLocation, AppDefs.PluginsDir);
-			var filePath = Path.Combine(pluginsPath, fileName);
+			var filePath = fileName;
+			if (!Path.IsPathRooted(filePath))
+			{
+				filePath = Path.Combine(GetTemplatesDir(), fileName);
+			}
 			
 			if (!File.Exists(filePath))
 				return null;
@@ -116,8 +123,18 @@ namespace KeeTheme
 		internal static IniFile Get(string templatePath)
 		{
 			return templatePath.StartsWith("file:")
-				? GetFromFile(templatePath.Substring("file:".Length)) ?? GetDefaultTemplate()
-				: GetFromResources(templatePath) ?? GetDefaultTemplate();
+				? GetFromFile(templatePath.Substring("file:".Length))
+				: GetFromResources(templatePath);
+		}
+
+		internal static string GetTemplateName(string templatePath)
+		{
+			var iniFile = Get(templatePath);
+			if (iniFile == null)
+				return null;
+			
+			var themeSection = iniFile.GetSection("KeeTheme");
+			return themeSection["Name"];
 		}
 	}
 }

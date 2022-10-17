@@ -1,9 +1,11 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using KeePass.Forms;
 using KeePass.UI;
 using KeePass.Util;
+using KeeTheme.Editor;
 
 namespace KeeTheme.Options
 {
@@ -51,10 +53,22 @@ namespace KeeTheme.Options
 			tabControl.TabPages.Add(tabPage);
 			optionsPanel.Dock = DockStyle.Fill;
 
+			if (TemplateEditorForm.Instance != null)
+			{
+				TemplateEditorForm.Instance.PreviewButtonClick += optionsPanel.HandleTemplateEditorPreviewButtonClick;
+				TemplateEditorForm.Instance.Closed += optionsPanel.HandleTemplateEditorPreviewButtonClick;
+			}
+
 			optionsForm.FormClosed += (sender, args) =>
 			{
 				if (optionsForm.DialogResult == DialogResult.OK)
 					optionsPanel.SaveOptions();
+				
+				if (TemplateEditorForm.Instance != null)
+				{
+					TemplateEditorForm.Instance.PreviewButtonClick -= optionsPanel.HandleTemplateEditorPreviewButtonClick;
+					TemplateEditorForm.Instance.Closed -= optionsPanel.HandleTemplateEditorPreviewButtonClick;
+				}
 			};
 		}
 
@@ -71,12 +85,26 @@ namespace KeeTheme.Options
 			var fileTemplates = TemplateReader.GetTemplatesFromPluginsDir();
 			templates.AddRange(fileTemplates);
 
+			var selectedTemplate = templates.Find(x => x.Path == _options.Template);
+			if (selectedTemplate == null)
+			{
+				var templateName = TemplateReader.GetTemplateName(_options.Template);
+				if (templateName != null)
+				{
+					var templateFile = new TemplateFile();
+					templateFile.Name = templateName;
+					templateFile.Path = _options.Template;
+					templates.Add(templateFile);
+					selectedTemplate = templateFile;
+				}
+			}
+
+			themeTemplateComboBox.Items.Clear();
 			foreach (var template in templates)
 			{
 				themeTemplateComboBox.Items.Add(template);
 			}
 
-			var selectedTemplate = templates.Find(x => x.Path == _options.Template);
 			themeTemplateComboBox.SelectedItem = selectedTemplate ?? templates
 				.First(x => x.Path == TemplateReader.DefaultTemplatePath);
 		}
@@ -86,8 +114,30 @@ namespace KeeTheme.Options
 			_options.HotKey = hotKeyTextBox.HotKey;
 			_options.AutoSyncWithWin10Theme = autoSyncWin10ThemeCheckBox.Checked;
 
-			var template = (Template) themeTemplateComboBox.SelectedItem;
+			var template = (TemplateFile) themeTemplateComboBox.SelectedItem;
 			_options.Template = template.Path;
+		}
+
+		private void HandleEditTemplateButtonClick(object sender, EventArgs e)
+		{
+			if (TemplateEditorForm.Instance == null)
+			{
+				var templateEditorForm = TemplateEditorForm.Create(_options);
+				templateEditorForm.PreviewButtonClick += HandleTemplateEditorPreviewButtonClick;
+				templateEditorForm.Closed += HandleTemplateEditorFormClosed;
+				templateEditorForm.Show();
+				templateEditorForm.Activate();
+			}
+		}
+
+		private void HandleTemplateEditorFormClosed(object sender, EventArgs e)
+		{
+			LoadKeeThemeTemplates();
+		}
+
+		private void HandleTemplateEditorPreviewButtonClick(object sender, EventArgs e)
+		{
+			LoadKeeThemeTemplates();
 		}
 	}
 }

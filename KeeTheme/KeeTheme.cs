@@ -19,7 +19,7 @@ namespace KeeTheme
 	internal class KeeTheme
 	{
 		private readonly KeeThemeOptions _options;
-		private readonly DefaultTheme _defaultTheme;
+		private readonly CustomTheme _defaultTheme;
 
 		private ITheme _customTheme;
 		private ITheme _theme;
@@ -39,7 +39,7 @@ namespace KeeTheme
 		public KeeTheme(KeeThemeOptions options)
 		{
 			_options = options;
-			_defaultTheme = new DefaultTheme();
+			_defaultTheme = CustomTheme.GetDefaultTheme();
 			_customTheme = GetCustomTheme();
 			_theme = _defaultTheme;
 		}
@@ -62,7 +62,9 @@ namespace KeeTheme
 
 		private ITheme GetCustomTheme()
 		{
-			return new CustomTheme(TemplateReader.Get(_options.Template));
+			var templateFile = TemplateReader.Get(_options.Template) ?? TemplateReader.GetDefaultTemplate();
+			var themeTemplate = new CustomThemeTemplate(templateFile);
+			return new CustomTheme(themeTemplate);
 		}
 
 		private void ApplyOther()
@@ -144,7 +146,10 @@ namespace KeeTheme
 
 			var checkBox = control as CheckBox;
 			if (checkBox != null) Apply(checkBox);
-
+			
+			var propertyGrid = control as PropertyGrid;
+			if (propertyGrid != null) Apply(propertyGrid);
+			
 			OverrideResetBackground(control);
 		}
 
@@ -496,5 +501,10 @@ namespace KeeTheme
 			decorator.EnableTheme(_enabled, _theme);
 		}
 
+		private void Apply(PropertyGrid propertyGrid)
+		{
+			propertyGrid.CategoryForeColor = _theme.PropertyGrid.CategoryForeColor;
+			propertyGrid.LineColor = _theme.PropertyGrid.LineColor;
+		}
 	}
 }

@@ -1,74 +1,77 @@
-﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Windows.Forms;
 using KeePass.App;
 
 namespace KeeTheme.Theme
 {
-	class CustomTheme : DefaultTheme
+	internal class CustomTheme : ITheme
 	{
-		public CustomTheme(IniFile iniFile)
+		public string Name { get; protected set; }
+
+		public TreeViewDrawMode TreeViewDrawMode { get; protected set; }
+		public Image ListViewBackground { get; protected set; }
+		public bool ListViewBackgroundTiled { get; protected set; }
+		public ToolStripRenderer ToolStripRenderer { get; protected set; }
+
+		public OtherLook Other { get; private set; }
+		public ControlLook Control { get; private set; }
+		public ControlLook Form { get; private set; }
+		public ButtonLook Button { get; private set; }
+		public TreeViewLook TreeView { get; private set; }
+		public RichTextBoxLook RichTextBox { get; private set; }
+		public LinkLabelLook LinkLabel { get; private set; }
+		public ListViewLook ListView { get; private set; }
+		public ControlLook SecureTextBox { get; private set; }
+		public CheckBoxLook CheckBox { get; private set; }
+		public CheckBoxButtonLook CheckBoxButton { get; private set; }
+		public MenuLook MenuItem { get; private set; }
+		public PropertyGridLook PropertyGrid { get; private set; }
+
+		public CustomTheme()
 		{
-			var themeSection = iniFile.GetSection("KeeTheme");
-			if (themeSection.ContainsKey("Name"))
-				Name = themeSection["Name"];
+			Name = "Dark Theme";
+			Other = new OtherLook();
+			Control = new ControlLook();
+			Form = new ControlLook();
+			Button = new ButtonLook();
+			TreeView = new TreeViewLook();
+			RichTextBox = new RichTextBoxLook();
+			LinkLabel = new LinkLabelLook();
+			ListView = new ListViewLook();
+			SecureTextBox = new ControlLook();
+			CheckBox = new CheckBoxLook();
+			CheckBoxButton = new CheckBoxButtonLook();
+			MenuItem = new MenuLook();
+			PropertyGrid = new PropertyGridLook();
+		}
+		
+		public CustomTheme(CustomThemeTemplate themeTemplate) : this()
+		{
+			Name = themeTemplate.Name;
+			Other = themeTemplate.Other;
+			Control = themeTemplate.Control;
+			Form = themeTemplate.Form;
+			Button = themeTemplate.Button;
+			TreeView = themeTemplate.TreeView;
+			RichTextBox = themeTemplate.RichTextBox;
+			LinkLabel = themeTemplate.LinkLabel;
+			ListView = themeTemplate.ListView;
+			SecureTextBox = themeTemplate.SecureTextBox;
+			CheckBox = themeTemplate.CheckBox;
+			CheckBoxButton = themeTemplate.CheckBoxButton;
+			MenuItem = themeTemplate.MenuItem;
+			PropertyGrid = themeTemplate.PropertyGrid;
 
-			var paletteSection = iniFile.GetSection("Palette");
-			var palette = new Palette(paletteSection);
-
-			var toolStripSection = iniFile.GetSection("ToolStrip");
-			var customColors = toolStripSection.ToDictionary(x => x.Key, x => palette.GetColor(x.Value));
-			var colorTable = new CustomColorTable(customColors);
-			ToolStripRenderer = new CustomToolStripRenderer(this, colorTable);
-
-			var otherSection = iniFile.GetSection("Other");
-			LoadLook(otherSection, palette, Other);
-
-			var controlSection = iniFile.GetSection("Control");
-			LoadLook(controlSection, palette, Control);
-
-			var formSection = iniFile.GetSection("Form");
-			LoadLook(formSection, palette, Form);
-
-			var buttonSection = iniFile.GetSection("Button");
-			LoadLook(buttonSection, palette, Button);
-
-			var treeViewSection = iniFile.GetSection("TreeView");
-			LoadLook(treeViewSection, palette, TreeView);
-
-			var richTextBoxSection = iniFile.GetSection("RichTextBox");
-			LoadLook(richTextBoxSection, palette, RichTextBox);
-
-			var linkLabelSection = iniFile.GetSection("LinkLabel");
-			LoadLook(linkLabelSection, palette, LinkLabel);
-
-			var listViewSection = iniFile.GetSection("ListView");
-			LoadLook(listViewSection, palette, ListView);
-
-			var secureTextBoxSection = iniFile.GetSection("SecureTextBox");
-			LoadLook(secureTextBoxSection, palette, SecureTextBox);
-
-			var checkBoxSection = iniFile.GetSection("CheckBox");
-			LoadLook(checkBoxSection, palette, CheckBox);
-
-			var checkBoxButtonSection = iniFile.GetSection("CheckBoxButton");
-			LoadLook(checkBoxButtonSection, palette, CheckBoxButton);
-
-			var menuItemSection = iniFile.GetSection("MenuItem");
-			LoadLook(menuItemSection, palette, MenuItem);
-
+			ToolStripRenderer = GetToolStripRenderer(themeTemplate.ToolStrip);
 			TreeViewDrawMode = TreeViewDrawMode.OwnerDrawText;
 
 			if (!string.IsNullOrEmpty(ListView.BackgroundImage))
 			{
-				var exeLocation = Path.GetDirectoryName(typeof(KeePass.Program).Assembly.Location);
-				var pluginsPath = Path.Combine(exeLocation, AppDefs.PluginsDir);
-				var imagePath = Path.Combine(pluginsPath, ListView.BackgroundImage);
+				var imagePath = Path.Combine(TemplateReader.GetTemplatesDir(), ListView.BackgroundImage);
 
-				if (File.Exists(imagePath) && imagePath.StartsWith(exeLocation))
+				if (File.Exists(imagePath))
 					ListViewBackground = Image.FromFile(imagePath);
 			}
 
@@ -82,33 +85,32 @@ namespace KeeTheme.Theme
 			}
 		}
 
-		private static void LoadLook<T>(Dictionary<string, string> controlSection, Palette palette, T look)
+		private ToolStripRenderer GetToolStripRenderer(ToolStripLook toolStripLook)
 		{
-			var properties = look.GetType().GetProperties();
-			foreach (var property in properties)
+			var toolStripLookProperties = typeof(ToolStripLook).GetProperties();
+			var customColors = new Dictionary<string, Color>();
+			foreach (var toolStripLookProperty in toolStripLookProperties)
 			{
-				string value;
-				if (!controlSection.TryGetValue(property.Name, out value))
-					continue;
-
-				if (string.IsNullOrEmpty(value))
-					continue;
-
-				if (property.PropertyType == typeof(Color))
-					property.SetValue(look, palette.GetColor(controlSection[property.Name]), null);
-
-				if (property.PropertyType == typeof(FlatStyle))
-					property.SetValue(look, Enum.Parse(typeof(FlatStyle), value, true), null);
-
-				if (property.PropertyType == typeof(BorderStyle))
-					property.SetValue(look, Enum.Parse(typeof(BorderStyle), value, true), null);
-
-				if (property.PropertyType == typeof(ContentAlignment))
-					property.SetValue(look, Enum.Parse(typeof(ContentAlignment), value, true), null);
-
-				if (property.PropertyType == typeof(string))
-					property.SetValue(look, value, null);
+				customColors.Add(toolStripLookProperty.Name, (Color) toolStripLookProperty.GetValue(toolStripLook, null));
 			}
+			var colorTable = new CustomColorTable(customColors);
+			return new CustomToolStripRenderer(this, colorTable);
+		}
+
+		public static CustomTheme GetDefaultTheme()
+		{
+			var emptyTheme = new CustomTheme();
+			emptyTheme.Other.ControlNormalColor = SystemColors.Window;
+			emptyTheme.Other.ControlDisabledColor = SystemColors.Control;
+			emptyTheme.Other.ColorEditError = AppDefs.ColorEditError;
+			emptyTheme.Button.FlatStyle = FlatStyle.Standard;
+			emptyTheme.TreeView.BorderStyle = BorderStyle.Fixed3D;
+			emptyTheme.RichTextBox.BorderStyle = BorderStyle.Fixed3D;
+			emptyTheme.ListView.BorderStyle = BorderStyle.Fixed3D;
+			emptyTheme.CheckBox.FlatStyle = FlatStyle.Standard;
+			emptyTheme.CheckBoxButton.FlatStyle = FlatStyle.Standard;
+			emptyTheme.ToolStripRenderer = ToolStripManager.Renderer;
+			return emptyTheme;
 		}
 	}
 }

@@ -38,11 +38,12 @@ namespace KeeTheme.Options
 			this.autoSyncWin10ThemeLabel = new System.Windows.Forms.Label();
 			this.themeTemplate = new System.Windows.Forms.Label();
 			this.themeTemplateComboBox = new System.Windows.Forms.ComboBox();
+			this.editTemplateButton = new System.Windows.Forms.Button();
 			this.SuspendLayout();
 			// 
 			// hotKeyLabel
 			// 
-			this.hotKeyLabel.Location = new System.Drawing.Point(9, 38);
+			this.hotKeyLabel.Location = new System.Drawing.Point(9, 67);
 			this.hotKeyLabel.Name = "hotKeyLabel";
 			this.hotKeyLabel.Size = new System.Drawing.Size(110, 23);
 			this.hotKeyLabel.TabIndex = 0;
@@ -50,14 +51,14 @@ namespace KeeTheme.Options
 			// 
 			// hotKeyTextBox
 			// 
-			this.hotKeyTextBox.Location = new System.Drawing.Point(125, 35);
+			this.hotKeyTextBox.Location = new System.Drawing.Point(125, 64);
 			this.hotKeyTextBox.Name = "hotKeyTextBox";
 			this.hotKeyTextBox.Size = new System.Drawing.Size(166, 20);
 			this.hotKeyTextBox.TabIndex = 1;
 			// 
 			// autoSyncWin10ThemeCheckBox
 			// 
-			this.autoSyncWin10ThemeCheckBox.Location = new System.Drawing.Point(189, 61);
+			this.autoSyncWin10ThemeCheckBox.Location = new System.Drawing.Point(189, 90);
 			this.autoSyncWin10ThemeCheckBox.Name = "autoSyncWin10ThemeCheckBox";
 			this.autoSyncWin10ThemeCheckBox.Size = new System.Drawing.Size(102, 24);
 			this.autoSyncWin10ThemeCheckBox.TabIndex = 2;
@@ -65,7 +66,7 @@ namespace KeeTheme.Options
 			// 
 			// autoSyncWin10ThemeLabel
 			// 
-			this.autoSyncWin10ThemeLabel.Location = new System.Drawing.Point(9, 66);
+			this.autoSyncWin10ThemeLabel.Location = new System.Drawing.Point(9, 95);
 			this.autoSyncWin10ThemeLabel.Name = "autoSyncWin10ThemeLabel";
 			this.autoSyncWin10ThemeLabel.Size = new System.Drawing.Size(174, 23);
 			this.autoSyncWin10ThemeLabel.TabIndex = 3;
@@ -88,10 +89,21 @@ namespace KeeTheme.Options
 			this.themeTemplateComboBox.Size = new System.Drawing.Size(166, 21);
 			this.themeTemplateComboBox.TabIndex = 6;
 			// 
+			// editTemplateButton
+			// 
+			this.editTemplateButton.Location = new System.Drawing.Point(125, 35);
+			this.editTemplateButton.Name = "editTemplateButton";
+			this.editTemplateButton.Size = new System.Drawing.Size(166, 23);
+			this.editTemplateButton.TabIndex = 7;
+			this.editTemplateButton.Text = "Open Editor";
+			this.editTemplateButton.UseVisualStyleBackColor = true;
+			this.editTemplateButton.Click += new System.EventHandler(this.HandleEditTemplateButtonClick);
+			// 
 			// OptionsPanel
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+			this.Controls.Add(this.editTemplateButton);
 			this.Controls.Add(this.themeTemplateComboBox);
 			this.Controls.Add(this.themeTemplate);
 			this.Controls.Add(this.autoSyncWin10ThemeLabel);
@@ -103,6 +115,8 @@ namespace KeeTheme.Options
 			this.ResumeLayout(false);
 			this.PerformLayout();
 		}
+
+		private System.Windows.Forms.Button editTemplateButton;
 
 		private System.Windows.Forms.Label themeTemplate;
 		private System.Windows.Forms.ComboBox themeTemplateComboBox;

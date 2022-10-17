@@ -24,5 +24,6 @@ namespace KeeTheme.Theme
 		CheckBoxLook CheckBox { get; }
 		CheckBoxButtonLook CheckBoxButton { get; }
 		MenuLook MenuItem { get; }
+		PropertyGridLook PropertyGrid { get; }
 	}
 }

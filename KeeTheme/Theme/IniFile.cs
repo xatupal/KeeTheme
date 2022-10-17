@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.IO;
+using System.Text;
 
 namespace KeeTheme.Theme
 {
@@ -15,6 +16,21 @@ namespace KeeTheme.Theme
 			return new Dictionary<string, string>();
 		}
 
+		public Dictionary<string, string> AddSection(string name)
+		{
+			Dictionary<string, string> section;
+			if (_sections.TryGetValue(name, out section))
+				return section;
+			
+			section = new Dictionary<string, string>();
+			_sections.Add(name, section);
+			return section;
+		}
+
+		public IniFile()
+		{
+		}
+		
 		public IniFile(TextReader tr)
 		{
 			string currentSection = null;
@@ -46,6 +62,22 @@ namespace KeeTheme.Theme
 
 				_sections[currentSection][keyValuePair[0].Trim()] = keyValuePair[1].Trim();
 			}
+		}
+
+		public void SaveFile(string path)
+		{
+			var sb = new StringBuilder();
+			foreach (var section in _sections)
+			{
+				sb.AppendLine(string.Format("[{0}]", section.Key));
+				foreach (var item in section.Value)
+				{
+					sb.AppendLine(string.Format("{0} = {1}", item.Key, item.Value));
+				}
+
+				sb.AppendLine();
+			}
+			File.WriteAllText(path, sb.ToString());
 		}
 	}
 }
