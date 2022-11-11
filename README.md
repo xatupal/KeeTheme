@@ -13,14 +13,18 @@ You can enable it using hotkey `CTRL+T` or using the menu `Tools -> DarkTheme`.
 ### Options
 
 In [options](docs/KeePassDarkThemeCustomOptions.png) `Tools -> Options... -> KeeTheme` you can:
+* Select a theme
+* Create your own theme
 * Change the default hotkey
 * Auto-sync with Windows 10 theme
 
 ### Customizations
 
-The plugin allows you to create your own theme.
+You can use built-in theme editor to create your own theme.
+Custom themes should be saved in the plugins folder.
 
-Just download [theme template](themes/KeeTheme.ini) and put it in the plugins folder.
+![Theme editor](docs/KeePassDarkThemeEditor.png)
+
 
 ### Installation
 
@@ -37,9 +41,18 @@ KeePass was created using standard Windows controls, which unfortunately were no
 Therefore the plugin is not perfect and will never be, but is good enough to use it.
 
 ### Screenshots
+#### DarkTheme
 
 ![Main form](docs/KeePassDarkTheme.png)
 
 ![Open database](docs/KeePassDarkThemeOpenDatabase.png)
 
 ![Options](docs/KeePassDarkThemeOptions.png)
+
+#### DarkThemeWin11
+
+![Main form](docs/KeePassDarkThemeWin11.png)
+
+![Open database](docs/KeePassDarkThemeWin11OpenDatabase.png)
+
+![Options](docs/KeePassDarkThemeWin11Options.png)
