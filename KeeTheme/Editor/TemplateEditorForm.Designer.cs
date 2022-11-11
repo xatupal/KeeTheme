@@ -89,6 +89,7 @@ namespace KeeTheme.Editor
 			this.Controls.Add(this.propertyGrid);
 			this.MinimumSize = new System.Drawing.Size(280, 280);
 			this.Name = "TemplateEditorForm";
+			this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
 			this.Text = "KeeTheme Editor";
 			this.ResumeLayout(false);
 		}

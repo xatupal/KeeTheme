@@ -8,8 +8,10 @@ namespace KeeTheme.Theme
 {
 	internal class CustomThemeTemplate
 	{
-		[Category("Project")]
+		[Category("Theme")]
 		public string Name { get; set; }
+		[Browsable(false)]
+		public Palette Palette { get; private set; }
 
 		[Category("Appearance")]
 		public OtherLook Other { get; private set; }
@@ -43,6 +45,7 @@ namespace KeeTheme.Theme
 		private CustomThemeTemplate()
 		{
 			Name = "Dark Theme";
+			Palette = new Palette();
 			Other = new OtherLook();
 			Control = new ControlLook();
 			Form = new ControlLook();
@@ -66,51 +69,51 @@ namespace KeeTheme.Theme
 				Name = themeSection["Name"];
 
 			var paletteSection = iniFile.GetSection("Palette");
-			var palette = new Palette(paletteSection);
+			Palette = new Palette(paletteSection);
 
 			var otherSection = iniFile.GetSection("Other");
-			LoadLook(otherSection, palette, Other);
+			LoadLook(otherSection, Palette, Other);
 
 			var controlSection = iniFile.GetSection("Control");
-			LoadLook(controlSection, palette, Control);
+			LoadLook(controlSection, Palette, Control);
 
 			var formSection = iniFile.GetSection("Form");
-			LoadLook(formSection, palette, Form);
+			LoadLook(formSection, Palette, Form);
 
 			var buttonSection = iniFile.GetSection("Button");
-			LoadLook(buttonSection, palette, Button);
+			LoadLook(buttonSection, Palette, Button);
 
 			var treeViewSection = iniFile.GetSection("TreeView");
-			LoadLook(treeViewSection, palette, TreeView);
+			LoadLook(treeViewSection, Palette, TreeView);
 
 			var richTextBoxSection = iniFile.GetSection("RichTextBox");
-			LoadLook(richTextBoxSection, palette, RichTextBox);
+			LoadLook(richTextBoxSection, Palette, RichTextBox);
 
 			var linkLabelSection = iniFile.GetSection("LinkLabel");
-			LoadLook(linkLabelSection, palette, LinkLabel);
+			LoadLook(linkLabelSection, Palette, LinkLabel);
 
 			var listViewSection = iniFile.GetSection("ListView");
-			LoadLook(listViewSection, palette, ListView);
+			LoadLook(listViewSection, Palette, ListView);
 
 			var secureTextBoxSection = iniFile.GetSection("SecureTextBox");
-			LoadLook(secureTextBoxSection, palette, SecureTextBox);
+			LoadLook(secureTextBoxSection, Palette, SecureTextBox);
 
 			var checkBoxSection = iniFile.GetSection("CheckBox");
-			LoadLook(checkBoxSection, palette, CheckBox);
+			LoadLook(checkBoxSection, Palette, CheckBox);
 
 			var checkBoxButtonSection = iniFile.GetSection("CheckBoxButton");
-			LoadLook(checkBoxButtonSection, palette, CheckBoxButton);
+			LoadLook(checkBoxButtonSection, Palette, CheckBoxButton);
 
 			var menuItemSection = iniFile.GetSection("MenuItem");
-			LoadLook(menuItemSection, palette, MenuItem);
+			LoadLook(menuItemSection, Palette, MenuItem);
 			
 			var toolStripSection = iniFile.GetSection("ToolStrip");
-			LoadLook(toolStripSection, palette, ToolStrip);		
+			LoadLook(toolStripSection, Palette, ToolStrip);		
 
 			var propertyGridSection = iniFile.GetSection("PropertyGrid");
-			LoadLook(propertyGridSection, palette, PropertyGrid);		
+			LoadLook(propertyGridSection, Palette, PropertyGrid);		
 		}
-		
+
 		private static void LoadLook<T>(Dictionary<string, string> controlSection, Palette palette, T look)
 		{
 			var properties = look.GetType().GetProperties();
@@ -147,6 +150,7 @@ namespace KeeTheme.Theme
 			var section = iniFile.AddSection("KeeTheme");
 			section.Add("Name", Name);
 
+			SavePalette(iniFile, Palette);
 			SaveLook(iniFile, "Other", Other);
 			SaveLook(iniFile, "Control", Control);
 			SaveLook(iniFile, "Form", Form);
@@ -163,6 +167,16 @@ namespace KeeTheme.Theme
 			SaveLook(iniFile, "PropertyGrid", PropertyGrid);
 
 			return iniFile;
+		}
+
+		private void SavePalette(IniFile iniFile, Palette palette)
+		{
+			var section = iniFile.AddSection("Palette");
+			var colors = palette.GetColors();
+			for (int i = 0; i < colors.Length; i++)
+			{
+				section.Add("Color" + i, GetColorTextValue(colors[i]));
+			}
 		}
 
 		private void SaveLook<T>(IniFile iniFile, string sectionName, T look)

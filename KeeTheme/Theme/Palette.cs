@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 
 namespace KeeTheme.Theme
 {
@@ -9,6 +11,10 @@ namespace KeeTheme.Theme
 	{
 		private readonly Dictionary<string, Color> _colorsByName = new Dictionary<string, Color>();
 
+		public Palette()
+		{
+		}
+		
 		public Palette(Dictionary<string, string> colors)
 		{
 			foreach (var colorName in colors.Keys)
@@ -17,12 +23,17 @@ namespace KeeTheme.Theme
 			}
 		}
 
+		public Color[] GetColors()
+		{
+			return _colorsByName.Values.ToArray();
+		}
+
 		public Color GetColor(string color)
 		{
 			return _colorsByName.ContainsKey(color) ? _colorsByName[color] : ParseColor(color);
 		}
 
-		private Color ParseColor(string color)
+		public static Color ParseColor(string color)
 		{
 			if (string.IsNullOrEmpty(color))
 				return Color.Empty;
@@ -46,5 +57,27 @@ namespace KeeTheme.Theme
 			throw new InvalidDataException("Unknown color '" + color + "'!");
 		}
 
+		public void FromBgrArray(int[] colors)
+		{
+			_colorsByName.Clear();
+			for (int i = 0; i < colors.Length; i++)
+			{
+				var colorBgr = BitConverter.GetBytes(colors[i]);
+				var colorRgb = Color.FromArgb(colorBgr[2], colorBgr[1], colorBgr[0]);
+				_colorsByName.Add("Color" + i, colorRgb);
+			}
+		}
+
+		public int[] ToBgrArray()
+		{
+			var colors = new List<int>();
+			foreach (var color in _colorsByName.Values)
+			{
+				var bgrColor = (color.B << 16) + (color.G << 8) + color.R; 
+				colors.Add(bgrColor);
+			}
+
+			return colors.ToArray();
+		}
 	}
 }

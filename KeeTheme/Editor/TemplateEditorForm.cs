@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Drawing;
+using System.Drawing.Design;
 using System.IO;
 using System.Threading;
 using System.Windows.Forms;
@@ -30,6 +33,15 @@ namespace KeeTheme.Editor
 
 		private CustomThemeTemplate _customTheme;
 		private bool _previewMode;
+
+		static TemplateEditorForm()
+		{
+			TypeDescriptor.AddAttributes(typeof(Color), new TypeConverterAttribute(typeof(ColorConverter)));
+			TypeDescriptor.AddAttributes(typeof(Color), new EditorAttribute(typeof(ColorEditor), typeof(UITypeEditor)));
+			TypeDescriptor.AddAttributes(typeof(Color), new DefaultValueAttribute(typeof(Color), "Empty"));
+			TypeDescriptor.AddAttributes(typeof(FlatStyle), new DefaultValueAttribute(FlatStyle.Flat));
+			TypeDescriptor.AddAttributes(typeof(BorderStyle), new DefaultValueAttribute(BorderStyle.None));
+		}
 		
 		private TemplateEditorForm(CustomThemeTemplate customTheme, KeeThemeOptions options)
 		{
