@@ -102,6 +102,9 @@ namespace KeeTheme
 			var form = control as Form;
 			if (form != null) Apply(form);
 
+			var dataGridView = control as DataGridView;
+			if (dataGridView != null) Apply(dataGridView);
+			
 			var button = control as Button;
 			if (button != null) Apply(button);
 
@@ -165,6 +168,13 @@ namespace KeeTheme
 			}
 		}
 
+		private void Apply(DataGridView dataGridView)
+		{
+			dataGridView.BackgroundColor = _theme.Control.BackColor;
+			dataGridView.RowsDefaultCellStyle.BackColor = _theme.Control.BackColor;
+			dataGridView.RowsDefaultCellStyle.ForeColor = _theme.Control.ForeColor;
+		}
+		
 		private void Apply(CheckBox checkBox)
 		{
 			var checkBoxLook = checkBox.Appearance == Appearance.Button
