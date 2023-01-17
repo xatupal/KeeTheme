@@ -4,7 +4,6 @@ using System.Drawing;
 using System.Windows.Forms;
 using KeePass.Forms;
 using KeePass.UI;
-using KeePassLib.Utility;
 using KeeTheme.Theme;
 
 namespace KeeTheme.Decorators
@@ -124,8 +123,9 @@ namespace KeeTheme.Decorators
 			{
 				var linkText = link.Text.Substring(range.First - link.Index, range.Length);
 				var startPoint = customRichTextBox.GetPositionFromCharIndex(range.First);
-				var startPointPadded = new Point(startPoint.X - 3, startPoint.Y);
-				TextRenderer.DrawText(graphics, linkText, font, startPointPadded, _theme.LinkLabel.LinkColor);
+				var textSize = TextRenderer.MeasureText(linkText, font);
+				graphics.FillRectangle(new SolidBrush(customRichTextBox.BackColor), new Rectangle(startPoint, textSize));
+				TextRenderer.DrawText(graphics, linkText, font, startPoint, _theme.LinkLabel.LinkColor);
 			}
 		}
 
