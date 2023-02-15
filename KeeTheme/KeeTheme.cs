@@ -102,6 +102,9 @@ namespace KeeTheme
 			var form = control as Form;
 			if (form != null) Apply(form);
 
+			var userControl = control as UserControl;
+			if (userControl != null) Apply(userControl);
+
 			var dataGridView = control as DataGridView;
 			if (dataGridView != null) Apply(dataGridView);
 			
@@ -361,14 +364,25 @@ namespace KeeTheme
 			}
 		}
 
-		private IEnumerable<Control> GetComponents(Form form)
+		private void Apply(UserControl userControl)
 		{
-			var componentsField = form.GetType()
+			userControl.BackColor = _theme.Form.BackColor;
+			userControl.ForeColor = _theme.Form.ForeColor;
+
+			foreach (var component in GetComponents(userControl))
+			{
+				Apply(component);
+			}
+		}
+
+		private IEnumerable<Control> GetComponents(ContainerControl containerControl)
+		{
+			var componentsField = containerControl.GetType()
 				.GetField("components", BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
 
 			if (componentsField != null)
 			{
-				var components = componentsField.GetValue(form) as IContainer;
+				var components = componentsField.GetValue(containerControl) as IContainer;
 				if (components != null)
 				{
 					return components.Components.OfType<Control>();
