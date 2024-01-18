@@ -70,13 +70,21 @@ namespace KeeTheme.Decorators
 				var isMouseOver = e.ClipRectangle.Contains(_listView.PointToClient(MousePosition));
 				g.Graphics.FillRectangle(isMouseOver ? highlightBrush : backBrush, e.ClipRectangle);
 
-				var font = new Font(_listView.Font, FontStyle.Bold);
-				var textSize = e.Graphics.MeasureString(" " + _listView.Groups[e.GroupId].Header + " ", font);
+				SizeF textSize;
+				using (var font = new Font(_listView.Font, FontStyle.Bold))
+				{
+					textSize = e.Graphics.MeasureString(" " + _listView.Groups[e.GroupId].Header + " ", font);
+				}
+				
 				var textRect = new Rectangle(
 					e.ClipRectangle.X + 8, e.ClipRectangle.Y, (int)textSize.Width, e.ClipRectangle.Height - 1);
 
-				var sf = new StringFormat { Alignment = StringAlignment.Center, LineAlignment = StringAlignment.Center };
-				g.Graphics.DrawString(_listView.Groups[e.GroupId].Header, _listView.Font, foreBrush, textRect, sf);
+				using (var sf = new StringFormat())
+				{
+					sf.Alignment = StringAlignment.Center;
+					sf.LineAlignment = StringAlignment.Center;
+					g.Graphics.DrawString(_listView.Groups[e.GroupId].Header, _listView.Font, foreBrush, textRect, sf);
+				}
 
 				var columnOffset = -2; // Initial padding
 				foreach (ColumnHeader column in _listView.Columns)
@@ -90,7 +98,6 @@ namespace KeeTheme.Decorators
 				g.Graphics.DrawLine(forePen, textRect.Right, lineY, e.ClipRectangle.Right, lineY);
 
 				g.Render(e.Graphics);
-				sf.Dispose();
 			}
 
 		}

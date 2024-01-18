@@ -124,7 +124,10 @@ namespace KeeTheme.Decorators
 				var linkText = link.Text.Substring(range.First - link.Index, range.Length);
 				var startPoint = customRichTextBox.GetPositionFromCharIndex(range.First);
 				var textSize = TextRenderer.MeasureText(linkText, font);
-				graphics.FillRectangle(new SolidBrush(customRichTextBox.BackColor), new Rectangle(startPoint, textSize));
+				using (var brush = new SolidBrush(customRichTextBox.BackColor))
+				{
+					graphics.FillRectangle(brush, new Rectangle(startPoint, textSize));
+				}
 				TextRenderer.DrawText(graphics, linkText, font, startPoint, _theme.LinkLabel.LinkColor);
 			}
 		}
