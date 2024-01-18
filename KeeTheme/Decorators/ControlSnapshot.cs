@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Windows.Forms;
 
@@ -48,6 +49,10 @@ namespace KeeTheme.Decorators
 				return null;
 			}
 			catch (InvalidOperationException)
+			{
+				return null;
+			}
+			catch (Win32Exception)
 			{
 				return null;
 			}
