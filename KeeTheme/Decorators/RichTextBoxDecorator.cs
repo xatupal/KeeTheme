@@ -47,9 +47,21 @@ namespace KeeTheme.Decorators
 			Controls.Add(richTextBox);
 			EnabledChanged += HandleEnabledChanged;
 
-			if (Parent.GetType() != typeof(DataEditorForm))
+			if (Parent.GetType() == typeof(DataEditorForm))
 			{
-				richTextBox.TextChanged += HandleRichTextBoxTextChanged;
+				// Original font colors should be kept in the attachment viewer RTF document
+				var customRichTextBox = richTextBox as CustomRichTextBoxEx;
+				if (customRichTextBox != null && customRichTextBox.SimpleTextOnly)
+					richTextBox.TextChanged += HandleRichTextBoxTextChanged;
+			}
+			else
+			{
+				// An exception for custom keystroke sequence in EditAutoTypeItemForm
+				// Original font color should be kept to indicate valid and invalid placeholders
+				if (richTextBox.Name != "m_rbKeySeq")
+				{
+					richTextBox.TextChanged += HandleRichTextBoxTextChanged;
+				}
 				_richTextBoxNativeWindow = new RichTextBoxNativeWindow(richTextBox);
 				_richTextBoxNativeWindow.Paint += HandleRichTextBoxPaint;
 				_richTextBoxNativeWindow.LinkCreated += HandleRichTextBoxLinkCreated;
@@ -57,13 +69,7 @@ namespace KeeTheme.Decorators
 				richTextBox.TabStopChanged += HandleTabStopChanges;
 				richTextBox.TabIndexChanged += HandleTabStopChanges;
 			}
-			else
-			{
-				// Original font colors should be kept in the attachment viewer RTF document
-				var customRichTextBox = richTextBox as CustomRichTextBoxEx;
-				if (customRichTextBox != null && customRichTextBox.SimpleTextOnly)
-					richTextBox.TextChanged += HandleRichTextBoxTextChanged;
-			}
+
 			richTextBox.DockChanged += HandleRichTextBoxDockChanged;
 			richTextBox.SizeChanged += HandleRichTextBoxSizeChanged;
 		}
