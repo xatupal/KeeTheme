@@ -72,9 +72,15 @@ namespace KeeTheme.Decorators
 
 			richTextBox.DockChanged += HandleRichTextBoxDockChanged;
 			richTextBox.SizeChanged += HandleRichTextBoxSizeChanged;
+			SizeChanged += HandleSizeChanged;
 		}
 
-        private void HandleRichTextBoxSizeChanged(object sender, EventArgs e)
+		private void HandleSizeChanged(object sender, EventArgs e)
+		{
+			_richTextBox.Size = Size;
+		}
+
+		private void HandleRichTextBoxSizeChanged(object sender, EventArgs e)
         {
 			Control c = sender as Control;
 			if (c == null) return;
