@@ -461,7 +461,7 @@ namespace KeeTheme
 
 		private static void TrySetWindowTheme(IntPtr hWnd, bool enable)
 		{
-			if (hWnd == IntPtr.Zero)
+			if (hWnd == IntPtr.Zero || MonoWorkarounds.IsRequired())
 				return;
 
 			try
