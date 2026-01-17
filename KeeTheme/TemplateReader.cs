@@ -57,7 +57,11 @@ namespace KeeTheme
 		internal static List<TemplateFile> GetTemplatesFromPluginsDir()
 		{
 			var result = new List<TemplateFile>();
-			var files = Directory.GetFiles(GetTemplatesDir(), "*.ini");
+			var templateDir = GetTemplatesDir();
+			if (!Directory.Exists(templateDir))
+				return result;
+			
+			var files = Directory.GetFiles(templateDir, "*.ini");
 			foreach (var file in files)
 			{
 				using (var sr = File.OpenText(file))
