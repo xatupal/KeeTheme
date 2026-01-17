@@ -135,12 +135,12 @@ namespace KeeTheme.Decorators
 			{
 				var linkText = link.Text.Substring(range.First - link.Index, range.Length);
 				var startPoint = customRichTextBox.GetPositionFromCharIndex(range.First);
-				var textSize = TextRenderer.MeasureText(linkText, font);
+				var textSize = TextRenderer.MeasureText(linkText, font, Size.Empty, TextFormatFlags.NoPrefix);
 				using (var brush = new SolidBrush(customRichTextBox.BackColor))
 				{
 					graphics.FillRectangle(brush, new Rectangle(startPoint, textSize));
 				}
-				TextRenderer.DrawText(graphics, linkText, font, startPoint, _theme.LinkLabel.LinkColor);
+				TextRenderer.DrawText(graphics, linkText, font, startPoint, _theme.LinkLabel.LinkColor, TextFormatFlags.NoPrefix);
 			}
 		}
 
