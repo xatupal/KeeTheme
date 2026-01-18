@@ -1,11 +1,20 @@
 rem Build dll
-set msbuild_path=msbuild
-if not "%JetBrains Rider%"=="" (
-	echo Loading JetBrains Rider Tools
-	set msbuild_path="%JetBrains Rider:;=%\..\tools\MSBuild\Current\Bin\MSBuild.exe"
+set msbuild_path=
+rem Check if Rider MSBuild exists
+if exist "%LOCALAPPDATA%\Programs\Rider\tools\MSBuild\Current\Bin\amd64\MSBuild.exe" (
+    echo Found Rider MSBuild
+    set msbuild_path="%LOCALAPPDATA%\Programs\Rider\tools\MSBuild\Current\Bin\amd64\MSBuild.exe"
 ) else (
-	echo Loading Visual Studio Tools
-	call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+    rem Try to find MSBuild via PATH
+    where msbuild.exe >nul 2>&1
+    if %errorlevel% equ 0 (
+        echo Found MSBuild in PATH
+        set msbuild_path=msbuild
+    ) else (
+        echo Loading Visual Studio Tools
+        call "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\Common7\Tools\VsDevCmd.bat"
+        set msbuild_path=msbuild
+    )
 )
 
 echo Compiling Dll
