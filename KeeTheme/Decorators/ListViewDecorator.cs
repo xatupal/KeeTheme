@@ -240,12 +240,26 @@ namespace KeeTheme.Decorators
 			if (_theme.ListViewBackground != null)
 				backColor = Color.FromArgb(191, backColor);
 
+			if (IsHighlighted(backColor, e.Item.BackColor))
+			{
+				backColor = e.Item.BackColor;
+			}
+			
 			using (var brush = new SolidBrush(backColor))
 			{
 				e.Graphics.FillRectangle(brush, e.Bounds);
 			}
 
 			e.DrawFocusRectangle();
+		}
+
+		private bool IsHighlighted(Color background, Color item)
+		{
+			var highlightColor =!UIUtil.IsDarkColor(background) 
+				? Color.FromArgb(byte.MaxValue, byte.MaxValue, 0) 
+				: Color.FromArgb(160 , 160 , 0);
+			
+			return item.ToArgb() == highlightColor.ToArgb();
 		}
 
 		private Color GetAlternatingBackColor(int itemIndex)

@@ -169,6 +169,14 @@ namespace KeeTheme
 						control.BackColor = _theme.Control.BackColor;
 				};
 			}
+			if (control.Name == "m_tbSearch" && control.Parent.Name == "OptionsForm")
+			{
+				control.BackColorChanged += (sender, args) =>
+				{
+					if (control.BackColor.IsSystemColor)
+						control.BackColor = _theme.Control.BackColor;
+				};
+			}
 		}
 
 		private void Apply(DataGridView dataGridView)
