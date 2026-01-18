@@ -4,6 +4,7 @@ using System.Drawing;
 using System.Reflection;
 using System.Windows.Forms;
 using KeePass;
+using KeePass.Ecas;
 using KeePass.Forms;
 using KeePass.Plugins;
 using KeePassLib;
@@ -29,6 +30,7 @@ namespace KeeTheme
 		private KeeThemeOptions _options;
 		private OptionsPanel _optionsPanel;
 		private Win10ThemeMonitor _win10ThemeMonitor;
+		private bool _initialized;
 
 		public override bool Initialize(IPluginHost host)
 		{
@@ -72,6 +74,9 @@ namespace KeeTheme
 
 		private void HandleOpenFormsAdded(object sender, FormAddedEventArgs args)
 		{
+			if (!_initialized)
+				InitializeTheme();
+			
 			if (_theme.Enabled)
 				_controlVisitor.Visit(args.Form);
 			
@@ -106,7 +111,7 @@ namespace KeeTheme
 			PwGeneratorMenuDecorator.TryFindAndDecorate(sender, _theme);
 		}
 
-		private void HandleTriggerSystemRaisingEvent(object sender, KeePass.Ecas.EcasRaisingEventArgs e)
+		private void HandleTriggerSystemRaisingEvent(object sender, EcasRaisingEventArgs e)
 		{
 			if (e.Event.Type.Equals(AppInitPost))
 			{
@@ -139,7 +144,9 @@ namespace KeeTheme
 
 					ApplyThemeInOpenForms();
 				}
-			}; 
+			};
+			
+			_initialized = true;
 		}
 
 		public override ToolStripMenuItem GetMenuItem(PluginMenuType t)
