@@ -77,7 +77,6 @@
     <Compile Include="FormAddedEventHandler.cs" />
     <Compile Include="FormsArrayList.cs" />
     <Compile Include="Options\KeeThemeOptions.cs" />
-    <Compile Include="Scrollbars.cs" />
     <Compile Include="TemplateFile.cs" />
     <Compile Include="TemplateReader.cs" />
     <Compile Include="Theme\ButtonLook.cs" />

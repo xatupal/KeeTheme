@@ -8,6 +8,7 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using KeePass.App;
+using KeePass.Forms;
 using KeePass.UI;
 using KeePassLib.Utility;
 using KeeTheme.Decorators;
@@ -157,6 +158,69 @@ namespace KeeTheme
 			if (propertyGrid != null) Apply(propertyGrid);
 			
 			OverrideResetBackground(control);
+			OverrideScrollBarsSetExplorerTheme(control);
+			OverrideOptionsFormSetExplorerTheme(control);
+		}
+
+		private void OverrideScrollBarsSetExplorerTheme(Control control)
+		{
+			if (!CanHaveScrollBars(control) || MonoWorkarounds.IsRequired()) 
+				return;
+			
+			TrySetWindowTheme(control.Handle, _enabled);
+
+			// Subscribe to handle creation for dynamically created controls
+			control.HandleCreated += (s, e) =>
+			{
+				var createdControl = s as Control;
+				if (createdControl != null && createdControl.IsHandleCreated)
+					SetWindowTheme(createdControl.Handle, "DarkMode_Explorer", null);
+			};
+		}
+
+		private void OverrideOptionsFormSetExplorerTheme(Control control)
+		{
+			if (MonoWorkarounds.IsRequired())
+				return;
+			
+			var form = control as Form;
+			if (form is OptionsForm)
+			{
+				form.Load -= HandleOptionsFormLoad;
+				form.Load += HandleOptionsFormLoad;
+			}
+		}
+
+		private void HandleOptionsFormLoad(object sender, EventArgs e)
+		{
+			var form = sender as OptionsForm;
+			if (form == null) return;
+    
+			// Re-apply dark mode theme to override SetExplorerTheme
+			var listViews = new[] { "m_lvSecurityOptions", "m_lvPolicy", "m_lvGuiOptions", "m_lvAdvanced" };
+    
+			foreach (var listViewName in listViews)
+			{
+				var listView = form.Controls.Find(listViewName, true).FirstOrDefault() as ListView;
+				if (listView?.IsHandleCreated == true)
+				{
+					TrySetWindowTheme(listView.Handle, _enabled);
+				}
+			}
+		}
+
+		private bool CanHaveScrollBars(Control control)
+		{
+			return control is TextBoxBase ||
+			       control is ListBox ||
+			       control is ListView ||
+			       control is TreeView ||
+			       control is DataGridView ||
+			       control is Panel ||
+			       control is UserControl ||
+			       control is Form ||
+			       control is ScrollableControl || 
+			       control is TabControl;
 		}
 
 		private void OverrideResetBackground(Control control)
@@ -454,8 +518,6 @@ namespace KeeTheme
 			treeView.BorderStyle = _theme.TreeView.BorderStyle;
 			treeView.BackColor = _theme.TreeView.BackColor;
 			
-			TrySetWindowTheme(treeView.Handle, _enabled);
-			
 			if (!MonoWorkarounds.IsRequired())
 			{
 				treeView.DrawMode = _theme.TreeViewDrawMode;
@@ -467,14 +529,14 @@ namespace KeeTheme
 		[DllImport("UxTheme.dll", ExactSpelling = true, CharSet = CharSet.Unicode)]
 		private static extern int SetWindowTheme(IntPtr hWnd, string pszSubAppName, string pszSubIdList);
 
-		private static void TrySetWindowTheme(IntPtr hWnd, bool enable)
+		public static void TrySetWindowTheme(IntPtr hWnd, bool enable)
 		{
 			if (hWnd == IntPtr.Zero || MonoWorkarounds.IsRequired())
 				return;
 
 			try
 			{
-				SetWindowTheme(hWnd, enable ? "" : "explorer", null);
+				SetWindowTheme(hWnd, enable ? "DarkMode_Explorer" : "explorer", null);
 			}
 			catch (Exception)
 			{
