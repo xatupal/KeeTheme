@@ -68,4 +68,8 @@ namespace KeeTheme.Editor
 	internal class PropertyGridLookTypeConverter : GenericTypeConverter<PropertyGridLook>
 	{
 	}
+
+	internal class ScrollBarLookTypeConverter : GenericTypeConverter<ScrollBarLook>
+	{
+	}
 }

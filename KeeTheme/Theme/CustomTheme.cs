@@ -29,6 +29,7 @@ namespace KeeTheme.Theme
 		public CheckBoxButtonLook CheckBoxButton { get; private set; }
 		public MenuLook MenuItem { get; private set; }
 		public PropertyGridLook PropertyGrid { get; private set; }
+		public ScrollBarLook ScrollBar { get; private set; }
 
 		public CustomTheme()
 		{
@@ -47,6 +48,7 @@ namespace KeeTheme.Theme
 			CheckBoxButton = new CheckBoxButtonLook();
 			MenuItem = new MenuLook();
 			PropertyGrid = new PropertyGridLook();
+			ScrollBar = new ScrollBarLook();
 		}
 		
 		public CustomTheme(CustomThemeTemplate themeTemplate) : this()
@@ -66,6 +68,7 @@ namespace KeeTheme.Theme
 			CheckBoxButton = themeTemplate.CheckBoxButton;
 			MenuItem = themeTemplate.MenuItem;
 			PropertyGrid = themeTemplate.PropertyGrid;
+			ScrollBar = themeTemplate.ScrollBar;
 
 			ToolStripRenderer = GetToolStripRenderer(themeTemplate.ToolStrip);
 			TreeViewDrawMode = TreeViewDrawMode.OwnerDrawText;

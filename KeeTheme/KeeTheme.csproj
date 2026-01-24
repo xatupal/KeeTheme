@@ -95,6 +95,7 @@
     <Compile Include="Theme\Palette.cs" />
     <Compile Include="Theme\PropertyGridLook.cs" />
     <Compile Include="Theme\RichTextBoxLook.cs" />
+    <Compile Include="Theme\ScrollBarLook.cs" />
     <Compile Include="Theme\TabControlLook.cs" />
     <Compile Include="Theme\ToolStripLook.cs" />
     <Compile Include="Theme\TreeViewLook.cs" />

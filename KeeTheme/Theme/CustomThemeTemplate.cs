@@ -43,6 +43,9 @@ namespace KeeTheme.Theme
 		public ToolStripLook ToolStrip { get; private set; }
 		[Category("Appearance")]
 		public PropertyGridLook PropertyGrid { get; private set; }
+		[Category("Appearance")]
+		public ScrollBarLook ScrollBar { get; private set; }
+		
 
 		private CustomThemeTemplate()
 		{
@@ -63,6 +66,7 @@ namespace KeeTheme.Theme
 			MenuItem = new MenuLook();
 			ToolStrip = new ToolStripLook();
 			PropertyGrid = new PropertyGridLook();
+			ScrollBar = new ScrollBarLook();
 		}
 
 		public CustomThemeTemplate(IniFile iniFile) : this()
@@ -118,6 +122,9 @@ namespace KeeTheme.Theme
 
 			var propertyGridSection = iniFile.GetSection("PropertyGrid");
 			LoadLook(propertyGridSection, Palette, PropertyGrid);		
+
+			var scrollBarSection = iniFile.GetSection("ScrollBar");
+			LoadLook(scrollBarSection, Palette, ScrollBar);		
 		}
 
 		private static void LoadLook<T>(Dictionary<string, string> controlSection, Palette palette, T look)
@@ -132,6 +139,9 @@ namespace KeeTheme.Theme
 				if (string.IsNullOrEmpty(value))
 					continue;
 
+				if (property.PropertyType == typeof(bool))
+					property.SetValue(look, bool.Parse(value), null);
+				
 				if (property.PropertyType == typeof(Color))
 					property.SetValue(look, palette.GetColor(controlSection[property.Name]), null);
 
@@ -172,6 +182,7 @@ namespace KeeTheme.Theme
 			SaveLook(iniFile, "MenuItem", MenuItem);
 			SaveLook(iniFile, "ToolStrip", ToolStrip);
 			SaveLook(iniFile, "PropertyGrid", PropertyGrid);
+			SaveLook(iniFile, "ScrollBar", ScrollBar);
 
 			return iniFile;
 		}

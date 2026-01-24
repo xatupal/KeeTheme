@@ -166,14 +166,15 @@ namespace KeeTheme
 			if (!CanHaveScrollBars(control) || MonoWorkarounds.IsRequired()) 
 				return;
 			
-			TrySetWindowTheme(control.Handle, _enabled);
+			var useExplorerDarkMode = _theme.ScrollBar.UseExplorerDarkMode;
+			TrySetWindowTheme(control.Handle, _enabled && useExplorerDarkMode);
 
 			// Subscribe to handle creation for dynamically created controls
 			control.HandleCreated += (s, e) =>
 			{
 				var createdControl = s as Control;
 				if (createdControl != null && createdControl.IsHandleCreated)
-					SetWindowTheme(createdControl.Handle, "DarkMode_Explorer", null);
+					TrySetWindowTheme(createdControl.Handle, _enabled && useExplorerDarkMode);
 			};
 		}
 
