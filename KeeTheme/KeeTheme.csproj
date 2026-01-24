@@ -65,6 +65,8 @@
     </Compile>
     <Compile Include="Decorators\RichTextBoxNativeWindow.cs" />
     <Compile Include="Decorators\SplitButtonExDecorator.cs" />
+    <Compile Include="Decorators\TabControlDecorator.cs" />
+    <Compile Include="Decorators\TabControlPainter.cs" />
     <Compile Include="Editor\ColorConverter.cs" />
     <Compile Include="Editor\ColorEditor.cs" />
     <Compile Include="Editor\GenericTypeConverter.cs" />
@@ -93,6 +95,7 @@
     <Compile Include="Theme\Palette.cs" />
     <Compile Include="Theme\PropertyGridLook.cs" />
     <Compile Include="Theme\RichTextBoxLook.cs" />
+    <Compile Include="Theme\TabControlLook.cs" />
     <Compile Include="Theme\ToolStripLook.cs" />
     <Compile Include="Theme\TreeViewLook.cs" />
     <Compile Include="KeeTheme.cs" />

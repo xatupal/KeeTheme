@@ -30,6 +30,8 @@ namespace KeeTheme.Theme
 		[Category("Appearance")]
 		public ListViewLook ListView { get; private set; }
 		[Category("Appearance")]
+		public TabControlLook TabControl { get; private set; }
+		[Category("Appearance")]
 		public ControlLook SecureTextBox { get; private set; }
 		[Category("Appearance")]
 		public CheckBoxLook CheckBox { get; private set; }
@@ -54,6 +56,7 @@ namespace KeeTheme.Theme
 			RichTextBox = new RichTextBoxLook();
 			LinkLabel = new LinkLabelLook();
 			ListView = new ListViewLook();
+			TabControl = new TabControlLook();
 			SecureTextBox = new ControlLook();
 			CheckBox = new CheckBoxLook();
 			CheckBoxButton = new CheckBoxButtonLook();
@@ -94,6 +97,9 @@ namespace KeeTheme.Theme
 
 			var listViewSection = iniFile.GetSection("ListView");
 			LoadLook(listViewSection, Palette, ListView);
+			
+			var tabControlSection = iniFile.GetSection("TabControl");
+			LoadLook(tabControlSection, Palette, TabControl);
 
 			var secureTextBoxSection = iniFile.GetSection("SecureTextBox");
 			LoadLook(secureTextBoxSection, Palette, SecureTextBox);
@@ -159,6 +165,7 @@ namespace KeeTheme.Theme
 			SaveLook(iniFile, "RichTextBox", RichTextBox);
 			SaveLook(iniFile, "LinkLabel", LinkLabel);
 			SaveLook(iniFile, "ListView", ListView);
+			SaveLook(iniFile, "TabControl", TabControl);
 			SaveLook(iniFile, "SecureTextBox", SecureTextBox);
 			SaveLook(iniFile, "CheckBox", CheckBox);
 			SaveLook(iniFile, "CheckBoxButton", CheckBoxButton);

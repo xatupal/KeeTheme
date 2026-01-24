@@ -23,6 +23,7 @@ namespace KeeTheme.Theme
 		public RichTextBoxLook RichTextBox { get; private set; }
 		public LinkLabelLook LinkLabel { get; private set; }
 		public ListViewLook ListView { get; private set; }
+		public TabControlLook TabControl { get; private set; }
 		public ControlLook SecureTextBox { get; private set; }
 		public CheckBoxLook CheckBox { get; private set; }
 		public CheckBoxButtonLook CheckBoxButton { get; private set; }
@@ -40,6 +41,7 @@ namespace KeeTheme.Theme
 			RichTextBox = new RichTextBoxLook();
 			LinkLabel = new LinkLabelLook();
 			ListView = new ListViewLook();
+			TabControl = new TabControlLook();
 			SecureTextBox = new ControlLook();
 			CheckBox = new CheckBoxLook();
 			CheckBoxButton = new CheckBoxButtonLook();
@@ -58,6 +60,7 @@ namespace KeeTheme.Theme
 			RichTextBox = themeTemplate.RichTextBox;
 			LinkLabel = themeTemplate.LinkLabel;
 			ListView = themeTemplate.ListView;
+			TabControl = themeTemplate.TabControl;
 			SecureTextBox = themeTemplate.SecureTextBox;
 			CheckBox = themeTemplate.CheckBox;
 			CheckBoxButton = themeTemplate.CheckBoxButton;

@@ -40,6 +40,10 @@ namespace KeeTheme.Editor
 	internal class TreeViewLookTypeConverter : GenericTypeConverter<TreeViewLook>
 	{
 	}
+	
+	internal class TabControlTypeConverter : GenericTypeConverter<TabControlLook>
+	{
+	}
 
 	internal class ControlLookTypeConverter : GenericTypeConverter<ControlLook>
 	{

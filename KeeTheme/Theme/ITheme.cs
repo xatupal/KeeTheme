@@ -20,6 +20,7 @@ namespace KeeTheme.Theme
 		RichTextBoxLook RichTextBox { get; }
 		LinkLabelLook LinkLabel { get; }
 		ListViewLook ListView { get; }
+		TabControlLook TabControl { get; }
 		ControlLook SecureTextBox { get; }
 		CheckBoxLook CheckBox { get; }
 		CheckBoxButtonLook CheckBoxButton { get; }

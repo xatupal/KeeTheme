@@ -322,6 +322,21 @@ namespace KeeTheme
 
 		private void Apply(TabControl tabControl)
 		{
+			var decoratorName = tabControl.Name + "_decorator";
+			var decorator =
+				tabControl.Parent.Controls.Find(decoratorName, false).FirstOrDefault() as TabControlDecorator;
+			
+			if (decorator == null)
+			{
+				decorator = new TabControlDecorator(tabControl, _theme);
+				decorator.Name = decoratorName;
+			}
+
+			tabControl.BackColor = _theme.TabControl.BackColor;
+			tabControl.ForeColor = _theme.TabControl.ForeColor;
+			
+			decorator.EnableTheme(_enabled, _theme);			
+			
 			tabControl.ControlAdded -= HandleTabControlAdded;
 			tabControl.ControlAdded += HandleTabControlAdded;
 		}
