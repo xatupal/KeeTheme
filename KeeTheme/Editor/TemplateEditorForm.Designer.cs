@@ -47,7 +47,7 @@ namespace KeeTheme.Editor
 			// 
 			// loadButton
 			// 
-			this.loadButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.loadButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.loadButton.Location = new System.Drawing.Point(93, 406);
 			this.loadButton.Name = "loadButton";
 			this.loadButton.Size = new System.Drawing.Size(75, 23);
@@ -58,7 +58,7 @@ namespace KeeTheme.Editor
 			// 
 			// saveButton
 			// 
-			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+			this.saveButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
 			this.saveButton.Location = new System.Drawing.Point(12, 406);
 			this.saveButton.Name = "saveButton";
 			this.saveButton.Size = new System.Drawing.Size(75, 23);
@@ -69,7 +69,7 @@ namespace KeeTheme.Editor
 			// 
 			// previewButton
 			// 
-			this.previewButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+			this.previewButton.Anchor = ((System.Windows.Forms.AnchorStyles) ((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
 			this.previewButton.Location = new System.Drawing.Point(277, 406);
 			this.previewButton.Name = "previewButton";
 			this.previewButton.Size = new System.Drawing.Size(75, 23);
