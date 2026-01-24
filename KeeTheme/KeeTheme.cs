@@ -169,13 +169,15 @@ namespace KeeTheme
 			var useExplorerDarkMode = _theme.ScrollBar.UseExplorerDarkMode;
 			TrySetWindowTheme(control.Handle, _enabled && useExplorerDarkMode);
 
-			// Subscribe to handle creation for dynamically created controls
-			control.HandleCreated += (s, e) =>
-			{
-				var createdControl = s as Control;
-				if (createdControl != null && createdControl.IsHandleCreated)
-					TrySetWindowTheme(createdControl.Handle, _enabled && useExplorerDarkMode);
-			};
+			control.HandleCreated -= HandleControlCreated;
+			control.HandleCreated += HandleControlCreated;
+		}
+
+		private void HandleControlCreated(object sender, EventArgs e)
+		{
+			var createdControl = sender as Control;
+			if (createdControl != null && createdControl.IsHandleCreated)
+				TrySetWindowTheme(createdControl.Handle, _enabled && _theme.ScrollBar.UseExplorerDarkMode);
 		}
 
 		private void OverrideOptionsFormSetExplorerTheme(Control control)
