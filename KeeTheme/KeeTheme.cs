@@ -8,7 +8,6 @@ using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using KeePass.App;
-using KeePass.Forms;
 using KeePass.UI;
 using KeePassLib.Utility;
 using KeeTheme.Decorators;
@@ -184,7 +183,7 @@ namespace KeeTheme
 				return;
 			
 			var form = control as Form;
-			if (form is OptionsForm)
+			if (form != null)
 			{
 				form.Load -= HandleOptionsFormLoad;
 				form.Load += HandleOptionsFormLoad;
@@ -193,16 +192,14 @@ namespace KeeTheme
 
 		private void HandleOptionsFormLoad(object sender, EventArgs e)
 		{
-			var form = sender as OptionsForm;
+			var form = sender as Form;
 			if (form == null) return;
-    
+
 			// Re-apply dark mode theme to override SetExplorerTheme
-			var listViews = new[] { "m_lvSecurityOptions", "m_lvPolicy", "m_lvGuiOptions", "m_lvAdvanced" };
-    
-			foreach (var listViewName in listViews)
+			foreach (var control in form.Controls)
 			{
-				var listView = form.Controls.Find(listViewName, true).FirstOrDefault() as ListView;
-				if (listView?.IsHandleCreated == true)
+				var listView = control as CustomListViewEx;
+				if (listView != null && listView.IsHandleCreated)
 				{
 					TrySetWindowTheme(listView.Handle, _enabled);
 				}
