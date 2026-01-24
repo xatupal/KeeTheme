@@ -31,7 +31,7 @@ namespace KeeTheme.Editor
 				colorDialog.AnyColor = true;
 				colorDialog.Color = (Color) value;
 				colorDialog.CustomColors = GetPaletteColors(context);
-				if (colorDialog.ShowDialog() == DialogResult.OK);
+				if (colorDialog.ShowDialog() == DialogResult.OK)
 				{
 					value = colorDialog.Color;
 					SetPaletteColors(context, colorDialog.CustomColors);
