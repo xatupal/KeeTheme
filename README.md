@@ -6,9 +6,9 @@
 
 KeePass Plugin
 
-Plugin changes the appearance of KeePass, to make it look better at night. 
+This plugin changes the appearance of KeePass to make it look better at night.
 
-You can enable it using hotkey `CTRL+T` or using the menu `Tools -> DarkTheme`.
+You can enable it using the hotkey `CTRL+T` or through the menu `Tools -> DarkTheme`.
 
 ### Options
 
@@ -16,11 +16,11 @@ In [options](docs/KeePassDarkThemeCustomOptions.png) `Tools -> Options... -> Kee
 * Select a theme
 * Create your own theme
 * Change the default hotkey
-* Auto-sync with Windows 10 theme
+* Auto-sync with the Windows 10 theme
 
 ### Customizations
 
-You can use built-in theme editor to create your own theme.
+You can use the built-in theme editor to create your own theme.
 Custom themes should be saved in the plugins folder.
 
 ![Theme editor](docs/KeePassDarkThemeEditor.png)
@@ -36,9 +36,9 @@ choco install keepass-plugin-keetheme
 
 ### Note
 
-KeePass was created using standard Windows controls, which unfortunately were not designed for easy customization. They are extremely resistant to any attempts to change their appearance, especially from a plugin which has no control over their creation.
+KeePass was created using standard Windows controls, which unfortunately were not designed for easy customization. They are extremely resistant to any attempts to change their appearance, especially from a plugin that has no control over their creation.
 
-Therefore the plugin is not perfect and will never be, but is good enough to use it.
+Therefore, the plugin is not perfect and never will be, but it is good enough to use.
 
 ### Screenshots
 #### DarkTheme
