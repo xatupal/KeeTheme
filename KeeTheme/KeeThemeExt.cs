@@ -67,7 +67,8 @@ namespace KeeTheme
 			customArrayList.AddRange(Application.OpenForms);
 			customArrayList.Added += HandleOpenFormsAdded;
 			
-			var listField = typeof(ReadOnlyCollectionBase).GetField("list", BindingFlags.Instance | BindingFlags.NonPublic);
+			var fieldName = MonoWorkarounds.IsRequired() ? "_list" : "list";
+			var listField = typeof(ReadOnlyCollectionBase).GetField(fieldName, BindingFlags.Instance | BindingFlags.NonPublic);
 			if (listField != null)
 				listField.SetValue(Application.OpenForms, customArrayList);
 		}
