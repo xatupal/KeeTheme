@@ -158,7 +158,6 @@ namespace KeeTheme
 			
 			OverrideResetBackground(control);
 			OverrideScrollBarsSetExplorerTheme(control);
-			OverrideOptionsFormSetExplorerTheme(control);
 		}
 
 		private void OverrideScrollBarsSetExplorerTheme(Control control)
@@ -171,6 +170,13 @@ namespace KeeTheme
 
 			control.HandleCreated -= HandleControlCreated;
 			control.HandleCreated += HandleControlCreated;
+			
+			var keePassForm = control as Form;
+			if (keePassForm != null && keePassForm.GetType().Namespace.StartsWith("KeePass"))
+			{
+				keePassForm.Load -= HandleKeePassFormLoad;
+				keePassForm.Load += HandleKeePassFormLoad;
+			}
 		}
 
 		private void HandleControlCreated(object sender, EventArgs e)
@@ -180,31 +186,20 @@ namespace KeeTheme
 				TrySetWindowTheme(createdControl.Handle, _enabled && _theme.ScrollBar.UseExplorerDarkMode);
 		}
 
-		private void OverrideOptionsFormSetExplorerTheme(Control control)
+		private void HandleKeePassFormLoad(object sender, EventArgs e)
 		{
-			if (MonoWorkarounds.IsRequired())
-				return;
-			
-			var form = control as Form;
-			if (form != null)
-			{
-				form.Load -= HandleOptionsFormLoad;
-				form.Load += HandleOptionsFormLoad;
-			}
-		}
+			var privateCustomListsField = sender.GetType()
+				.GetFields(BindingFlags.Instance | BindingFlags.NonPublic);
 
-		private void HandleOptionsFormLoad(object sender, EventArgs e)
-		{
-			var form = sender as Form;
-			if (form == null) return;
-
-			// Re-apply dark mode theme to override SetExplorerTheme
-			foreach (var control in form.Controls)
+			foreach (var fieldInfo in privateCustomListsField)
 			{
-				var listView = control as CustomListViewEx;
-				if (listView != null && listView.IsHandleCreated)
+				if (fieldInfo.FieldType == typeof(CustomListViewEx))
 				{
-					TrySetWindowTheme(listView.Handle, _enabled);
+					var customListView = fieldInfo.GetValue(sender) as CustomListViewEx;
+					if (customListView != null && customListView.IsHandleCreated)
+					{
+						TrySetWindowTheme(customListView.Handle, _enabled && _theme.ScrollBar.UseExplorerDarkMode);
+					}
 				}
 			}
 		}

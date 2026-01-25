@@ -86,18 +86,21 @@ namespace KeeTheme
 			var optionsForm = args.Form as OptionsForm;
 			if (optionsForm != null)
 			{
+				optionsForm.Shown -= HandleOptionsFormShown;
 				optionsForm.Shown += HandleOptionsFormShown;
 			}
 
 			var editStringForm = args.Form as EditStringForm;
 			if (editStringForm != null)
 			{
+				editStringForm.Load -= HandleEditStringFormLoad;
 				editStringForm.Load += HandleEditStringFormLoad;
 			}			
 			
 			var pwEntryForm = args.Form as PwEntryForm;
 			if (pwEntryForm != null)
 			{
+				pwEntryForm.Load -= HandlePwEntryFormFormLoad;
 				pwEntryForm.Load += HandlePwEntryFormFormLoad;
 			}
 		}
