@@ -1,5 +1,4 @@
 ﻿using System.Drawing;
-using System.Reflection;
 using System.Windows.Forms;
 using KeePassLib.Utility;
 using KeeTheme.Theme;
@@ -10,6 +9,7 @@ namespace KeeTheme.Decorators
 	{
 		private readonly TabControl _tabControl;
 		private readonly TabControlPainter _painter;
+		private readonly TabDrawMode _originalDrawMode;
 
 		private ITheme _theme;
 		private bool _enabled;
@@ -18,15 +18,10 @@ namespace KeeTheme.Decorators
 		{
 			_tabControl = tabControl;
 			_theme = theme;
+			_originalDrawMode = tabControl.DrawMode;
 
 			if (!MonoWorkarounds.IsRequired())
 			{
-				typeof(TabControl).InvokeMember("DoubleBuffered",
-					BindingFlags.SetProperty | 
-					BindingFlags.Instance | 
-					BindingFlags.NonPublic,
-					null, _tabControl, new object[] { true });
-				
 				_painter = new TabControlPainter(_tabControl);
 				_painter.Paint += HandlePaint;
 			}
@@ -161,6 +156,9 @@ namespace KeeTheme.Decorators
 		{
 			_enabled = enabled;
 			_theme = theme;
+			
+			_tabControl.DrawMode = _enabled ? TabDrawMode.OwnerDrawFixed : _originalDrawMode;
+			_tabControl.Invalidate();
 		}
 	}
 }
