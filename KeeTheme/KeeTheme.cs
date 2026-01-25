@@ -107,7 +107,7 @@ namespace KeeTheme
 
 			var dataGridView = control as DataGridView;
 			if (dataGridView != null) Apply(dataGridView);
-			
+
 			var button = control as Button;
 			if (button != null) Apply(button);
 
@@ -144,6 +144,9 @@ namespace KeeTheme
 			var tabControl = control as TabControl;
 			if (tabControl != null) Apply(tabControl);
 
+			var tabPage = control as TabPage;
+			if (tabPage != null) Apply(tabPage);
+
 			var qualityProgressBar = control as QualityProgressBar;
 			if (qualityProgressBar != null) Apply(qualityProgressBar);
 
@@ -152,25 +155,25 @@ namespace KeeTheme
 
 			var checkBox = control as CheckBox;
 			if (checkBox != null) Apply(checkBox);
-			
+
 			var propertyGrid = control as PropertyGrid;
 			if (propertyGrid != null) Apply(propertyGrid);
-			
+
 			OverrideResetBackground(control);
 			OverrideScrollBarsSetExplorerTheme(control);
 		}
 
 		private void OverrideScrollBarsSetExplorerTheme(Control control)
 		{
-			if (!CanHaveScrollBars(control) || MonoWorkarounds.IsRequired()) 
+			if (!CanHaveScrollBars(control) || MonoWorkarounds.IsRequired())
 				return;
-			
+
 			var useExplorerDarkMode = _theme.ScrollBar.UseExplorerDarkMode;
 			TrySetWindowTheme(control.Handle, _enabled && useExplorerDarkMode);
 
 			control.HandleCreated -= HandleControlCreated;
 			control.HandleCreated += HandleControlCreated;
-			
+
 			var keePassForm = control as Form;
 			if (keePassForm != null && keePassForm.GetType().Namespace.StartsWith("KeePass"))
 			{
@@ -214,7 +217,7 @@ namespace KeeTheme
 			       control is Panel ||
 			       control is UserControl ||
 			       control is Form ||
-			       control is ScrollableControl || 
+			       control is ScrollableControl ||
 			       control is TabControl;
 		}
 
@@ -228,6 +231,7 @@ namespace KeeTheme
 						control.BackColor = _theme.Control.BackColor;
 				};
 			}
+
 			if (control.Name == "m_tbSearch" && control.Parent.Name == "OptionsForm")
 			{
 				control.BackColorChanged += (sender, args) =>
@@ -244,7 +248,7 @@ namespace KeeTheme
 			dataGridView.RowsDefaultCellStyle.BackColor = _theme.Control.BackColor;
 			dataGridView.RowsDefaultCellStyle.ForeColor = _theme.Control.ForeColor;
 		}
-		
+
 		private void Apply(CheckBox checkBox)
 		{
 			var checkBoxLook = checkBox.Appearance == Appearance.Button
@@ -258,7 +262,7 @@ namespace KeeTheme
 			checkBox.FlatAppearance.CheckedBackColor = checkBoxLook.CheckedBackColor;
 			checkBox.FlatAppearance.MouseDownBackColor = checkBoxLook.MouseDownBackColor;
 			checkBox.FlatAppearance.MouseOverBackColor = checkBoxLook.MouseOverBackColor;
-			
+
 			checkBox.EnabledChanged -= HandleCheckBoxEnabledChanged;
 			checkBox.EnabledChanged += HandleCheckBoxEnabledChanged;
 		}
@@ -279,13 +283,13 @@ namespace KeeTheme
 
 		private void HandleCheckBoxPaint(object sender, PaintEventArgs e)
 		{
-			var checkBox = (CheckBox)sender;
+			var checkBox = (CheckBox) sender;
 			var disabledForeColor = ControlPaint.Dark(_theme.Button.ForeColor, 0.25f);
 			var glyphSize = CheckBoxRenderer.GetGlyphSize(e.Graphics, CheckBoxState.UncheckedNormal);
 			var flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine;
-			var clientRectangle = new Rectangle(glyphSize.Width, -1, 
+			var clientRectangle = new Rectangle(glyphSize.Width, -1,
 				checkBox.ClientRectangle.Size.Width - glyphSize.Width, checkBox.ClientRectangle.Size.Height);
-			
+
 			TextRenderer.DrawText(e.Graphics, checkBox.Text, checkBox.Font, clientRectangle, disabledForeColor, flags);
 		}
 
@@ -304,7 +308,7 @@ namespace KeeTheme
 			{
 				return;
 			}
-			
+
 			var comboBox = (ComboBox) sender;
 			if (comboBox.BackColor == SystemColors.Window)
 				comboBox.BackColor = _theme.Control.BackColor;
@@ -320,7 +324,7 @@ namespace KeeTheme
 			var decoratorName = tabControl.Name + "_decorator";
 			var decorator =
 				tabControl.Parent.Controls.Find(decoratorName, false).FirstOrDefault() as TabControlDecorator;
-			
+
 			if (decorator == null)
 			{
 				decorator = new TabControlDecorator(tabControl, _theme);
@@ -329,11 +333,26 @@ namespace KeeTheme
 
 			tabControl.BackColor = _theme.TabControl.BackColor;
 			tabControl.ForeColor = _theme.TabControl.ForeColor;
-			
-			decorator.EnableTheme(_enabled, _theme);			
-			
+
+			decorator.EnableTheme(_enabled, _theme);
+
 			tabControl.ControlAdded -= HandleTabControlAdded;
 			tabControl.ControlAdded += HandleTabControlAdded;
+		}
+
+		private void Apply(TabPage tabPage)
+		{
+			tabPage.Invalidated -= HandleTabPageInvalidated;
+			tabPage.Invalidated += HandleTabPageInvalidated;
+		}
+
+		private void HandleTabPageInvalidated(object sender, InvalidateEventArgs e)
+		{
+			var tabPage = (TabPage) sender;
+			if (tabPage.UseVisualStyleBackColor)
+			{
+				tabPage.UseVisualStyleBackColor = false;
+			}
 		}
 
 		private void HandleTabControlAdded(object sender, ControlEventArgs e)
@@ -412,7 +431,7 @@ namespace KeeTheme
 				return;
 			}
 
-			var textBox = (SecureTextBoxEx)sender;
+			var textBox = (SecureTextBoxEx) sender;
 			if (textBox.BackColor == SystemColors.Window)
 				textBox.BackColor = _theme.SecureTextBox.BackColor;
 		}
@@ -483,9 +502,9 @@ namespace KeeTheme
 
 			if (button is SplitButtonEx)
 			{
-				var decorator = button.Controls.OfType<SplitButtonExDecorator>().FirstOrDefault() 
+				var decorator = button.Controls.OfType<SplitButtonExDecorator>().FirstOrDefault()
 				                ?? new SplitButtonExDecorator((SplitButtonEx) button, _theme);
-				
+
 				decorator.EnableTheme(_enabled, _theme);
 			}
 
@@ -508,14 +527,16 @@ namespace KeeTheme
 
 		private void HandleButtonPaint(object sender, PaintEventArgs e)
 		{
-			var button = (Button)sender;
+			var button = (Button) sender;
 			var disabledForeColor = ControlPaint.Dark(_theme.Button.ForeColor, 0.25f);
 			if (button.Enabled)
 			{
 				disabledForeColor = _theme.Button.ForeColor;
 			}
+
 			var flags = TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter | TextFormatFlags.WordBreak;
-			TextRenderer.DrawText(e.Graphics, button.Text, button.Font, button.ClientRectangle, disabledForeColor, flags);
+			TextRenderer.DrawText(e.Graphics, button.Text, button.Font, button.ClientRectangle, disabledForeColor,
+				flags);
 		}
 
 		private void Apply(LinkLabel linkLabel)
@@ -527,7 +548,7 @@ namespace KeeTheme
 		{
 			treeView.BorderStyle = _theme.TreeView.BorderStyle;
 			treeView.BackColor = _theme.TreeView.BackColor;
-			
+
 			if (!MonoWorkarounds.IsRequired())
 			{
 				treeView.DrawMode = _theme.TreeViewDrawMode;
@@ -553,32 +574,35 @@ namespace KeeTheme
 				// ignored
 			}
 		}
-		
+
 		private void HandleTreeViewDrawNode(object sender, DrawTreeNodeEventArgs e)
 		{
 			// DrawDefault = true does not have TextFormatFlags.NoPrefix flag set
 			var node = e.Node;
 
 			var isNodeSelected = (e.State & TreeNodeStates.Selected) == TreeNodeStates.Selected;
-			var foreColor = isNodeSelected && node.TreeView.Focused 
-				? _theme.TreeView.SelectionColor 
-				: _theme.TreeView.ForeColor != Color.Empty ? _theme.TreeView.ForeColor : node.TreeView.ForeColor;
-			
+			var foreColor = isNodeSelected && node.TreeView.Focused
+				? _theme.TreeView.SelectionColor
+				: _theme.TreeView.ForeColor != Color.Empty
+					? _theme.TreeView.ForeColor
+					: node.TreeView.ForeColor;
+
 			var backColor = isNodeSelected ? _theme.TreeView.SelectionBackColor : _theme.TreeView.BackColor;
-			
+
 			var font = node.NodeFont ?? node.TreeView.Font;
 			var size = TextRenderer.MeasureText(node.Text, font, e.Bounds.Size, TextFormatFlags.NoPrefix);
-			var rectangle = new Rectangle(new Point(node.Bounds.X - 1, node.Bounds.Y), new Size(size.Width, node.Bounds.Height));
+			var rectangle = new Rectangle(new Point(node.Bounds.X - 1, node.Bounds.Y),
+				new Size(size.Width, node.Bounds.Height));
 
 			using (var backColorBrush = new SolidBrush(backColor))
 				e.Graphics.FillRectangle(backColorBrush, rectangle);
 
 			if (isNodeSelected && node.TreeView.Focused)
 				ControlPaint.DrawFocusRectangle(e.Graphics, rectangle, foreColor, backColor);
-			
+
 			TextRenderer.DrawText(e.Graphics, node.Text, font, rectangle, foreColor, TextFormatFlags.NoPrefix);
 		}
-		
+
 		private void Apply(RichTextBox richTextBox)
 		{
 			var decorator = richTextBox.Parent as RichTextBoxDecorator;
@@ -588,7 +612,6 @@ namespace KeeTheme
 			}
 
 			decorator.EnableTheme(_enabled, _theme);
-
 		}
 
 		private void Apply(ListView listView)
@@ -600,7 +623,7 @@ namespace KeeTheme
 			}
 
 			var decorator = listView.Controls.OfType<ListViewDecorator>().FirstOrDefault()
-			                ?? new ListViewDecorator(listView , _theme);
+			                ?? new ListViewDecorator(listView, _theme);
 
 			decorator.EnableTheme(_enabled, _theme);
 		}
