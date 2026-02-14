@@ -127,9 +127,16 @@ namespace KeeTheme
 
 		private void InitializeTheme()
 		{
+			if (_initialized) return; //Not required to fix issue #137
 			_theme.Enabled = _options.Enabled;
 			if (_theme.Enabled)
-				ApplyThemeInOpenForms();
+			{
+				if (Program.MainForm.InvokeRequired || KeePassLib.Utility.MonoWorkarounds.IsRequired(373134))
+				{
+					Program.MainForm.BeginInvoke(new Action(() => { ApplyThemeInOpenForms(); }));
+				}
+				else ApplyThemeInOpenForms();
+			}
 
 			_options.EnabledChanged += enable =>
 			{
