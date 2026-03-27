@@ -1,0 +1,1611 @@
+[33mcommit f822729060b7b7e5c93e0e7051980fed22a3f55d[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mtheme/solarized-dark[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmaster[m[33m)[m
+Merge: 3dcecf5 4013255
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 10 18:18:38 2026 +0000
+
+    Merge pull request #11 from outkst/theme/monokai
+    
+    Add Monokai Theme
+
+[33mcommit 4013255fb605aa8cffc346043d3f3e6c0c7e3cc2[m[33m ([m[1;31morigin/theme/monokai[m[33m, [m[1;32mtheme/monokai[m[33m)[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 10 13:10:11 2026 -0500
+
+    Add Monokai Readme
+
+[33mcommit 8fe7206d0f5198b938c8a232b5f550407f06fba4[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 10 13:06:43 2026 -0500
+
+    Add Monokai Screenshots
+
+[33mcommit d44a96326fcddd138f5a2a9c50c8007a9772fefd[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 10 13:05:14 2026 -0500
+
+    Add Monokai Theme
+
+[33mcommit 3dcecf5cc60b7c62b77f3933fa4bcab054be9fee[m
+Merge: 0975dc2 b6edc99
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Mon Feb 9 03:56:44 2026 +0000
+
+    Merge pull request #10 from outkst/fix/dracula
+    
+    Fix ListView BackColor
+
+[33mcommit b6edc9977d26ed1b6eb1efee70ae9f78a20c7177[m[33m ([m[1;31morigin/fix/dracula[m[33m, [m[1;32mfix/dracula[m[33m)[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Sun Feb 8 22:54:13 2026 -0500
+
+    Fix ListView BackColor
+
+[33mcommit 0975dc284d27e174cc05b0e7b110d567d2b75649[m
+Merge: 548ef87 36df6e3
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Sat Feb 7 18:05:56 2026 +0000
+
+    Merge pull request #9 from outkst/fix/dracula
+    
+    Fix ListView Border BackColor
+
+[33mcommit 36df6e30255aa2e6828b23dbcc8e0553b7775b2f[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Sat Feb 7 13:04:53 2026 -0500
+
+    Fix ListView Border BackColor
+
+[33mcommit 548ef87ecae0322de6b12c2863da181c3c2cdb63[m
+Merge: 1e7da67 ff13ad9
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Sat Feb 7 18:00:41 2026 +0000
+
+    Merge pull request #8 from outkst/fix/dracula
+    
+    Update Dracula Images. Fix Control Borders
+
+[33mcommit ff13ad91cf9193383bad219e42c5107c9604437f[m
+Merge: 596ac45 1e7da67
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Sat Feb 7 18:00:28 2026 +0000
+
+    Merge branch 'master' into fix/dracula
+
+[33mcommit 596ac458b5b41012d7702dc583efb661886eeabf[m
+Merge: 4f390e5 266a28b
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Sat Feb 7 12:57:25 2026 -0500
+
+    Merge branch 'master' into fix/dracula
+
+[33mcommit 4f390e5a62ec57317a3149858a86af876299a3eb[m[33m ([m[1;32mmerge[m[33m)[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Sat Feb 7 12:50:59 2026 -0500
+
+    Update Dracula Images
+
+[33mcommit 1e7da67c43bd847b7c922eb10039bba96b886cc3[m
+Merge: 988f220 51daaa9
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Fri Feb 6 20:04:11 2026 +0000
+
+    Merge pull request #7 from outkst/fix/dracula
+    
+    Fix Dracula TreeView BackColor
+
+[33mcommit 51daaa91547adef64e4f39f13a954ee7305daa92[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Fri Feb 6 15:02:05 2026 -0500
+
+    Fix Dracula TreeView BackColor
+
+[33mcommit 988f220d68bfa96f916e25853b6a7c20c0bde8c0[m
+Merge: 266a28b f483e98
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Fri Feb 6 05:49:22 2026 +0000
+
+    Merge pull request #6 from outkst/fix/dracula
+    
+    Add Dracula Colors To Palette. Fix ListView BackColor to match TreeView.
+
+[33mcommit f483e9820c5f7581ebe8d97a6f06f1933df6cb7c[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Fri Feb 6 00:46:20 2026 -0500
+
+    Fix ListView BackColor
+
+[33mcommit cc62f0d07e32cdee8e409e472ffae120477e9738[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Fri Feb 6 00:32:16 2026 -0500
+
+    Add Dracula Colors To Palette
+
+[33mcommit 266a28bd109f4b942dce6533e22a9148a9845b83[m
+Merge: ffd3fd1 deed099
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 3 18:09:59 2026 +0000
+
+    Merge pull request #5 from outkst/fix/dracula
+    
+    Fix TreeView Color
+
+[33mcommit deed09992351f6d5f994824126a918cba4e64583[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 3 13:08:24 2026 -0500
+
+    Fix TreeView Color
+
+[33mcommit ffd3fd18681bb11d3c8ca8403b8296368babebc9[m
+Merge: 3d5145f 853690e
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 3 18:00:59 2026 +0000
+
+    Merge pull request #4 from outkst/feature/tutorial-update
+    
+    Dracula Tutorial Update
+
+[33mcommit 853690e8c3e97ffd3a00b688909961b6fd44742c[m[33m ([m[1;31morigin/feature/tutorial-update[m[33m, [m[1;32mfeature/tutorial-update[m[33m)[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 3 17:59:28 2026 +0000
+
+    Update Custom Theme Instructions
+    
+    Make more clear instructions for custom themes
+
+[33mcommit e9b40127b57725450246ce4c42345a7a3ebc85f6[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 3 12:56:54 2026 -0500
+
+    Update Tutorial
+
+[33mcommit 3d5145f37d03fe84ba433119e443641dc01568d5[m
+Merge: 21d8a5e c7f9e46
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 3 17:17:05 2026 +0000
+
+    Merge pull request #3 from outkst/fix/dracula
+    
+    Update Dracula Menu Toolbar
+
+[33mcommit c7f9e4652f571d809f1bb846d4daa7a9f3f846e1[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 3 12:14:46 2026 -0500
+
+    Update Dracula Menu Toolbar
+
+[33mcommit 21d8a5eb681bd051e713e53e11d43c2c2e444c18[m
+Merge: aa8e331 60d5603
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 3 16:47:12 2026 +0000
+
+    Merge pull request #2 from outkst/fix/dracula
+    
+    Fix Dracula Theme Color
+
+[33mcommit 60d56037c9aef56590a5a4cc8fae03948d277e0a[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Tue Feb 3 11:42:26 2026 -0500
+
+    Fix Dracula Theme Color
+
+[33mcommit aa8e331176f5cca38182847906a404105b732241[m
+Merge: ddba1d0 b42b8f4
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Mon Feb 2 00:59:44 2026 +0000
+
+    Merge branch 'xatupal:master' into master
+
+[33mcommit b42b8f4f3bc21b620ca6791ef5150ad776e3eb27[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Feb 1 21:39:41 2026 +0100
+
+    Update Chocolatey package source version to 1.0.3
+
+[33mcommit f4726a2d42b91e37e0c1c86677d1aa0e6bda3c1a[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Feb 1 21:35:21 2026 +0100
+
+    Update version to 1.0.3
+
+[33mcommit 984b6bf6d92fa5317ca5518de452d26a28ece812[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Feb 1 21:34:42 2026 +0100
+
+    Fix #128 low contrast in selected tabs
+
+[33mcommit a3ad2b5f5c945698a93bc8a89a1162108bc4aa57[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 25 20:53:41 2026 +0100
+
+    Update Chocolatey package source version to 1.0.2
+
+[33mcommit 8eb4eabb22bde027e92f2b9986881174337c488a[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 25 20:37:49 2026 +0100
+
+    Update version to 1.0.2
+
+[33mcommit 5bc7fe9062fdf03d490dae3b6297520d8e5cf6e8[m
+Merge: 5f63658 f75307f
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Feb 1 21:14:07 2026 +0100
+
+    Merge pull request #132 from outkst/theme/dracula
+    
+    Add Dracula Theme
+
+[33mcommit ddba1d0a453d447806226ada205a8e44ca5370bf[m
+Merge: 5f63658 f75307f
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Sun Feb 1 18:55:27 2026 +0000
+
+    Merge pull request #1 from outkst/theme/dracula
+    
+    Add Dracula Theme
+
+[33mcommit f75307f3bb6074f660d1bc5699748d0d6982cc77[m
+Author: outkst <14924716+outkst@users.noreply.github.com>
+Date:   Sun Feb 1 13:33:34 2026 -0500
+
+    Add Dracula Theme
+
+[33mcommit 5f63658337b17e3e807d6a4e5a635c1a1468a479[m[33m ([m[1;33mtag: [m[1;33mv1.0.2[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 25 20:36:32 2026 +0100
+
+    Fix #125 TabControls blinking when moving the cursor between tabs
+
+[33mcommit 4f0f077fdebf9f987026ceaac61ea30096578b8f[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 25 18:45:36 2026 +0100
+
+    Fix #127 option search makes the options white
+
+[33mcommit 17d8a1b5a1054d6264f34612cf89da40ca531b40[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 25 17:54:34 2026 +0100
+
+    Fix #126 white scrollbars in options
+
+[33mcommit d66c4f45cda0ffc670ec91bd11f18fed2c0cc6fb[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 25 10:03:00 2026 +0100
+
+    Fix #120 Showing KeeTheme options under Linux
+
+[33mcommit d7edecafa852d69c7663a1ebc3edcfe1818e2f5e[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 25 09:44:48 2026 +0100
+
+    Update Chocolatey package source version to 1.0.1
+
+[33mcommit 5d504731fc9d85db6f7543e250e81d4b6fe7cd91[m[33m ([m[1;33mtag: [m[1;33mv1.0.1[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 24 14:48:30 2026 +0100
+
+    Update version to 1.0.1
+
+[33mcommit 7ffbb19b4eb1280d9416f7c3f78d1ff99bc83759[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 24 12:07:45 2026 +0100
+
+    Update Chocolatey package source version to 1.0.0
+
+[33mcommit 095eaafb42717c9c151ba3dee1962b2f808a856e[m[33m ([m[1;33mtag: [m[1;33mv1.0.0[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 24 11:50:42 2026 +0100
+
+    Refactor HandleCreated event subscription to avoid memory leaks
+
+[33mcommit f581c69a5a6ce3594743620e840020e858cf4673[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 24 11:25:26 2026 +0100
+
+    Add ScrollBarLook support to CustomTheme and templates
+
+[33mcommit e80af664996baeb39ec39aa8fa8bb7b45255361e[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 24 10:36:53 2026 +0100
+
+    Fix ColorEditor value saving
+
+[33mcommit be9da0eaf667bb12d8ae9cc43d4db03c12fdf74b[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 24 08:44:00 2026 +0100
+
+    Re-apply dark mode theme to override SetExplorerTheme
+
+[33mcommit a9a017b8fd1c1d2f50231e7c87e651f1d32c2aa5[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 24 08:35:59 2026 +0100
+
+    Adjust button anchoring in TemplateEditorForm
+
+[33mcommit b914fe0fbc372152f0aa8e3affb7f6f5ee2320fa[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 24 08:24:33 2026 +0100
+
+    Update screenshots
+
+[33mcommit e9e5e24f500deada3cb23c219f687eda10b0954a[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 24 08:24:05 2026 +0100
+
+    Add support for TabControl
+
+[33mcommit e129adfe994335a66714fdc6494ef5cb9cb46013[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 24 08:15:39 2026 +0100
+
+    Fix typos and improve clarity in README.md
+
+[33mcommit f098e683eb09cd63541932f453f525f779d93296[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Mon Jan 19 21:24:27 2026 +0100
+
+    Add support for scrollbars
+
+[33mcommit b8bb35aab9989ecf4be6124f47a02e4e6779c9f0[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Mon Jan 19 21:20:33 2026 +0100
+
+    Update version to 0.11.0
+
+[33mcommit ac4f4c2d208becf98707376054cfbc07e2926d64[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 18 09:49:02 2026 +0100
+
+    Update Chocolatey package source version to 0.10.8
+
+[33mcommit 748e71b301cad786e09bd56fe70a705aa1888d75[m[33m ([m[1;33mtag: [m[1;33mv0.10.8[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 18 09:37:40 2026 +0100
+
+    Update build script to prioritize Rider MSBuild and fallback to PATH
+
+[33mcommit 4c578704082970b499c101f830b106f84b94dbbb[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 18 08:56:49 2026 +0100
+
+    Fix #116 Option search feature in lists
+
+[33mcommit b1b0c5b2b7cd76da7bddb88684af4c381a72956c[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Jan 18 07:52:00 2026 +0100
+
+    Fix #122 Always initialize plugin before the first form is opened
+
+[33mcommit b47e7a9e85a54bf16872bf42081a88e03d22f682[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 17 22:17:54 2026 +0100
+
+    Check if template directory exists before retrieving files
+
+[33mcommit 9c99fb5b79ee7fc23f0b3428d32a78ed59e1611e[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 17 21:43:46 2026 +0100
+
+    Update version to 0.10.8
+
+[33mcommit e1ba494640fc585e715a8bffaa5446aecb7643e3[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 17 21:42:58 2026 +0100
+
+    Update Chocolatey package source version to 0.10.7
+
+[33mcommit 700f411a481bcd276f039f20418df34e4f489240[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 17 21:40:11 2026 +0100
+
+    Fix #121 Ampersand characters are not shown in formatted links
+
+[33mcommit 5f2534d5ca7847411e6911b4298a6405cbe44362[m[33m ([m[1;33mtag: [m[1;33mv0.10.7[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Apr 6 18:47:46 2024 +0200
+
+    Update version to 0.10.7
+
+[33mcommit 7c4de0f0230184918b32a4c7c3f9bb95000127bd[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Apr 6 18:47:13 2024 +0200
+
+    Fix #109 Remove UxTheme.dll dependency on Mono
+
+[33mcommit e7f82daa6a167ccb78cec9971a94b24571975afd[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Feb 8 21:09:50 2024 +0100
+
+    Update Chocolatey package source version to 0.10.6
+
+[33mcommit 42de036dfe4d52ef30353db1ab36339605b9f405[m[33m ([m[1;33mtag: [m[1;33mv0.10.6[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Feb 8 21:04:57 2024 +0100
+
+    Update version to 0.10.6
+
+[33mcommit 2363536709260fb3b2ccd6c901929fd3bc3c237b[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Feb 8 21:03:49 2024 +0100
+
+    Fix #95 #103 compatibility with EditEntryGroup plugin
+
+[33mcommit e59d598ee077faf2468467440cb402af9fb18f0f[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 20 21:33:12 2024 +0100
+
+    Update Chocolatey package source version to 0.10.5
+
+[33mcommit 61922750d9d3748c57c5e1ed307d282feb20b7f0[m[33m ([m[1;33mtag: [m[1;33mv0.10.5[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 20 21:27:17 2024 +0100
+
+    Update version to 0.10.5
+
+[33mcommit b13f81b719c67c557a23173eb8d708f390aed999[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Jan 20 21:26:30 2024 +0100
+
+    Fix #97 auto-type syntax highlighting
+
+[33mcommit 1ec9feb5bd3ddd7cd8468a0b69ca448c6b8054f1[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Jan 18 22:18:42 2024 +0100
+
+    Update Chocolatey package source version to 0.10.4
+
+[33mcommit 420a39ac5d90a8282e5a533eda947e7a79e62216[m[33m ([m[1;33mtag: [m[1;33mv0.10.4[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Jan 18 22:13:45 2024 +0100
+
+    Update version to 0.10.4
+
+[33mcommit 3300f96c11b02357faef8906f74cbc90dd1a3f97[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Jan 18 22:12:32 2024 +0100
+
+    Fix #92 a few memory leaks
+
+[33mcommit 30e14b14d1b60a920ecfb454eb92b920b9a06290[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Jan 18 21:38:56 2024 +0100
+
+    Update Chocolatey package source version to 0.10.3
+
+[33mcommit e31deeba4e66a8f507cfeae7d6b4d95ba16bd1c5[m[33m ([m[1;33mtag: [m[1;33mv0.10.3[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Jan 18 21:17:01 2024 +0100
+
+    Fix #98 Exception when shutdown pc
+
+[33mcommit 70a99078e4efc928a2967286f3af5b4d7b2f418d[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Feb 15 22:11:25 2023 +0100
+
+    Update version to 0.10.3
+
+[33mcommit 890fa6715ef407aba007b4671141d20cff3e9034[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Feb 15 22:10:37 2023 +0100
+
+    Fix #89 Context menu text color in KPEnhancedEntryView
+
+[33mcommit 0b53ba1a8fed14063e19d2eed66d46d9c6a36666[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Jan 17 22:06:15 2023 +0100
+
+    Update Chocolatey package source version to 0.10.2
+
+[33mcommit ce4ffb6c3091f48b2879c95d77b1e15b4780d98c[m[33m ([m[1;33mtag: [m[1;33mv0.10.2[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Jan 17 21:59:06 2023 +0100
+
+    Update version to 0.10.2
+
+[33mcommit f2d0ae5a122427c2a268ba89fde7107af5c7a369[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Jan 17 21:57:53 2023 +0100
+
+    Fix #84 links appearance when non-default font is used
+
+[33mcommit 9654df0909a970ae2603b8f4c29d6b540868cc19[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Fri Nov 18 21:04:41 2022 +0100
+
+    Update Chocolatey package source version to 0.10.1
+
+[33mcommit e7907f5ae204faedd305d97fd13254be3ac4088a[m[33m ([m[1;33mtag: [m[1;33mv0.10.1[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Fri Nov 18 20:59:24 2022 +0100
+
+    Update version to 0.10.1
+
+[33mcommit 3f2dea7233717b46fa4b17da3cfddc2ba15fa3b0[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Fri Nov 18 20:58:50 2022 +0100
+
+    Fix #86 contrast issue in KeeAgent Manage window
+
+[33mcommit 50621e816d08cf22adbbf30d49eef51a2429bd5b[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Fri Nov 11 21:55:00 2022 +0100
+
+    Update Chocolatey package source version to 0.10.0
+
+[33mcommit 5e7f5e95d2b5bd9f5876452f3fa6f0cedb3f052f[m[33m ([m[1;33mtag: [m[1;33mv0.10.0[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Fri Nov 11 21:38:30 2022 +0100
+
+    Update version to 0.10.0
+
+[33mcommit 9cb87e1e7ac39524187b1e4c6f562d17af298ff3[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Fri Nov 11 21:32:29 2022 +0100
+
+    Update documentation
+
+[33mcommit b6c3c0f4281ead64e399881f60db83f56dc57567[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Fri Nov 11 21:11:53 2022 +0100
+
+    Add colors editor
+
+[33mcommit 210d3f75fd0f6073fb024ad083f35f78f4afae9f[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Mon Oct 17 20:48:02 2022 +0200
+
+    Add theme template editor
+
+[33mcommit 722c8b68ad07734980794397b1d78dc86e3f95d1[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Oct 2 22:24:50 2022 +0200
+
+    Add theme selection
+
+[33mcommit 3a8ef9cb70f2c5a497af9d83e7e7a97aa247c470[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Sep 11 22:14:32 2022 +0200
+
+    Fix #83 usage of private env variable
+    
+    https://docs.chocolatey.org/en-us/community-repository/moderation/package-validator/rules/cpmr0072
+
+[33mcommit fc37f6c1a25b5d128b71bfb4993c9621f24b9373[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Sep 3 21:25:47 2022 +0200
+
+    Update Chocolatey package source version to 0.9.12
+
+[33mcommit 40665278d7e478f4ec078e0f5dc989a5772fae22[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Sep 3 21:20:07 2022 +0200
+
+    Update version to 0.9.12
+
+[33mcommit 28138abdcb52f27a0fa102d8ce687c4875671ca5[m[33m ([m[1;33mtag: [m[1;33mv0.9.12[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Sep 3 21:17:43 2022 +0200
+
+    Fix #78 color of disabled checkboxes
+
+[33mcommit f28d2b62327b365ce94da39d857cbc99c6f9c8bd[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed May 25 21:56:13 2022 +0200
+
+    Update Chocolatey package source version to 0.9.11
+
+[33mcommit 3dc3967ac2b01831e5444e2c4f7c531d3891a64c[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed May 25 21:38:32 2022 +0200
+
+    Update version to 0.9.11
+
+[33mcommit c8b7e4be6084a3329b941cb5e4386de617cb684d[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed May 25 21:35:23 2022 +0200
+
+    Fix #77 apply theme to the password generator menu
+
+[33mcommit 15569457718101507be31b067eb9079fe75b5003[m[33m ([m[1;33mtag: [m[1;33mv0.9.11[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Apr 20 22:24:19 2022 +0200
+
+    Update Chocolatey package source version to 0.9.10
+
+[33mcommit fe1a61c2d3a482463d50722dde7b3fd1d6a74087[m[33m ([m[1;33mtag: [m[1;33mv0.9.10[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Apr 20 22:11:11 2022 +0200
+
+    Update version to 0.9.10
+
+[33mcommit 26319e6625fc4c56845cb53a451579885e98cd1c[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Apr 20 22:10:37 2022 +0200
+
+    Fix #72 URL font color in KPEnhancedEntryView
+
+[33mcommit 94befc97910651f3dbf9d8c51284d283b807fa3c[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Mar 26 22:31:06 2022 +0100
+
+    Update Chocolatey package source version to 0.9.9
+
+[33mcommit c75bf261ac0c3f66c06c2aa1cde66859a7e6f750[m[33m ([m[1;33mtag: [m[1;33mv0.9.9[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Mar 26 22:28:01 2022 +0100
+
+    Update version to 0.9.9
+
+[33mcommit 2b8b3e85824785507d00a2184758b58c874f3d4f[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Mar 26 22:27:00 2022 +0100
+
+    Fix #67 color of comboBox in "Edit Entry Field" form
+
+[33mcommit 20f1452a20beb634ad133e6f573a048fe6d01e32[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Mar 26 22:00:31 2022 +0100
+
+    Update Chocolatey package source version to 0.9.6
+
+[33mcommit 57050095058aa89140db1c38153d29f4fe5a37de[m[33m ([m[1;33mtag: [m[1;33mv0.9.8[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Mar 26 21:58:57 2022 +0100
+
+    Update version to 0.9.8
+
+[33mcommit 7e2c6f0c62d8a60227db782beed871f4d2c1641f[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Mar 26 21:58:36 2022 +0100
+
+    Make code compatible with C# 3.0
+
+[33mcommit 8969750a534efe22aefa3478df2a0b31ec56e8c6[m[33m ([m[1;33mtag: [m[1;33mv0.9.7[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Mar 26 21:47:42 2022 +0100
+
+    Update version to 0.9.7
+
+[33mcommit 7afb2b758792643c687a5ab3ac8b1039c652e418[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Mar 26 21:46:25 2022 +0100
+
+    Fix #69 applying the theme to the forms of other plugins
+
+[33mcommit 9f3010caa6fa16dd43534fd322dcab377b06d148[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Feb 23 18:32:29 2022 +0100
+
+    Update Chocolatey package source version to 0.9.6
+
+[33mcommit c43fb8d8e605f6f1f06f27a8c2fbdd73b1ace869[m[33m ([m[1;33mtag: [m[1;33mv0.9.6[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Feb 23 18:28:33 2022 +0100
+
+    Update version to 0.9.6
+
+[33mcommit 8bc3ffc6dbc1c96d29e647e6acb6d792ce65bd96[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Feb 23 18:27:56 2022 +0100
+
+    Fix #68 exception when no other plugins installed
+
+[33mcommit 18867b01684a0d5fb09dc04aaed4bf8d4cfdbfcc[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Feb 22 22:15:46 2022 +0100
+
+    Update Chocolatey package source version to 0.9.5
+
+[33mcommit d8db8b5b3db0b9fa0ce0ebf0ac425a46d4ddd283[m[33m ([m[1;33mtag: [m[1;33mv0.9.5[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Feb 22 22:11:07 2022 +0100
+
+    Make code compatible with C# 3.0
+
+[33mcommit 543c321e9f92faf8f06bf2ead37cb79c7d96c6af[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Feb 22 22:08:15 2022 +0100
+
+    Update version to 0.9.5
+
+[33mcommit de223b87305f8c5d2359592213a0abd7c788555c[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Feb 22 22:07:27 2022 +0100
+
+    Fix #53 compatibility issues with KeeResize
+
+[33mcommit 7e70fb1cbe21be908adee1351f171cb66fbf6538[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Mon Feb 14 20:28:04 2022 +0100
+
+    Update Chocolatey package source version to 0.9.4
+
+[33mcommit 18ddd7f167007c388279b9b04f20a1a80245902e[m[33m ([m[1;33mtag: [m[1;33mv0.9.4[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Feb 13 21:48:06 2022 +0100
+
+    Update version to 0.9.4
+
+[33mcommit 048b5eafd7b08b1cfebaf16ea608474179a54d9a[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Feb 13 21:43:06 2022 +0100
+
+    Fix #54 colors in "Edit Auto-Type Item" form
+
+[33mcommit 2fad1704d2abec9d830ff81ea30b961eace6ed9d[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Feb 10 22:14:35 2022 +0100
+
+    Fix #62 choco install fails when KeePass is in $env.Path
+
+[33mcommit f07886c18866797da4c76aadf75b70152e6c8cc9[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Dec 21 21:57:41 2021 +0100
+
+    Update Chocolatey package source version to 0.9.3
+
+[33mcommit 39e18f9b61637cb3a6ab0d9c9957b15977e59af1[m[33m ([m[1;33mtag: [m[1;33mv0.9.3[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Dec 14 22:52:46 2021 +0100
+
+    Update KeePass.exe. location in build.cmd
+
+[33mcommit 7edbd342ea1d7c14a780708519597ea104c17f83[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Dec 14 22:47:56 2021 +0100
+
+    Update version to 0.9.3
+
+[33mcommit ef6e82c12fb56d95a4863eab56ac5925644fd870[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Dec 14 22:47:43 2021 +0100
+
+    Update KeePass.exe location in the project file
+
+[33mcommit dfbeca551814d4e0030a1554e94ea47b508fe11c[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Dec 14 22:47:21 2021 +0100
+
+    Fix #58 overlapping links in the entry view
+    
+    Problem occurred when KPEnhancedEntryView was used.
+
+[33mcommit 1d616a7c9d53806aad446bc54563cb631213c730[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Dec 14 22:43:03 2021 +0100
+
+    Fix #63 support for custom alternating item color
+
+[33mcommit 28417716dc9262480669e9d825af060ffde2b147[m
+Merge: 85c6515 790abd2
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Dec 14 20:37:34 2021 +0100
+
+    Merge pull request #60 from Rookiestyle/master
+    
+    Proper handling of decorated RichTextBox's TabStop settings
+
+[33mcommit 790abd24b8e5e65f9d3991c34e1a338020e69c43[m
+Author: rookiestyle <rookiestyle@gmx.net>
+Date:   Wed Sep 8 17:58:44 2021 +0200
+
+    Proper handling of decorated RichTextBox's TabStop settings (TabStop and TabIndex)
+    Also consider changed size
+
+[33mcommit 85c65150e9689e9928843b4697d1f752212cdb91[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Jun 17 22:03:04 2021 +0200
+
+    Update Chocolatey package source version to 0.9.2
+
+[33mcommit 1b2cf1508e75bc04a8b7b6535bc7d90c6c4512b1[m[33m ([m[1;33mtag: [m[1;33mv0.9.2[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Jun 17 22:00:50 2021 +0200
+
+    Fix compilation error on .net 2.0
+
+[33mcommit 256188f8f37491e0c715db7b73ac5ce228c1ee09[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Jun 17 21:56:44 2021 +0200
+
+    Update screenshots
+
+[33mcommit 7b13c1f47184d75e8c1aaf634d865568f62c331a[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Jun 17 21:45:11 2021 +0200
+
+    Update version to 0.9.2
+
+[33mcommit 283a137aeef33ebe8cef4928f9f3c6813976ce3d[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Jun 17 21:44:38 2021 +0200
+
+    Fix #50 change title bar color in Win10
+
+[33mcommit 7417bc670ea95b82bd713dc8289661d1c5ed2df5[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun May 16 23:03:48 2021 +0200
+
+    Update KeeTheme.ini and DarkTheme.ini
+
+[33mcommit f97868791ae4a7835a69dacb7aeb9644a4fcc866[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun May 16 22:49:43 2021 +0200
+
+    Update Chocolatey package source version to 0.9.1
+
+[33mcommit 6a3b5ddfa5703d0ee583b89be2120b46ec155ba2[m[33m ([m[1;33mtag: [m[1;33mv0.9.1[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun May 16 22:37:09 2021 +0200
+
+    Update version to 0.9.1
+
+[33mcommit 85c16665423b78597a61e2be0af1f52a92fe0905[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun May 16 22:36:51 2021 +0200
+
+    Update Chocolatey package source version to 0.9.0
+
+[33mcommit bdb6984c0810a29d156a8272a05c9693d33bd138[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun May 16 22:25:13 2021 +0200
+
+    Fix #47 error after enabling auto-sync with Win10 theme
+
+[33mcommit 189e803349e724062639d6ebfb867a24cdcd87cb[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun May 16 10:35:19 2021 +0200
+
+    Update readme.md
+
+[33mcommit 9447e65db86f730a7a9eb8db34c12b883dd31a72[m[33m ([m[1;33mtag: [m[1;33mv0.9.0[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun May 16 10:12:17 2021 +0200
+
+    Update screenshots
+
+[33mcommit 9bb9ade4471071bd5e5ce44c63702c802bd3f5ce[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun May 16 09:55:45 2021 +0200
+
+    Update version to 0.9.0
+
+[33mcommit 07dd9dbf218cb229a2017db111a74c8359272885[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed May 12 23:24:38 2021 +0100
+
+    Fix #26 problem with drawing '&' in group names
+
+[33mcommit 2e1f2bed0ce009b9835bdb79fcdd4a50a7967e65[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed May 12 22:05:06 2021 +0100
+
+    Fix #33 entry list color after deactivating KeeTheme
+
+[33mcommit 7fce0fe773a5cc506953d5ffa5797d43473c22b3[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed May 12 21:59:52 2021 +0100
+
+    Fix options tab background color
+
+[33mcommit d36d81f7a53910f1b17c22f83e913e0cad30ae65[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed May 12 21:41:09 2021 +0100
+
+    Close #39 auto-sync with Win10 theme
+
+[33mcommit 22369b1cfcda764d1f0b202ea4b99f8d5c79f966[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Mon May 10 23:04:18 2021 +0200
+
+    Fix entry view font color after disabling KeeTheme
+
+[33mcommit a890771f698aa54a5745296c790d882714eca274[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Mon May 10 23:03:43 2021 +0200
+
+    Fix drawing entry view links when KeeTheme is disabled
+
+[33mcommit b3008c4a31f979bae29bf85c63793ff2e5a9b74f[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Mon May 10 23:00:02 2021 +0200
+
+    Fix drawing entry view links when text is empty
+
+[33mcommit 8ffa42e89e6ffcade540539a40d31c299157c004[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Apr 28 14:58:59 2021 +0200
+
+    Update Chocolatey package source version to 0.8.1
+
+[33mcommit 7d95ed17ccd117e34e95fb529650ecaee739fd18[m[33m ([m[1;33mtag: [m[1;33mv0.8.1[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Apr 22 21:28:25 2021 +0200
+
+    Update version to 0.8.1
+
+[33mcommit 0ef76e44caf709642b014ae1bd48530318c87e09[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Apr 22 21:26:43 2021 +0200
+
+    Fix #45 crash when another plugin handles RichTextBox
+
+[33mcommit b0423d904434146cb9e4e1203ce6095c9cd1dbb2[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Apr 22 08:01:37 2021 +0200
+
+    Update screenshots
+
+[33mcommit cdc63be3a8ba35c9e03ea204c0ed691679d0f4b1[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Apr 22 07:55:06 2021 +0200
+
+    Update Chocolatey package source version to 0.8.0
+
+[33mcommit 79256ff0d51406ddf807a9c70dca9bb89f3a996d[m[33m ([m[1;33mtag: [m[1;33mv0.8.0[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Apr 21 22:52:32 2021 +0200
+
+    Update version to 0.8.0
+
+[33mcommit 693885352572e12ea4e20f2fe94fe4917173d959[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Apr 21 22:51:11 2021 +0200
+
+    Add support for CheckBox and CheckBox button
+
+[33mcommit dc2564c17d363f92f1ddc67280637b9f1e0c3ed8[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Apr 18 21:35:11 2021 +0200
+
+    Handle Rider compilation
+
+[33mcommit 0ee819d5b4aaf2500d6cac57445f0c85b56be8c1[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Apr 17 22:59:05 2021 +0200
+
+    Fix color of links in the entry view
+
+[33mcommit 11aac5bfb8cc799ec37b2d157e751b22d4e60550[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 13 21:57:46 2021 +0200
+
+    Fix color of menu arrows and show/hide password button
+
+[33mcommit 9b5dfffc6fbf4bebdbb2e9364de7f504baf619c6[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Apr 17 10:15:44 2021 +0200
+
+    Update screenshot
+
+[33mcommit 56b086ed2714c985b259828f843e19bea5a74470[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Fri Apr 9 20:59:45 2021 +0200
+
+    Update readme.md
+    
+    Release version, release date and downloads badge were added.
+
+[33mcommit 164c090aefc891344bda684921a6221daa5fe812[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Apr 8 22:20:12 2021 +0200
+
+    Update Chocolatey package source version to 0.7.1
+
+[33mcommit 9f71938fa2f1005f4c90dd34e015b5df67b5f306[m[33m ([m[1;33mtag: [m[1;33mv0.7.1[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Apr 8 21:45:32 2021 +0200
+
+    Update version to 0.7.1
+
+[33mcommit 6641747436faf7cf31adfcdfc7a9ee8f25931f22[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Thu Apr 8 21:44:44 2021 +0200
+
+    Fix #34 using custom colors of an entry
+
+[33mcommit cdcb9a96fd894c0254d4ae2ee385b480376af843[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Wed Apr 7 00:05:04 2021 +0200
+
+    Update Chocolatey package source version to 0.7
+
+[33mcommit cf75f8e0818609a0710fe14f5e2325b9b910ce8d[m[33m ([m[1;33mtag: [m[1;33mv0.7[m[33m)[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 23:24:13 2021 +0200
+
+    Update readme.md
+
+[33mcommit 143f0b0046b1f87910d040cf8efbf23880adce81[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 23:19:28 2021 +0200
+
+    Update readme.md
+
+[33mcommit 1cbfad01b5b76a9f4035d6646d19548a8edba449[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 22:54:49 2021 +0200
+
+    Update version to 7.0.0
+
+[33mcommit 7eeb891e7c27d248070ef504aebe1c29ba260f4d[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 22:50:20 2021 +0200
+
+    Update readme.md (info about changing hotkey)
+
+[33mcommit ec6d2c0c948bc7593d45113712a27fed1f04f5e2[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 22:26:58 2021 +0200
+
+    Update build scripts
+
+[33mcommit e08664b3a0a51878ad33f7f238db731e2c12388b[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 22:23:51 2021 +0200
+
+    Update dark theme template
+
+[33mcommit d0fb0fb71f07400650c60bd92b76a9e1aa4b56fc[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 22:22:18 2021 +0200
+
+    Add support for custom control error color
+
+[33mcommit 1b51eeae1b3a3269f7b0ca5c72a132a94dbc46ad[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 22:20:11 2021 +0200
+
+    Fix #42 invisible text in hotkey control
+
+[33mcommit fea29342261292306c85c301951ffda010668a0c[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 22:02:45 2021 +0200
+
+    Increase link and group contrast ratio
+
+[33mcommit 1826e33311af7c04dc2ac31697a57630834c81b9[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 22:01:56 2021 +0200
+
+    Update screenshots
+
+[33mcommit 466b258a8e0acc690c2d89a105c8d5d9973a6130[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Tue Apr 6 22:01:18 2021 +0200
+
+    Close #36 add hotkey configuration
+
+[33mcommit 4e5b1a5caec52923bb2658314caf97fb38eca586[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Mar 21 10:15:54 2021 +0100
+
+    Update Chocolatey package source version to 0.6.12
+
+[33mcommit 01ff581b9fb03b6d60a7f2c0c6370bbc6274af07[m[33m ([m[1;33mtag: [m[1;33mv0.6.12[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Mar 21 10:05:34 2021 +0100
+
+    Update version to 0.6.12
+
+[33mcommit cbfeff7c26584c205fa861b5c17e96ef2f8f2323[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Mar 21 09:59:21 2021 +0100
+
+    Fix #41 white background after locking database
+
+[33mcommit 9a5437cab00c32b370a12d5850a88ffce7116d6e[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Mar 7 12:26:50 2021 +0100
+
+    Update Chocolatey package source version to 0.6.11
+
+[33mcommit daa199ac37693dc2d5fdba58aeb0d87da2f154ad[m[33m ([m[1;33mtag: [m[1;33mv0.6.11[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Mar 7 12:15:41 2021 +0100
+
+    Update version to 0.6.11
+
+[33mcommit aa461816c58158c80c85e3f666f1bcc94b46146c[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Mar 7 12:14:16 2021 +0100
+
+    Add copying dll to plugins dir after build
+
+[33mcommit ca46dce60e24307fcef32e853c3f25a5890162c5[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Mar 7 12:06:47 2021 +0100
+
+    Fix minor memory leak
+    
+    The StringFormat object was not disposed.
+
+[33mcommit f82834a1896f25a401deebf81538239632ac2e82[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Mar 7 12:05:10 2021 +0100
+
+    Fix #31 contrast ratio between background and text
+
+[33mcommit 81621c068b9d3e069a61e1fff3dcabfd5dd9ecdf[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Mar 7 12:01:30 2021 +0100
+
+    Fix #40 unreadable buttons / dropdown in advanced entry edit
+    
+    Fixes text color of all disabled buttons.
+    Fixes color of all comboBoxes with DropDownList.
+    Fixes color of comboBox in EditStringForm.
+
+[33mcommit ed12fc519cb5f0da8ff0772f057ae2b8f3facd1d[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Wed Jun 10 21:32:07 2020 +0200
+
+    Update Chocolatey package source version to 0.6.10
+
+[33mcommit 4e3b20242a91c0190ae35aa8c3234c6885bb8a82[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Jun 2 08:47:21 2020 +0200
+
+    Fix two CS0168 warnings
+
+[33mcommit ab53d00c814cca124bfc6cf79f4b0f006c963c86[m[33m ([m[1;33mtag: [m[1;33mv0.6.10[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu May 7 09:06:37 2020 +0200
+
+    Add solution file
+
+[33mcommit f95e494b9f234c1a625d654f1190f474bfdcf357[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu May 7 08:52:00 2020 +0200
+
+    Update version to 0.6.10
+
+[33mcommit abfe64e3e0aa043082ad737b6bd28674d5c7697b[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu May 7 08:51:29 2020 +0200
+
+    Fix #30 showing menu of open attachments button
+
+[33mcommit f59e10e965fb62e1db5cafa4780c24e8c56f894d[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu May 7 08:44:18 2020 +0200
+
+    Update Resource.Designer.cs
+
+[33mcommit a6cf071d54998ad792769b30cfcbdf65ad210fd1[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu May 7 08:11:07 2020 +0200
+
+    Change few method names of ListView decorators
+
+[33mcommit d693312864f4d505203c8e9c8f552959e216b395[m
+Merge: 2181870 c55e69e
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sun Apr 26 21:08:59 2020 +0200
+
+    Merge pull request #29 from Rookiestyle/master
+    
+    React on changes of a themed ListView to ensure proper coloring of Li…
+
+[33mcommit c55e69e4c2054497aef5ec7ff3f26fd4e04440cf[m
+Author: rookiestyle <mail.spam@gmx.net>
+Date:   Sat Mar 14 13:47:29 2020 +0100
+
+    React on changes of a themed ListView to ensure proper coloring of ListView groups
+
+[33mcommit 2181870bff7274522597a515ea94da019a1152e0[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Wed Feb 12 21:02:38 2020 +0100
+
+    Update Chocolatey package source version to 0.6.9
+
+[33mcommit 8662ec58b600cb8abd1f2b2e8655875badda321f[m[33m ([m[1;33mtag: [m[1;33mv0.6.9[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Wed Feb 12 20:53:43 2020 +0100
+
+    Update version to 0.6.9
+
+[33mcommit d75a59feed361d729bdba0a1d0256e676005c2a4[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Wed Feb 12 20:51:50 2020 +0100
+
+    Fix #27 font color and shadow in the password quality bar
+
+[33mcommit d96311e9dbd4252e62a6fff62c3f2d1279493410[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Feb 4 21:37:33 2020 +0100
+
+    Update Chocolatey package source version to 0.6.8
+
+[33mcommit 407c55699fb0414597daaa462434330e368d2ee2[m[33m ([m[1;33mtag: [m[1;33mv0.6.8[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Feb 4 21:29:06 2020 +0100
+
+    Update version to 0.6.8
+
+[33mcommit 3ce51bd46c2d608e158ad75b4fade73a55094dfa[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Feb 4 21:28:27 2020 +0100
+
+    Fix #24 compatibility issues with KeeAgent plugin
+    
+    Fixes compatibility issues with all plugins which add tab page in the entry edit window.
+
+[33mcommit 0c75ab5a243e246e453fce911dc3d54efac3ff2a[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Jan 5 20:13:10 2020 +0100
+
+    Update Chocolatey package source version to 0.6.7
+
+[33mcommit 60d46c6c12f38e443956c88fc2e5a2519bb2f304[m[33m ([m[1;33mtag: [m[1;33mv0.6.7[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Jan 5 20:04:51 2020 +0100
+
+    Update version to 0.6.7
+
+[33mcommit d64ac87421111cffc743e14548f67b33c38ea61a[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Jan 5 20:04:37 2020 +0100
+
+    Improve compatibility with Mono
+
+[33mcommit 59b8487fb6450be54f963012e86e0656840cc6ba[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Jan 5 20:04:15 2020 +0100
+
+    Fix #19 invalid framework version in resources file
+
+[33mcommit 76dc9463aa7ba632773e1dd16c91b86fdb2345ac[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Dec 30 12:03:56 2019 +0100
+
+    Update Chocolatey package source version to 0.6.6
+
+[33mcommit 8554fdd49b4987c3a685c5102265ecea56629053[m[33m ([m[1;33mtag: [m[1;33mv0.6.6[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Dec 30 11:44:55 2019 +0100
+
+    Improve compatibility with Mono
+
+[33mcommit ea11838400c26bdabeb55655fbceca0eff656023[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Dec 30 10:15:28 2019 +0100
+
+    Update version to 0.6.6
+
+[33mcommit 695876daf06e71615378d7dade9f872e1649e788[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Dec 30 10:14:48 2019 +0100
+
+    Fix #23 unhandled exception on ObjectListView presence check
+
+[33mcommit c4466f0142dc4222683888025ea4fbddc8bf4ec8[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sat Dec 21 20:06:28 2019 +0100
+
+    Update Chocolatey package source version to 0.6.5
+
+[33mcommit 9304181620289ab34827770e6a71549aa0860757[m[33m ([m[1;33mtag: [m[1;33mv0.6.5[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sat Dec 21 19:52:22 2019 +0100
+
+    Update version to 0.6.5
+
+[33mcommit 3fae607e2d645e7f846257065e33d22fedef9c4c[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sat Dec 21 19:52:02 2019 +0100
+
+    Fix #18 theme initialization with trigger system turned off
+
+[33mcommit 6a8884b6a57ce44c79f735cd65e5bc89057255d2[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Dec 3 15:28:08 2019 +0100
+
+    Update Chocolatey package source version to 0.6.4
+
+[33mcommit 665f2379dd492768ecc90cb33abcb197ac20d539[m[33m ([m[1;33mtag: [m[1;33mv0.6.4[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Dec 3 15:24:06 2019 +0100
+
+    Update version to 0.6.4
+
+[33mcommit eac61f6329e50daad5532aa4f7cde86d6a3eee61[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Dec 3 15:23:36 2019 +0100
+
+    Fix incorrect check state of menu item
+
+[33mcommit 866b97ab81ee5212cc0b8e202668fe7f0728a2da[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Dec 2 13:19:59 2019 +0100
+
+    Update Chocolatey package source version to 0.6.3
+
+[33mcommit 5ff899d899e8216328d2bdb27a05bb119949dd8c[m[33m ([m[1;33mtag: [m[1;33mv0.6.3[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Dec 2 13:12:33 2019 +0100
+
+    Update version to 0.6.3
+
+[33mcommit 928eab83a52cdc0ef64b23b1384c82d1a27d3fd2[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Dec 2 13:12:08 2019 +0100
+
+    Fix #21 writing '&' as a hotkey prefix in ListView
+
+[33mcommit 941490d4fb154a547ddff13ade3fed6773db8e67[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Sep 30 13:02:28 2019 +0200
+
+    Update Chocolatey package source version to 0.6.2
+
+[33mcommit 5a89a1bb1f57408f40772ab38790c73d84e76fae[m[33m ([m[1;33mtag: [m[1;33mv0.6.2[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Sep 30 12:47:45 2019 +0200
+
+    Make KeeTheme enabled only after all plugins are loaded
+
+[33mcommit ed9f486f409b590997d2791a1b9c4b4f24d3c05e[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Sep 30 12:26:40 2019 +0200
+
+    Fix #12 compatibility issues with KPEnhancedEntryView
+
+[33mcommit 9ed1c445d9549e75a53152f1aed0b59895a21b5d[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu Sep 19 20:47:47 2019 +0200
+
+    Update version to 0.6.2
+
+[33mcommit de0feb710755897d93a662006cb3506fecc68553[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu Sep 19 20:47:12 2019 +0200
+
+    Fix #17 applying BackColor and ForeColor to a button
+
+[33mcommit 708d76f56f6b370142de0ea5611f6424ee8b6df2[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Wed Aug 28 20:44:44 2019 +0200
+
+    Update Chocolatey package source version to 0.6.1
+
+[33mcommit e72d262e69d89aee76348e21f5a4c71e87a02903[m[33m ([m[1;33mtag: [m[1;33mv0.6.1[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Fri Aug 16 22:18:26 2019 +0200
+
+    Update version to 0.6.1
+
+[33mcommit f91f5239ed0cede722e10d621a6096e5babe67d6[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Fri Aug 16 22:18:00 2019 +0200
+
+    Fix #14 fix exception after unlocking secure desktop
+
+[33mcommit fb661b046d667d24271a2f56583c89213fb3e55a[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Fri Aug 16 22:15:28 2019 +0200
+
+    Fix #13 fix editor size and font color in the attachment viewer
+
+[33mcommit 4ab02c72f963bfea72b31520c05ac431d78d985e[m
+Merge: b59d765 1eb20c3
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat Aug 17 22:43:57 2019 +0200
+
+    Merge pull request #15 from seanwlx/master
+    
+    Use CustomToolStripRenderer to paint the background of MenuStrips
+
+[33mcommit 1eb20c3d7240dc75bd00921802280431f62c9f33[m
+Author: seanwlx <sean.wlx@gmail.com>
+Date:   Fri Aug 16 21:05:40 2019 -0700
+
+    Use CustomToolStripRenderer to paint the background of MenuStrips
+
+[33mcommit b59d7652dff105e70df63cbf6b91294868bd4c72[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Aug 6 22:40:50 2019 +0200
+
+    Add Chocolatey package source
+
+[33mcommit e4f64ce50e664ec1ed0b832c28c6a82f63b8a131[m[33m ([m[1;33mtag: [m[1;33mv0.6[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Aug 6 21:54:41 2019 +0200
+
+    Fix context menu item text color
+
+[33mcommit 4a9286804e8cd49132f76e08b54347f17784690e[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Aug 6 21:42:12 2019 +0200
+
+    Change the color of the menu
+
+[33mcommit 8e4b7e69feb227502dd21d52b72ef9d3362ad76f[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Aug 6 21:37:35 2019 +0200
+
+    Update KeeTheme template
+
+[33mcommit 82b01c96813723fb920c93949a38be53069269d7[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Aug 6 21:33:52 2019 +0200
+
+    Add support for custom color in menu
+
+[33mcommit 5bcbe2ffb6005a3bb60f7b08ea9f88adfecdd998[m[33m ([m[1;33mtag: [m[1;33mv0.5.5[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Jul 8 22:00:33 2019 +0200
+
+    Fix #10 missing text in RichTextBox
+
+[33mcommit e8ae7b5d1c92797ad4b8b8b3d4aec62b0c4fd112[m[33m ([m[1;33mtag: [m[1;33mv0.5.4[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Jul 7 08:19:12 2019 +0200
+
+    Fix changing control from another thread
+    
+    The problem occured when Plgx was compiled.
+
+[33mcommit a0df51892a32453b64d9cb6ad9bbcdff7653cfd8[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Jul 7 07:54:05 2019 +0200
+
+    Fix #7 flashing after saving database
+
+[33mcommit 75f0b5416f2da29f4185bef87290e3c2117241e0[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sat Jul 6 20:15:16 2019 +0200
+
+    Fix RichTextBox FixedSingle border style
+
+[33mcommit d005f7ea928b0f7be771ec82cfa4c34cb63810b9[m[33m ([m[1;33mtag: [m[1;33mv0.5.3[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Jul 1 22:00:12 2019 +0200
+
+    Fix #9 missing checkboxes in Configure Columns window
+
+[33mcommit e4ff22926e7d0b65c4357f72d597dbc528a7fa81[m[33m ([m[1;33mtag: [m[1;33mv0.5.2[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu Jun 27 20:45:21 2019 +0200
+
+    Fix #6 drawing of the first column after reorder
+
+[33mcommit 22a9ea6895db77202c73be23e5ecc3b5e0e6dbbd[m[33m ([m[1;33mtag: [m[1;33mv0.5.1[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sat Jun 8 22:46:00 2019 +0200
+
+    Fix #5 cut off icons
+    
+    KeePass is using bigger icons when windows scaling is on.
+
+[33mcommit 3ec087eeb3b81f790e5011979859cb5d36dcb1f6[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Sat May 18 12:50:20 2019 +0200
+
+    Update README.md
+
+[33mcommit d4b31145e44e7a52d05d9cb6adbffa171684994c[m[33m ([m[1;33mtag: [m[1;33mv0.5[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun May 5 20:45:37 2019 +0100
+
+    Update options screenshot
+
+[33mcommit 1c19aaaa6fc963fb54e7873fa60f25fbd53e8ee5[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun May 5 20:26:58 2019 +0100
+
+    Add support for custom group colors in ListView
+
+[33mcommit 2b2f0c55c916e641fae06c4f45030211897687f2[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sat May 4 15:22:08 2019 +0100
+
+    Change the color of the header after the columns
+
+[33mcommit f56402ddd70c345186b38cd3de084ae7f4c3f79a[m[33m ([m[1;33mtag: [m[1;33mv0.4.1[m[33m, [m[1;33mtag: [m[1;33mv0.4[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sat Apr 20 12:45:17 2019 +0200
+
+    Add support for background image in ListView
+
+[33mcommit c7ff30ad7f600d80f490b2186b11061c95012f78[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Apr 15 21:52:51 2019 +0100
+
+    Rename DarkTheme -> KeeTheme
+    
+    The name was changed because the plugin supports any theme.
+
+[33mcommit dca14cbc3548c6ad06a056e78395b357726e3d3a[m[33m ([m[1;33mtag: [m[1;33mv0.3.2[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu Apr 11 21:57:34 2019 +0200
+
+    Fix theme loading in plgx file
+    
+    Plgx file is running in context of application, so assembly location was not pointing to the `Plugins` folder.
+
+[33mcommit 17db4c2a43ce1401f1d1d9c62c3d3dde1b2ea223[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu Apr 11 21:25:27 2019 +0200
+
+    Change the case of theme name
+    
+    Changed the name of theme from "Dark theme" to "Dark Theme".
+
+[33mcommit 848a43a9f58d44869e14368c6d5e0ef0068168da[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Thu Apr 11 21:20:40 2019 +0200
+
+    Fix loading theme name
+    
+    The menu showed active theme name instead of custom theme name.
+
+[33mcommit 8cafc98e9c656b051eb2089d5ffa0c62355f2b18[m[33m ([m[1;33mtag: [m[1;33mv0.3.1[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Tue Apr 9 23:03:12 2019 +0200
+
+    Fix #2 incompability with Icon Picker
+
+[33mcommit 6724ec4ca69072d11f1d9de9d1757acba27e02df[m[33m ([m[1;33mtag: [m[1;33mv0.3[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Apr 8 19:15:52 2019 +0100
+
+    Update README.md
+
+[33mcommit bae6b910d40090a71e5e14502b236e8a46cf2a2a[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Apr 8 19:11:26 2019 +0100
+
+    Read theme name from file and show it in the menu
+
+[33mcommit a3bbeb7d39828e86a6c421040f33ac37931d18be[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Apr 8 18:58:56 2019 +0100
+
+    Change namespace from DarkTheme.Custom to DarkTheme.Skin
+
+[33mcommit ea21b9e2a888110e37315433a09e0679b93150f3[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Mon Apr 8 18:57:28 2019 +0100
+
+    Load DarkSkin from embedded ini file
+
+[33mcommit efbc1b45423596ead15c74212074da0be443d994[m[33m ([m[1;33mtag: [m[1;33mv0.2[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sat Apr 6 00:14:46 2019 +0200
+
+    Make compatible with C# version < 7
+
+[33mcommit 578c7ef34777e894494d010dddf45b1f2413c5f2[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Fri Apr 5 23:47:52 2019 +0200
+
+    Add customizable skin
+
+[33mcommit 23da3f6f86744784fad12e3346d36033dff621f6[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Sun Mar 24 08:21:49 2019 +0100
+
+    Make compatible with C# version < 7
+
+[33mcommit 5f5959a07b81e7e3d4bbbbd32e3032be84994045[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Fri Mar 22 23:40:03 2019 +0100
+
+    Add screenshots
+    
+    - Added screenshots.
+    - Readme was updated.
+
+[33mcommit 7cc6eb48595e3db27a32f5c8af9bd30138206cdd[m[33m ([m[1;33mtag: [m[1;33mv0.1[m[33m)[m
+Author: Krzysztof Łaputa <Krzysztof.Laputa@logsystem.pl>
+Date:   Fri Mar 22 23:10:26 2019 +0100
+
+    Add DarkTheme plugin
+    
+    Adds initial version of DarkTheme plugin.
+
+[33mcommit 0092c2c87c7f992472757a489e98a40b0c7b4293[m
+Author: Krzysztof Łaputa <xatupal@nibiru.pl>
+Date:   Fri Mar 22 22:17:48 2019 +0100
+
+    Initial commit
