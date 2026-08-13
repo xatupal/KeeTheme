@@ -56,18 +56,29 @@ jobs:
           $refDir = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.5"
           if (-not (Test-Path (Join-Path $refDir "System.dll"))) {
             $pkg = "$env:TEMP\ref35.nupkg"
+            $tmp = "$env:TEMP\ref35"
             Write-Host "Downloading Microsoft.NETFramework.ReferenceAssemblies.net35..."
             & curl.exe -sS -L -o $pkg -w "http=%{http_code}%n" "https://api.nuget.org/v3-flatcontainer/microsoft.netframework.referenceassemblies.net35/1.0.3/microsoft.netframework.referenceassemblies.net35.1.0.3.nupkg"
-            if ($LASTEXITCODE -ne 0) { throw "Failed to download .NET 3.5 reference assemblies package" }
-            $tmp = "$env:TEMP\ref35"
+            if ($LASTEXITCODE -ne 0) { throw "curl failed downloading reference assemblies (exit $LASTEXITCODE)" }
+            if (-not (Test-Path $pkg) -or (Get-Item $pkg).Length -lt 10000) {
+              throw "Downloaded package is empty or too small"
+            }
             if (Test-Path $tmp) { Remove-Item -Recurse -Force $tmp }
+            Write-Host "Extracting package..."
             Expand-Archive -LiteralPath $pkg -DestinationPath $tmp
+            $src = Join-Path $tmp "build\.NETFramework\v3.5"
+            if (-not (Test-Path (Join-Path $src "System.dll"))) {
+              $listing = (Get-ChildItem -Recurse $tmp -Filter *.dll -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName) -join "`n"
+              throw "v3.5 reference assemblies not found in package; found:`n$listing"
+            }
+            Write-Host "Copying reference assemblies to $refDir"
             New-Item -ItemType Directory -Force $refDir | Out-Null
-            Copy-Item -Path (Join-Path $tmp "build\.NETFramework\v3.5\*") -Destination $refDir -Recurse -Force
+            & robocopy $src $refDir /E /NFL /NDL /NJH /NJS /NC /NS | Out-Null
+            if ($LASTEXITCODE -ge 8) { throw "robocopy failed with exit code $LASTEXITCODE" }
             Remove-Item -Recurse -Force $tmp
           }
           if (-not (Test-Path (Join-Path $refDir "System.dll"))) {
-            throw "Failed to install .NET 3.5 reference assemblies"
+            throw "Failed to install .NET 3.5 reference assemblies at $refDir"
           }
           Write-Host ".NET 3.5 reference assemblies installed at $refDir"
 
