@@ -9,6 +9,7 @@ on:
 jobs:
   build:
     runs-on: windows-latest
+    timeout-minutes: 40
 
     steps:
       - name: Checkout
@@ -50,32 +51,27 @@ jobs:
             throw "Failed to install KeePass.exe"
           }
 
+      - name: Setup NuGet
+        uses: nuget/setup-nuget@v2
+
       - name: Install .NET Framework 3.5 reference assemblies
         shell: pwsh
+        timeout-minutes: 10
         run: |
           $refDir = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\v3.5"
           if (-not (Test-Path (Join-Path $refDir "System.dll"))) {
-            $pkg = "$env:TEMP\ref35.nupkg"
-            $tmp = "$env:TEMP\ref35"
-            Write-Host "Downloading Microsoft.NETFramework.ReferenceAssemblies.net35..."
-            & curl.exe -sS -L -o $pkg -w "http=%{http_code}%n" "https://api.nuget.org/v3-flatcontainer/microsoft.netframework.referenceassemblies.net35/1.0.3/microsoft.netframework.referenceassemblies.net35.1.0.3.nupkg"
-            if ($LASTEXITCODE -ne 0) { throw "curl failed downloading reference assemblies (exit $LASTEXITCODE)" }
-            if (-not (Test-Path $pkg) -or (Get-Item $pkg).Length -lt 10000) {
-              throw "Downloaded package is empty or too small"
-            }
-            if (Test-Path $tmp) { Remove-Item -Recurse -Force $tmp }
-            Write-Host "Extracting package..."
-            Expand-Archive -LiteralPath $pkg -DestinationPath $tmp
-            $src = Join-Path $tmp "build\.NETFramework\v3.5"
+            $pkgDir = "$env:TEMP\ref35pkg"
+            Write-Host "Downloading Microsoft.NETFramework.ReferenceAssemblies.net35 via nuget..."
+            & nuget install Microsoft.NETFramework.ReferenceAssemblies.net35 -Version 1.0.3 -OutputDirectory $pkgDir -NonInteractive
+            if ($LASTEXITCODE -ne 0) { throw "nuget install failed (exit $LASTEXITCODE)" }
+            $src = Join-Path $pkgDir "Microsoft.NETFramework.ReferenceAssemblies.net35.1.0.3\build\.NETFramework\v3.5"
             if (-not (Test-Path (Join-Path $src "System.dll"))) {
-              $listing = (Get-ChildItem -Recurse $tmp -Filter *.dll -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName) -join "`n"
-              throw "v3.5 reference assemblies not found in package; found:`n$listing"
+              $listing = (Get-ChildItem -Recurse $pkgDir -Filter *.dll -ErrorAction SilentlyContinue | Select-Object -ExpandProperty FullName) -join "`n"
+              throw "v3.5 reference assemblies not found under $src; found:`n$listing"
             }
             Write-Host "Copying reference assemblies to $refDir"
             New-Item -ItemType Directory -Force $refDir | Out-Null
-            & robocopy $src $refDir /E /NFL /NDL /NJH /NJS /NC /NS | Out-Null
-            if ($LASTEXITCODE -ge 8) { throw "robocopy failed with exit code $LASTEXITCODE" }
-            Remove-Item -Recurse -Force $tmp
+            Get-ChildItem -LiteralPath $src | Copy-Item -Destination $refDir -Recurse -Force
           }
           if (-not (Test-Path (Join-Path $refDir "System.dll"))) {
             throw "Failed to install .NET 3.5 reference assemblies at $refDir"
