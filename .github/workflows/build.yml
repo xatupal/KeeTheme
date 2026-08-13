@@ -21,14 +21,30 @@ jobs:
         shell: pwsh
         run: |
           $keepassDir = "C:\Program Files\KeePass Password Safe 2"
-          if (-not (Test-Path (Join-Path $keepassDir "KeePass.exe"))) {
-            $url = "https://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.42.1/KeePass-2.42.1-Portable.zip"
-            Write-Host "Downloading KeePass 2.42.1 portable..."
-            Invoke-WebRequest -Uri $url -OutFile "$env:TEMP\KeePass.zip" -MaximumRedirection 20
+          $keePassExe = Join-Path $keepassDir "KeePass.exe"
+          if (-not (Test-Path $keePassExe)) {
+            $zip = "$env:TEMP\KeePass.zip"
+            $urls = @(
+              "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.42.1/KeePass-2.42.1.zip/download",
+              "https://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.42.1/KeePass-2.42.1.zip",
+              "https://netix.dl.sourceforge.net/project/keepass/KeePass%202.x/2.42.1/KeePass-2.42.1.zip"
+            )
+            $downloaded = $false
+            foreach ($url in $urls) {
+              Write-Host "Downloading KeePass 2.42.1 from $url"
+              & curl.exe -L -sS --retry 3 -o $zip -w "http=%{http_code} size=%{size_download}`n" $url
+              if ($LASTEXITCODE -eq 0 -and (Test-Path $zip) -and (Get-Item $zip).Length -gt 1000000) {
+                $downloaded = $true
+                break
+              }
+            }
+            if (-not $downloaded) {
+              throw "Failed to download KeePass 2.42.1 package"
+            }
             New-Item -ItemType Directory -Force $keepassDir | Out-Null
-            Expand-Archive -LiteralPath "$env:TEMP\KeePass.zip" -DestinationPath $keepassDir -Force
+            Expand-Archive -LiteralPath $zip -DestinationPath $keepassDir -Force
           }
-          if (Test-Path (Join-Path $keepassDir "KeePass.exe")) {
+          if (Test-Path $keePassExe) {
             Write-Host "KeePass.exe installed at $keepassDir"
           } else {
             throw "Failed to install KeePass.exe"
