@@ -58,9 +58,22 @@ jobs:
           New-Item -ItemType Directory -Force $dest | Out-Null
           Write-Host "Created $dest"
 
+      - name: Resolve .NET Framework reference assemblies
+        shell: pwsh
+        run: |
+          $root = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework"
+          $dir = Get-ChildItem -LiteralPath $root -Directory -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -match '^v(3|4)(\.\d+)+$' } |
+            Sort-Object { [version]($_.Name.TrimStart('v')) } |
+            Select-Object -Last 1
+          if ($null -eq $dir) { throw "No .NET Framework reference assemblies found under $root" }
+          $path = Join-Path $root $dir.Name
+          Add-Content -Path $env:GITHUB_ENV -Value "FRAMEWORK_PATH_OVERRIDE=$path"
+          Write-Host "Using .NET Framework reference assemblies: $path"
+
       - name: Build KeeTheme.dll
         shell: cmd
-        run: msbuild KeeTheme.sln /p:Configuration=Release /m /fl "/flp:logfile=msbuild.log;verbosity=normal"
+        run: msbuild KeeTheme.sln /p:Configuration=Release "/p:FrameworkPathOverride=%FRAMEWORK_PATH_OVERRIDE%" /m /fl "/flp:logfile=msbuild.log;verbosity=normal"
 
       - name: Upload MSBuild log on failure
         if: failure()
