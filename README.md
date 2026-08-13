@@ -1,8 +1,8 @@
 # KeeTheme
 
-[![Version](https://img.shields.io/github/release/xatupal/KeeTheme)](https://github.com/xatupal/KeeTheme/releases/latest)
-[![Releasedate](https://img.shields.io/github/release-date/xatupal/KeeTheme)](https://github.com/xatupal/KeeTheme/releases/latest)
-[![Downloads](https://img.shields.io/github/downloads/xatupal/KeeTheme/total)](https://github.com/xatupal/KeeTheme/releases/latest/download/KeeTheme.plgx)
+[![Version](https://img.shields.io/github/release/netrondong/KeeTheme)](https://github.com/netrondong/KeeTheme/releases/latest)
+[![Releasedate](https://img.shields.io/github/release-date/netrondong/KeeTheme)](https://github.com/netrondong/KeeTheme/releases/latest)
+[![Downloads](https://img.shields.io/github/downloads/netrondong/KeeTheme/total)](https://github.com/netrondong/KeeTheme/releases/latest/download/KeeTheme.dll)
 
 KeePass Plugin
 
