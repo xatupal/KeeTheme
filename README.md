@@ -11,7 +11,11 @@ This plugin changes the appearance of KeePass to make it look better at night.
 You can enable it using the hotkey `CTRL+T` or through the menu `Tools -> DarkTheme`.
 
 本Fork主要解决了暗黑模式下，备注(Notes)文本框无法输入中文的问题，CJK应该一样。
+
 <img width="495" height="515" alt="image" src="https://github.com/user-attachments/assets/02e7d3e6-f53b-41e3-9d53-b4cd886bd3a9" />
+
+## 上游
+基于 [xatupal/KeeTheme](https://github.com/xatupal/KeeTheme) 的修复分支。
 
 
 ### Options
