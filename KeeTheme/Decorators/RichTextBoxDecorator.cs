@@ -45,6 +45,15 @@ namespace KeeTheme.Decorators
 			richTextBox.BorderStyle = BorderStyle.None;
 			richTextBox.Location = Point.Empty;
 			Controls.Add(richTextBox);
+
+			// Moving the RichTextBox into the decorator panel destroys and re-creates its
+			// native window, which breaks the input method editor (IME) context so that
+			// East Asian text (Chinese, Japanese, Korean) can no longer be composed in
+			// e.g. the Notes field. Recreating the handle while the control is already in
+			// its final parent gives the RichEdit window a clean re-initialization.
+			if (richTextBox.IsHandleCreated)
+				richTextBox.RecreateHandle();
+
 			EnabledChanged += HandleEnabledChanged;
 
 			if (Parent.GetType() == typeof(DataEditorForm))
@@ -197,6 +206,13 @@ namespace KeeTheme.Decorators
 				return;
 
 			var richTextBox = (RichTextBox)sender;
+
+			// Do not reformat the whole document while an IME composition is active -
+			// SelectAll() would cancel the composition, making it impossible to type
+			// Chinese, Japanese or Korean text.
+			if (_richTextBoxNativeWindow != null && _richTextBoxNativeWindow.ImeComposing)
+				return;
+
 			ApplyFontColor(richTextBox);
 			if (_lastText != richTextBox.Text)
 			{
