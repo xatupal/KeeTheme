@@ -39,13 +39,22 @@ namespace KeeTheme.Decorators
         private const int WM_ENABLE = 0x000A;
         private const int WM_PAINT = 0x000F;
         private const int WM_SETCURSOR = 0x0020;
+        private const int WM_IME_STARTCOMPOSITION = 0x010D;
+        private const int WM_IME_ENDCOMPOSITION = 0x010E;
+        private const int WM_KILLFOCUS = 0x0008;
         private const int WM_USER = 0x0400;
         private const int EM_SETCHARFORMAT = WM_USER + 68;
         private const uint CFE_LINK = 0x0020;
         
         private readonly RichTextBox _richTextBox;
         private bool _enabled;
-        
+        private bool _imeComposing;
+
+        internal bool ImeComposing
+        {
+            get { return _imeComposing; }
+        }
+
         internal event PaintEventHandler Paint;
         internal event EventHandler LinkCreated; 
 
@@ -86,6 +95,15 @@ namespace KeeTheme.Decorators
 
         protected override void WndProc(ref Message m)
         {
+            if (m.Msg == WM_IME_STARTCOMPOSITION)
+            {
+                _imeComposing = true;
+            }
+            else if (m.Msg == WM_IME_ENDCOMPOSITION || m.Msg == WM_KILLFOCUS)
+            {
+                _imeComposing = false;
+            }
+
             if (m.Msg == WM_ENABLE)
             {
                 _enabled = m.WParam != IntPtr.Zero;

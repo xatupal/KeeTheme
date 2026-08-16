@@ -603,12 +603,16 @@ namespace KeeTheme
 			TextRenderer.DrawText(e.Graphics, node.Text, font, rectangle, foreColor, TextFormatFlags.NoPrefix);
 		}
 
+		private readonly Dictionary<RichTextBox, RichTextBoxDecorator> _richTextBoxDecorators =
+			new Dictionary<RichTextBox, RichTextBoxDecorator>();
+
 		private void Apply(RichTextBox richTextBox)
 		{
-			var decorator = richTextBox.Parent as RichTextBoxDecorator;
-			if (decorator == null)
+			RichTextBoxDecorator decorator;
+			if (!_richTextBoxDecorators.TryGetValue(richTextBox, out decorator))
 			{
 				decorator = new RichTextBoxDecorator(richTextBox, _theme);
+				_richTextBoxDecorators.Add(richTextBox, decorator);
 			}
 
 			decorator.EnableTheme(_enabled, _theme);

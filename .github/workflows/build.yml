@@ -1,0 +1,103 @@
+name: Build
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    timeout-minutes: 40
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      - name: Install KeePass (for the KeePass.exe assembly reference)
+        shell: pwsh
+        run: |
+          $keepassDir = "C:\Program Files\KeePass Password Safe 2"
+          $keePassExe = Join-Path $keepassDir "KeePass.exe"
+          if (-not (Test-Path $keePassExe)) {
+            $zip = "$env:TEMP\KeePass.zip"
+            $urls = @(
+              "https://sourceforge.net/projects/keepass/files/KeePass%202.x/2.42.1/KeePass-2.42.1.zip/download",
+              "https://downloads.sourceforge.net/project/keepass/KeePass%202.x/2.42.1/KeePass-2.42.1.zip",
+              "https://netix.dl.sourceforge.net/project/keepass/KeePass%202.x/2.42.1/KeePass-2.42.1.zip"
+            )
+            $downloaded = $false
+            foreach ($url in $urls) {
+              Write-Host "Downloading KeePass 2.42.1 from $url"
+              & curl.exe -L -sS --retry 3 -o $zip -w "http=%{http_code} size=%{size_download}`n" $url
+              if ($LASTEXITCODE -eq 0 -and (Test-Path $zip) -and (Get-Item $zip).Length -gt 1000000) {
+                $downloaded = $true
+                break
+              }
+            }
+            if (-not $downloaded) {
+              throw "Failed to download KeePass 2.42.1 package"
+            }
+            New-Item -ItemType Directory -Force $keepassDir | Out-Null
+            Expand-Archive -LiteralPath $zip -DestinationPath $keepassDir -Force
+          }
+          if (Test-Path $keePassExe) {
+            Write-Host "KeePass.exe installed at $keepassDir"
+          } else {
+            throw "Failed to install KeePass.exe"
+          }
+
+      - name: Create post-build copy destination
+        shell: pwsh
+        run: |
+          $dest = Join-Path (Split-Path $env:GITHUB_WORKSPACE -Parent) "KeePass\Plugins"
+          New-Item -ItemType Directory -Force $dest | Out-Null
+          Write-Host "Created $dest"
+
+      - name: Resolve .NET Framework reference assemblies
+        shell: pwsh
+        run: |
+          $root = "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework"
+          $dir = Get-ChildItem -LiteralPath $root -Directory -ErrorAction SilentlyContinue |
+            Where-Object { $_.Name -match '^v(3|4)(\.\d+)+$' } |
+            Sort-Object { [version]($_.Name.TrimStart('v')) } |
+            Select-Object -Last 1
+          if ($null -eq $dir) { throw "No .NET Framework reference assemblies found under $root" }
+          $path = Join-Path $root $dir.Name
+          Add-Content -Path $env:GITHUB_ENV -Value "FRAMEWORK_PATH_OVERRIDE=$path"
+          Write-Host "Using .NET Framework reference assemblies: $path"
+
+      - name: Build KeeTheme.dll
+        shell: cmd
+        run: msbuild KeeTheme.sln /p:Configuration=Release "/p:FrameworkPathOverride=%FRAMEWORK_PATH_OVERRIDE%" /m /fl "/flp:logfile=msbuild.log;verbosity=normal"
+
+      - name: Upload MSBuild log on failure
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: msbuild-log
+          path: msbuild.log
+
+      - name: Package KeeTheme.plgx
+        shell: pwsh
+        continue-on-error: true
+        run: |
+          $plgxDir = Join-Path $env:GITHUB_WORKSPACE "build\PlgX"
+          New-Item -ItemType Directory -Force $plgxDir | Out-Null
+          robocopy "KeeTheme" $plgxDir /E /XD bin obj .git .vs .idea /XF *.pdb *.suo *.user KeeTheme.dll KeeTheme.plgx build.cmd plgxexclude.txt /NFL /NDL /NJH /NJS /NC /NS | Out-Null
+          & "C:\Program Files\KeePass Password Safe 2\KeePass.exe" /plgx-create $plgxDir --debug --plgx-prereq-net:4.0
+          Move-Item -LiteralPath "PlgX.plgx" -Destination "KeeTheme.plgx" -Force
+          Remove-Item -Recurse -Force $plgxDir
+          Write-Host "Created KeeTheme.plgx"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: KeeTheme
+          path: |
+            KeeTheme/bin/Release/KeeTheme.dll
+            KeeTheme.plgx
