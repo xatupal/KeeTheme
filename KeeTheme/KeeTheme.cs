@@ -91,6 +91,7 @@ namespace KeeTheme
 			if (control.InvokeRequired)
 			{
 				control.Invoke(new MethodInvoker(() => Apply(control)));
+				return;
 			}
 
 			if (!(control is ToolStrip))

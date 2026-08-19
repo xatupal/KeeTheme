@@ -59,6 +59,12 @@ namespace KeeTheme
 
 		public static void UseImmersiveDarkMode(Form form, bool enabled)
 		{
+			if (form.InvokeRequired)
+			{
+				form.Invoke(new Action(() => UseImmersiveDarkMode(form, enabled)));
+				return;
+			}
+			
 			if (form.IsHandleCreated)
 			{
 				if (UseImmersiveDarkMode(form.Handle, enabled))
